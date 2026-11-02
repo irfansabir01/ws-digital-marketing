@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/includes/cta-form-handler.php';
-$page_title = 'Google Ads & Paid Social Management';
-$page_description = 'Reach relevant customers with Google Ads and paid social campaigns. Explore targeting, campaign testing and reporting, with ad spend separate from our fees.';
+$page_title = 'PPC & Google Ads Agency Australia';
+$page_description = 'Grow leads with expert PPC advertising across Google Ads, Facebook & Instagram. Smart targeting, conversion tracking and clear reports. Get a free ads audit.';
 include 'header.php';
 ?>
 

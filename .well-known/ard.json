@@ -1,0 +1,16 @@
+{
+  "entries": [
+    {
+      "identifier": "urn:air:wsdigitalmarketing.com.au:skills:request-free-growth-plan",
+      "displayName": "Request a free growth plan from W&S Digital Marketing",
+      "description": "Step-by-step agent skill for submitting a digital marketing enquiry (SEO, Google Ads, social media, ecommerce, website design) to W&S Digital Marketing, an Australian agency, on a user's behalf.",
+      "type": "text/markdown; profile=\"urn:air:agent-skills\"",
+      "url": "https://wsdigitalmarketing.com.au/agent-skills/request-free-growth-plan/SKILL.md",
+      "representativeQueries": [
+        "get a free digital marketing growth plan for my Australian business",
+        "contact an SEO and Google Ads agency in Sydney",
+        "request a quote for website design and digital marketing in NSW"
+      ]
+    }
+  ]
+}

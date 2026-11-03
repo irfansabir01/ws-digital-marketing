@@ -35,29 +35,29 @@ $cta_form_action = htmlspecialchars($_SERVER['REQUEST_URI'] ?? '/', ENT_QUOTES, 
 <?php endif; ?>
 
 <?php if (!$cta_email_sent): ?>
-<form action="<?php echo $cta_form_action; ?>" method="POST" class="cta-enquiry-form">
+<form toolname="request_free_growth_plan" tooldescription="Send an enquiry to W&amp;S Digital Marketing (Australian digital marketing agency) to request a free growth plan or a quote. Only submit with the user's confirmation." action="<?php echo $cta_form_action; ?>" method="POST" class="cta-enquiry-form">
     <?php if ($cta_plan !== ''): ?>
-    <input type="hidden" name="plan" value="<?php echo htmlspecialchars($cta_plan, ENT_QUOTES, 'UTF-8'); ?>">
+    <input type="hidden" name="plan" toolparamdescription="Pricing plan the user is enquiring about (Starter, Growth or Scale)" value="<?php echo htmlspecialchars($cta_plan, ENT_QUOTES, 'UTF-8'); ?>">
     <p class="cta-enquiry-plan-note"><i class="fa-solid fa-circle-check" style="color: var(--cyan-neon); margin-right: 6px;"></i>Enquiring about the <?php echo htmlspecialchars($cta_plan, ENT_QUOTES, 'UTF-8'); ?> Plan</p>
     <?php endif; ?>
     <div class="cta-enquiry-row">
         <div class="cta-enquiry-field">
             <label for="cta-name">Your Name *</label>
-            <input type="text" id="cta-name" name="name" placeholder="John Smith" required value="<?php echo htmlspecialchars($_POST['name'] ?? '', ENT_QUOTES, 'UTF-8'); ?>">
+            <input type="text" id="cta-name" name="name" toolparamdescription="The user&#39;s full name" placeholder="John Smith" required value="<?php echo htmlspecialchars($_POST['name'] ?? '', ENT_QUOTES, 'UTF-8'); ?>">
         </div>
         <div class="cta-enquiry-field">
             <label for="cta-email">Email Address *</label>
-            <input type="email" id="cta-email" name="email" placeholder="john@example.com" required value="<?php echo htmlspecialchars($_POST['email'] ?? '', ENT_QUOTES, 'UTF-8'); ?>">
+            <input type="email" id="cta-email" name="email" toolparamdescription="Email address the agency should reply to" placeholder="john@example.com" required value="<?php echo htmlspecialchars($_POST['email'] ?? '', ENT_QUOTES, 'UTF-8'); ?>">
         </div>
     </div>
     <div class="cta-enquiry-row">
         <div class="cta-enquiry-field">
             <label for="cta-phone">Phone Number (optional)</label>
-            <input type="tel" id="cta-phone" name="phone" placeholder="0400 000 000" value="<?php echo htmlspecialchars($_POST['phone'] ?? '', ENT_QUOTES, 'UTF-8'); ?>">
+            <input type="tel" id="cta-phone" name="phone" toolparamdescription="Optional contact phone number, e.g. 0400 000 000" placeholder="0400 000 000" value="<?php echo htmlspecialchars($_POST['phone'] ?? '', ENT_QUOTES, 'UTF-8'); ?>">
         </div>
         <div class="cta-enquiry-field">
             <label for="cta-service">Service Needed</label>
-            <select id="cta-service" name="service">
+            <select id="cta-service" name="service" toolparamdescription="The marketing service the user needs">
                 <?php foreach ($cta_services as $cta_service_option): ?>
                 <option value="<?php echo htmlspecialchars($cta_service_option, ENT_QUOTES, 'UTF-8'); ?>"<?php echo ($cta_selected_service === $cta_service_option) ? ' selected' : ''; ?>><?php echo htmlspecialchars($cta_service_option, ENT_QUOTES, 'UTF-8'); ?></option>
                 <?php endforeach; ?>
@@ -67,7 +67,7 @@ $cta_form_action = htmlspecialchars($_SERVER['REQUEST_URI'] ?? '/', ENT_QUOTES, 
     </div>
     <div class="cta-enquiry-field">
         <label for="cta-message">Tell Us About Your Project *</label>
-        <textarea id="cta-message" name="message" rows="3" placeholder="Share your goals, current challenges, or what you'd like to achieve..." required><?php echo htmlspecialchars($cta_message_value, ENT_QUOTES, 'UTF-8'); ?></textarea>
+        <textarea id="cta-message" name="message" toolparamdescription="The user&#39;s business goals, current challenges and what they want to achieve" rows="3" placeholder="Share your goals, current challenges, or what you'd like to achieve..." required><?php echo htmlspecialchars($cta_message_value, ENT_QUOTES, 'UTF-8'); ?></textarea>
     </div>
     <p class="cta-enquiry-privacy">By submitting this form, you agree to our <a href="/privacy-policy">Privacy Policy</a>.</p>
     <button type="submit" class="btn-primary cta-enquiry-submit"><?php echo htmlspecialchars($cta_button_label, ENT_QUOTES, 'UTF-8'); ?> <i class="fa-solid fa-arrow-right" style="margin-left: 5px;"></i></button>

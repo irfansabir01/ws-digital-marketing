@@ -149,22 +149,22 @@ include 'header.php';
                         </div>
                     <?php endif; ?>
 
-                    <form action="/contact" method="POST" style="display: flex; flex-direction: column; gap: 18px;">
+                    <form toolname="contact_request_growth_plan" tooldescription="Send an enquiry to W&amp;S Digital Marketing (Australian digital marketing agency) to request a free growth plan or a quote. Only submit with the user's confirmation." action="/contact" method="POST" style="display: flex; flex-direction: column; gap: 18px;">
                         <?php if ($selected_plan !== ''): ?>
-                            <input type="hidden" name="plan" value="<?php echo htmlspecialchars($selected_plan, ENT_QUOTES, 'UTF-8'); ?>">
+                            <input type="hidden" name="plan" toolparamdescription="Pricing plan the user is enquiring about (Starter, Growth or Scale)" value="<?php echo htmlspecialchars($selected_plan, ENT_QUOTES, 'UTF-8'); ?>">
                         <?php endif; ?>
                         <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 18px;">
                             <div style="display: flex; flex-direction: column; gap: 6px;">
-                                <label style="font-size: 0.8rem; font-weight: 700; color: var(--navy); text-transform: uppercase;">Your Name *</label>
+                                <label style="font-size: 0.8rem; font-weight: 700; color: var(--navy); text-transform: uppercase;" for="contact-name">Your Name *</label>
                                 <div class="input-wrap">
-                                    <input type="text" name="name" placeholder="John Smith" required>
+                                    <input id="contact-name" type="text" name="name" toolparamdescription="The user&#39;s full name" placeholder="John Smith" required>
                                     <i class="fa-solid fa-user"></i>
                                 </div>
                             </div>
                             <div style="display: flex; flex-direction: column; gap: 6px;">
-                                <label style="font-size: 0.8rem; font-weight: 700; color: var(--navy); text-transform: uppercase;">Email Address *</label>
+                                <label style="font-size: 0.8rem; font-weight: 700; color: var(--navy); text-transform: uppercase;" for="contact-email">Email Address *</label>
                                 <div class="input-wrap">
-                                    <input type="email" name="email" placeholder="john@example.com" required>
+                                    <input id="contact-email" type="email" name="email" toolparamdescription="Email address the agency should reply to" placeholder="john@example.com" required>
                                     <i class="fa-solid fa-envelope"></i>
                                 </div>
                             </div>
@@ -172,16 +172,16 @@ include 'header.php';
 
                         <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 18px;">
                             <div style="display: flex; flex-direction: column; gap: 6px;">
-                                <label style="font-size: 0.8rem; font-weight: 700; color: var(--navy); text-transform: uppercase;">Phone Number</label>
+                                <label style="font-size: 0.8rem; font-weight: 700; color: var(--navy); text-transform: uppercase;" for="contact-phone">Phone Number</label>
                                 <div class="input-wrap">
-                                    <input type="tel" name="phone" placeholder="0400 000 000">
+                                    <input id="contact-phone" type="tel" name="phone" toolparamdescription="Optional contact phone number, e.g. 0400 000 000" placeholder="0400 000 000">
                                     <i class="fa-solid fa-phone"></i>
                                 </div>
                             </div>
                             <div style="display: flex; flex-direction: column; gap: 6px;">
-                                <label style="font-size: 0.8rem; font-weight: 700; color: var(--navy); text-transform: uppercase;">Service Needed</label>
+                                <label style="font-size: 0.8rem; font-weight: 700; color: var(--navy); text-transform: uppercase;" for="contact-service">Service Needed</label>
                                 <div class="input-wrap">
-                                    <select name="service">
+                                    <select id="contact-service" name="service" toolparamdescription="The marketing service the user needs">
                                         <option value="Search Engine Optimisation">Search Engine Optimisation</option>
                                         <option value="Ecommerce">Ecommerce</option>
                                         <option value="Website Design &amp; Development">Website Design &amp; Development</option>
@@ -196,8 +196,8 @@ include 'header.php';
                         </div>
 
                         <div style="display: flex; flex-direction: column; gap: 6px;">
-                            <label style="font-size: 0.8rem; font-weight: 700; color: var(--navy); text-transform: uppercase;">Tell Us About Your Project *</label>
-                            <textarea name="message" rows="4" placeholder="Share your goals, current challenges, or what you'd like to achieve..." required style="padding: 14px; border-radius: 8px; border: 1px solid var(--border-light); font-size: 0.95rem; outline: none; background: var(--bg-secondary); resize: vertical; width: 100%; transition: var(--transition-smooth);"><?php if ($selected_plan !== '' && $_SERVER['REQUEST_METHOD'] !== 'POST') { echo htmlspecialchars("I'm interested in the {$selected_plan} plan and would like to learn more.", ENT_QUOTES, 'UTF-8'); } ?></textarea>
+                            <label style="font-size: 0.8rem; font-weight: 700; color: var(--navy); text-transform: uppercase;" for="contact-message">Tell Us About Your Project *</label>
+                            <textarea id="contact-message" name="message" toolparamdescription="The user&#39;s business goals, current challenges and what they want to achieve" rows="4" placeholder="Share your goals, current challenges, or what you'd like to achieve..." required style="padding: 14px; border-radius: 8px; border: 1px solid var(--border-light); font-size: 0.95rem; outline: none; background: var(--bg-secondary); resize: vertical; width: 100%; transition: var(--transition-smooth);"><?php if ($selected_plan !== '' && $_SERVER['REQUEST_METHOD'] !== 'POST') { echo htmlspecialchars("I'm interested in the {$selected_plan} plan and would like to learn more.", ENT_QUOTES, 'UTF-8'); } ?></textarea>
                         </div>
 
                         <button type="submit" class="btn-primary" style="width: 100%; padding: 16px; font-size: 1rem; margin-top: 5px; cursor: pointer;">SUBMIT GROWTH REQUEST <i class="fa-solid fa-arrow-right" style="margin-left: 5px;"></i></button>

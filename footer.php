@@ -86,20 +86,26 @@
     <script src="/js/main.js?v=<?php echo @filemtime(__DIR__ . '/js/main.js') ?: time(); ?>" defer></script>
 
     <!-- Three.js + the background wallpaper animation are the heaviest, least
-         time-critical piece of the page (~600KB, purely decorative), so rather than
-         even queuing them as defer scripts -- which still download during initial
-         load and compete for bandwidth with everything that actually matters for
-         paint/interactivity metrics -- their <script> tags aren't injected until
-         AFTER the window "load" event, deferred further still to an idle callback
-         where supported. Nothing about the visible effect changes: the canvas
-         already fades in via its own opacity transition once ready, so starting
-         that fetch a little later is invisible to visitors but keeps this ~600KB
-         library completely off the critical path Lighthouse/Core Web Vitals score. -->
+         time-critical piece of the page (~600KB, purely decorative), so their
+         <script> tags aren't injected during the initial load at all. They start
+         the moment the visitor first interacts (moves the mouse, scrolls, touches,
+         presses a key) -- which on a real visit is almost immediately -- or, if no
+         interaction happens, a few seconds after the window "load" event in an idle
+         callback. Nothing about the visible effect changes (the canvas already fades
+         in via its own opacity transition once ready); it just keeps ~600KB of
+         download plus the WebGL start-up work from competing with the page's first
+         paint and from blocking the main thread while the page is becoming
+         interactive. Three.js itself is self-hosted (same r128 build as before). -->
     <script>
-        window.addEventListener('load', function () {
+        (function () {
+            var started = false;
+            var events = ['pointermove', 'pointerdown', 'scroll', 'wheel', 'touchstart', 'keydown'];
             function loadBackground() {
+                if (started) return;
+                started = true;
+                events.forEach(function (ev) { window.removeEventListener(ev, loadBackground); });
                 var three = document.createElement('script');
-                three.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
+                three.src = '/vendor/three-r128/three.min.js';
                 three.onload = function () {
                     var bg = document.createElement('script');
                     bg.src = '/js/bg-animation.js?v=<?php echo @filemtime(__DIR__ . '/js/bg-animation.js') ?: time(); ?>';
@@ -107,12 +113,17 @@
                 };
                 document.body.appendChild(three);
             }
-            if ('requestIdleCallback' in window) {
-                requestIdleCallback(loadBackground, { timeout: 2000 });
-            } else {
-                setTimeout(loadBackground, 200);
-            }
-        });
+            events.forEach(function (ev) { window.addEventListener(ev, loadBackground, { passive: true }); });
+            window.addEventListener('load', function () {
+                setTimeout(function () {
+                    if ('requestIdleCallback' in window) {
+                        requestIdleCallback(loadBackground, { timeout: 2000 });
+                    } else {
+                        loadBackground();
+                    }
+                }, 3500);
+            });
+        })();
     </script>
 
 <?php if (function_exists('seo_setting') && (string) seo_setting('footer_code', '') !== '') echo seo_setting('footer_code') . "\n"; ?>

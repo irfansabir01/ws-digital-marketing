@@ -1,0 +1,60 @@
+# W&S Digital Marketing
+
+> W&S Digital Marketing is an Australian digital marketing agency (based in Melonba, NSW) that helps businesses attract the right customers, generate more enquiries and increase online sales through SEO, Google Ads and paid social, social media marketing, ecommerce, and website design and development.
+
+- Phone: +61 403 889 630
+- Email: info@wsdigitalmarketing.com.au
+- Address: 3 Weebill St, Melonba, NSW 2765, Australia
+- Free offer: a no-obligation "Free Growth Plan" for your business, requested through the enquiry form on any page or on the contact page.
+
+## Key pages
+
+- [Home](https://wsdigitalmarketing.com.au/): Overview of services, results and how we work
+- [About Us](https://wsdigitalmarketing.com.au/about): Our approach and the people behind the agency
+- [Our Team](https://wsdigitalmarketing.com.au/our-team): Meet the team
+- [Case Studies](https://wsdigitalmarketing.com.au/case-studies): Real client results with traffic, leads and sales data
+- [Reviews](https://wsdigitalmarketing.com.au/reviews): What clients say about us
+- [Pricing](https://wsdigitalmarketing.com.au/pricing): Starter, Growth and Scale plans (ad spend is separate from management fees)
+- [Contact Us](https://wsdigitalmarketing.com.au/contact): Enquiry form, phone, email and address
+- [FAQ](https://wsdigitalmarketing.com.au/faq): Common questions about working with us
+- [Blog](https://wsdigitalmarketing.com.au/blog): Guides on SEO, ads, ecommerce and local marketing
+
+## Services
+
+- [All Services](https://wsdigitalmarketing.com.au/services)
+- [Search Engine Optimisation (SEO)](https://wsdigitalmarketing.com.au/seo)
+- [Ecommerce](https://wsdigitalmarketing.com.au/ecommerce)
+- [Website Design & Development](https://wsdigitalmarketing.com.au/website-development)
+- [Social Media Marketing](https://wsdigitalmarketing.com.au/social-media)
+- [Paid Advertising (Google Ads & Meta Ads)](https://wsdigitalmarketing.com.au/ppc-advertising)
+- [Graphic Design](https://wsdigitalmarketing.com.au/graphic-design)
+- [Content Writing](https://wsdigitalmarketing.com.au/content-writing)
+
+## Industries
+
+- [All Industries](https://wsdigitalmarketing.com.au/industries)
+- [Accounting & Finance](https://wsdigitalmarketing.com.au/accounting-finance)
+- [Automotive](https://wsdigitalmarketing.com.au/automotive)
+- [Construction & Building](https://wsdigitalmarketing.com.au/construction-building)
+- [Dental](https://wsdigitalmarketing.com.au/dental)
+- [eCommerce](https://wsdigitalmarketing.com.au/ecommerce-industry)
+- [Franchise](https://wsdigitalmarketing.com.au/franchise)
+- [Healthcare & Medical](https://wsdigitalmarketing.com.au/healthcare-medical)
+- [Hospitality & Tourism](https://wsdigitalmarketing.com.au/hospitality-tourism)
+- [Hotel & Motel](https://wsdigitalmarketing.com.au/hotel-motel)
+- [Legal / Law](https://wsdigitalmarketing.com.au/legal-law)
+- [Real Estate](https://wsdigitalmarketing.com.au/real-estate)
+- [Small Business Digital Marketing](https://wsdigitalmarketing.com.au/small-business-digital-marketing)
+- [NDIS](https://wsdigitalmarketing.com.au/ndis)
+- [Trades](https://wsdigitalmarketing.com.au/trades)
+
+## For AI agents
+
+- [Request a free growth plan (agent skill)](https://wsdigitalmarketing.com.au/agent-skills/request-free-growth-plan/SKILL.md): Step-by-step guide to submitting an enquiry on a user's behalf
+- [Agent resource catalog (ARD)](https://wsdigitalmarketing.com.au/.well-known/ard.json)
+- [Sitemap](https://wsdigitalmarketing.com.au/sitemap.xml)
+
+## Optional
+
+- [Privacy Policy](https://wsdigitalmarketing.com.au/privacy-policy)
+- [Terms of Service](https://wsdigitalmarketing.com.au/terms-of-service)

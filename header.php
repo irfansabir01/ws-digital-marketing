@@ -82,15 +82,29 @@ $seo_og_type = !empty($page_og_type) ? $page_og_type : 'website';
     <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon-192.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
 
-    <!-- Connect early to third-party origins so the real requests below don't pay the
-         DNS+TLS handshake cost later in the load -->
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <!-- Agent discovery: the ARD catalog (/.well-known/ard.json) and the
+         plain-markdown site guide (/llms.txt) tell AI agents and assistants what
+         this site offers and where the key pages/actions are, without them having
+         to crawl and guess. -->
+    <link rel="ard" href="/.well-known/ard.json">
+    <link rel="alternate" type="text/markdown" href="/llms.txt" title="LLM-friendly site guide">
+
+    <!-- Everything below (fonts, icons, GSAP, Three.js) is self-hosted from this same
+         domain under /fonts and /vendor -- identical files/versions to the public CDN
+         copies used before. Browsers partition their cache per site nowadays, so a
+         shared CDN gave no cache benefit, but every extra origin cost a separate
+         DNS + TCP + TLS handshake before its first byte. Serving them from the one
+         connection that's already open for the HTML removes those round trips
+         entirely, which is what was holding back the first paint of the hero text. -->
 
     <!-- The logo renders immediately (splash screen + header on every page) -->
     <link rel="preload" as="image" href="/images/logo-ws.webp" fetchpriority="high">
+
+    <!-- Inter (the site font): preloaded so the hero headline paints in its final
+         font straight away instead of swapping late (which on desktop was pushing
+         Largest Contentful Paint back). One variable file covers every weight used
+         (400-800); the @font-face rules live at the top of css/style.css. -->
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-latin.woff2" crossorigin>
 
     <!-- Site CSS: one external, browser-cached file shared by every page instead of a
          ~20KB inline block repeated on each request. .htaccess caches this file for a
@@ -107,24 +121,15 @@ $seo_og_type = !empty($page_og_type) ? $page_og_type : 'website';
          -- see footer.php for why -- it's ~600KB and only needed by the decorative
          background, so it must not sit in front of main.js in the defer queue or the
          header/nav toggle would have to wait for it to finish downloading first. -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+    <script src="/vendor/gsap-3.12.2/gsap.min.js" defer></script>
+    <script src="/vendor/gsap-3.12.2/ScrollTrigger.min.js" defer></script>
 
-    <!-- FontAwesome: loaded non-render-blocking (fetched with the preload's priority,
-         applied once ready) since icons are decorative and shouldn't hold up first paint -->
-    <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"></noscript>
-
-    <!-- Google Fonts: loaded non-render-blocking the same way as FontAwesome above
-         (font-display: swap already means text never waits on the font file itself,
-         but the stylesheet request was still blocking first paint until this). Only
-         the weights actually used anywhere in css/style.css or inline styles
-         (400/500/600/700/800) -- 300 was requested but never referenced, so
-         dropping it removes one whole font-file fetch for every visitor. -->
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <!-- FontAwesome: loaded non-render-blocking (applied once ready) since icons are
+         decorative and shouldn't hold up first paint. No separate preload: a preload
+         at the same priority as the site CSS made this ~100KB file compete with it
+         for bandwidth during the most critical part of the load. -->
+    <link rel="stylesheet" href="/vendor/fontawesome-6.4.2/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="/vendor/fontawesome-6.4.2/css/all.min.css"></noscript>
 
     <?php if (!empty($extra_head)) echo $extra_head; ?>
 <?php

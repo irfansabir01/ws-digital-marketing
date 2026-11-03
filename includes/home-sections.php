@@ -187,7 +187,7 @@ try {
                 <div class="rv-summary">
                     <span class="rv-g"><i class="fa-brands fa-google"></i></span>
                     <strong class="rv-score"><?php echo $hs(number_format((float) $google['rating'], 1)); ?></strong>
-                    <span class="rv-stars" aria-label="Rated <?php echo $hs($google['rating']); ?> out of 5"><?php for ($i = 1; $i <= 5; $i++): ?><i class="fa-solid fa-star<?php echo $i <= round($google['rating']) ? '' : ' rv-star-off'; ?>"></i><?php endfor; ?></span>
+                    <span class="rv-stars" role="img" aria-label="Rated <?php echo $hs($google['rating']); ?> out of 5"><?php for ($i = 1; $i <= 5; $i++): ?><i class="fa-solid fa-star<?php echo $i <= round($google['rating']) ? '' : ' rv-star-off'; ?>"></i><?php endfor; ?></span>
                     <?php if ($google['total'] > 0): ?><span class="rv-count">Based on <?php echo (int) $google['total']; ?> Google reviews</span><?php endif; ?>
                 </div>
                 <?php else: ?>
@@ -214,7 +214,7 @@ try {
                         </div>
                         <?php if ($reviewSource === 'google'): ?><span class="rv-g rv-g-sm" title="Google review"><i class="fa-brands fa-google"></i></span><?php endif; ?>
                     </div>
-                    <div class="rv-card-stars" aria-label="<?php echo (int) $rc['rating']; ?> out of 5 stars"><?php for ($i = 0; $i < (int) $rc['rating']; $i++): ?><i class="fa-solid fa-star"></i><?php endfor; ?></div>
+                    <div class="rv-card-stars" role="img" aria-label="<?php echo (int) $rc['rating']; ?> out of 5 stars"><?php for ($i = 0; $i < (int) $rc['rating']; $i++): ?><i class="fa-solid fa-star"></i><?php endfor; ?></div>
                     <p class="rv-text"><?php echo nl2br($hs($rc['text'])); ?></p>
                     <button type="button" class="rv-more" hidden>Read more</button>
                 </article>

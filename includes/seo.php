@@ -358,11 +358,11 @@ function seo_smart_redirect_target(string $path, string $fallback = '/'): string
     foreach (site_static_pages() as $p) {
         $static[$p['path']] = true;
     }
-    for ($i = count($segments) - 1; $i >= 0; $i--) {
-        $candidate = '/' . $segments[$i];
-        if (isset($static[$candidate]) && $candidate !== $path) {
-            return $candidate;
-        }
+    //    The last segment is checked first; parent segments only after the
+    //    keyword match below, so /services/web-design reaches the web page.
+    $candidate = '/' . end($segments);
+    if (isset($static[$candidate]) && $candidate !== $path) {
+        return $candidate;
     }
 
     // 2) A blog post or case study whose slug matches the last segment (old
@@ -403,7 +403,10 @@ function seo_smart_redirect_target(string $path, string $fallback = '/'): string
     }
 
     // 3) Keyword match on the whole URL, most specific topics first.
-    $text = '-' . preg_replace('/[^a-z0-9]+/', '-', implode('-', $segments)) . '-';
+    $texts = [
+        '-' . preg_replace('/[^a-z0-9]+/', '-', end($segments)) . '-',
+        '-' . preg_replace('/[^a-z0-9]+/', '-', implode('-', $segments)) . '-',
+    ];
     $rules = [
         // Industries
         '/dental'               => ['dental', 'dentist', 'dentists', 'orthodontist', 'orthodontists'],
@@ -446,11 +449,21 @@ function seo_smart_redirect_target(string $path, string $fallback = '/'): string
         '/services'     => ['services', 'service', 'our-services', 'what-we-do', 'solutions', 'digital-marketing', 'marketing', 'digital', 'agency', 'online-marketing', 'internet-marketing', 'strategy', 'consulting', 'growth'],
         '/'             => ['home', 'homepage', 'index', 'default', 'welcome'],
     ];
-    foreach ($rules as $target => $keywords) {
-        foreach ($keywords as $kw) {
-            if (strpos($text, '-' . $kw . '-') !== false) {
-                return $target !== $path ? $target : $fallback;
+    foreach ($texts as $text) {
+        foreach ($rules as $target => $keywords) {
+            foreach ($keywords as $kw) {
+                if (strpos($text, '-' . $kw . '-') !== false) {
+                    return $target !== $path ? $target : $fallback;
+                }
             }
+        }
+    }
+
+    // Any parent segment that is a live page: /services/unknown -> /services.
+    for ($i = count($segments) - 2; $i >= 0; $i--) {
+        $candidate = '/' . $segments[$i];
+        if (isset($static[$candidate]) && $candidate !== $path) {
+            return $candidate;
         }
     }
 

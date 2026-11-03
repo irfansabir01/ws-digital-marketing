@@ -308,3 +308,160 @@ function seo_render_extra_content(): void
         . seo_clean_extra_html($html)
         . "\n            </div>\n        </div>\n    </section>\n";
 }
+
+// ------------------------------------------------------- smart 404 redirects
+
+// Works out the most relevant live page for a URL that no longer exists (old
+// WordPress URLs, renamed pages, mistyped links, removed blog posts, etc.).
+// Used by not-found.php, blog-post.php and case-study.php AFTER any redirect
+// set up in admin -> SEO -> Redirects has had its chance, so a manual
+// redirect always wins. Returns a site path; "/" when nothing relevant fits.
+//
+//   $fallback -- where to send it when no keyword/page match is found
+//                ("/" for general URLs, "/blog" for a missing blog post...).
+function seo_smart_redirect_target(string $path, string $fallback = '/'): string
+{
+    $path = strtolower(seo_normalize_path($path));
+    if ($path === '/') {
+        return '/';
+    }
+
+    // Old sitemap URLs from the previous WordPress/Yoast/Rank Math site.
+    if (preg_match('#sitemap[^/]*\.xml$#', $path)) {
+        return '/sitemap.xml';
+    }
+
+    // Strip file extensions old platforms used (.html, .php, .aspx ...).
+    $clean = preg_replace('#\.(?:html?|php\d?|aspx?|jsp|cfm)$#', '', $path);
+    $segments = array_values(array_filter(explode('/', trim($clean, '/')), 'strlen'));
+
+    // Old WordPress system paths carry no page meaning.
+    if (!empty($segments) && preg_match('#^(?:wp-[a-z-]+|xmlrpc|feed|rss|comments|trackback|cgi-bin|amp)$#', $segments[0])) {
+        return '/';
+    }
+    // The section an old URL lived in decides where it falls back to.
+    $first = $segments[0] ?? '';
+    $inCaseStudies = (bool) preg_match('#^(?:case-stud(?:y|ies)|casestud(?:y|ies)|portfolio|projects?|our-work|work|clients?)$#', $first);
+    if ($fallback === '/' && preg_match('#^(?:news|articles?|posts?|category|tag|insights|resources|(?:19|20)\d\d)$#', $first)) {
+        $fallback = '/blog';
+    }
+    $segments = array_values(array_filter($segments, function ($s) {
+        return !preg_match('#^(?:feed|amp|page|\d+|embed|trackback|rss)$#', $s);
+    }));
+    if (empty($segments)) {
+        return $fallback;
+    }
+
+    // 1) Any segment that is itself a live page: /services/seo -> /seo.
+    require_once __DIR__ . '/site-pages.php';
+    $static = [];
+    foreach (site_static_pages() as $p) {
+        $static[$p['path']] = true;
+    }
+    for ($i = count($segments) - 1; $i >= 0; $i--) {
+        $candidate = '/' . $segments[$i];
+        if (isset($static[$candidate]) && $candidate !== $path) {
+            return $candidate;
+        }
+    }
+
+    // 2) A blog post or case study whose slug matches the last segment (old
+    //    WordPress /%postname%/ or /2024/05/slug/ permalinks, renamed slugs).
+    $last = end($segments);
+    $pdo = seo_db();
+    if ($pdo && preg_match('/^[a-z0-9-]+$/', $last)) {
+        $lead = implode('-', array_slice(explode('-', $last), 0, 4));
+        $like = str_replace(['%', '_'], ['\\%', '\\_'], $lead) . '%';
+        $lookups = [
+            ['SELECT slug FROM blog_posts WHERE is_published = 1 AND (slug = ? OR slug LIKE ?)', '/blog/'],
+            ['SELECT slug FROM case_studies WHERE slug = ? OR slug LIKE ?', '/case-studies/'],
+        ];
+        foreach ($lookups as [$sql, $prefix]) {
+            try {
+                $stmt = $pdo->prepare($sql);
+                $stmt->execute([$last, $like]);
+                $slugs = $stmt->fetchAll(PDO::FETCH_COLUMN);
+            } catch (Throwable $e) {
+                $slugs = [];
+            }
+            if (in_array($last, $slugs, true)) {
+                $target = $prefix . $last;
+            } elseif (count($slugs) === 1) {
+                $target = $prefix . $slugs[0];
+            } else {
+                continue;
+            }
+            if ($target !== $path) {
+                return $target;
+            }
+        }
+    }
+
+    // Old portfolio/case study URLs belong on the case studies listing.
+    if ($inCaseStudies) {
+        return '/case-studies';
+    }
+
+    // 3) Keyword match on the whole URL, most specific topics first.
+    $text = '-' . preg_replace('/[^a-z0-9]+/', '-', implode('-', $segments)) . '-';
+    $rules = [
+        // Industries
+        '/dental'               => ['dental', 'dentist', 'dentists', 'orthodontist', 'orthodontists'],
+        '/legal-law'            => ['legal', 'law', 'lawyer', 'lawyers', 'law-firm', 'law-firms', 'solicitor', 'solicitors', 'attorney', 'attorneys'],
+        '/real-estate'          => ['real-estate', 'realestate', 'property', 'properties', 'realtor', 'realtors'],
+        '/ndis'                 => ['ndis', 'disability', 'disabilities', 'aged-care'],
+        '/hotel-motel'          => ['hotel', 'hotels', 'motel', 'motels', 'accommodation', 'resort', 'resorts'],
+        '/hospitality-tourism'  => ['hospitality', 'tourism', 'restaurant', 'restaurants', 'cafe', 'cafes', 'travel', 'tour', 'tours', 'venue', 'venues', 'bar', 'bars'],
+        '/healthcare-medical'   => ['healthcare', 'health', 'medical', 'clinic', 'clinics', 'doctor', 'doctors', 'physio', 'physiotherapy', 'chiropractor', 'chiropractors', 'gp', 'pharmacy', 'allied-health'],
+        '/accounting-finance'   => ['accounting', 'accountant', 'accountants', 'finance', 'financial', 'bookkeeping', 'bookkeeper', 'tax', 'mortgage', 'broker', 'brokers', 'insurance'],
+        '/automotive'           => ['automotive', 'car', 'cars', 'auto', 'mechanic', 'mechanics', 'vehicle', 'vehicles', 'dealership', 'dealerships', 'detailing', 'car-detailing', 'panel-beater', 'smash-repair'],
+        '/construction-building'=> ['construction', 'builder', 'builders', 'building', 'renovation', 'renovations', 'flooring', 'concrete', 'carpentry', 'architect', 'architects'],
+        '/trades'               => ['trades', 'trade', 'tradie', 'tradies', 'plumber', 'plumbers', 'plumbing', 'electrician', 'electricians', 'electrical', 'hvac', 'air-conditioning', 'roofing', 'roofer', 'landscaping', 'landscaper', 'cleaning', 'cleaners', 'pest-control', 'appliance', 'appliances', 'fridge', 'repairs', 'repair', 'locksmith', 'painter', 'painters'],
+        '/franchise'            => ['franchise', 'franchises', 'franchising', 'multi-location'],
+        '/small-business-digital-marketing' => ['small-business', 'small-businesses', 'startup', 'startups', 'sme', 'smes'],
+
+        // Services (specific before generic)
+        '/ecommerce'           => ['ecommerce', 'e-commerce', 'shopify', 'woocommerce', 'online-store', 'online-shop', 'magento', 'bigcommerce', 'store', 'shop', 'product', 'products', 'google-shopping', 'merchant-center'],
+        '/graphic-design'      => ['graphic', 'graphics', 'graphic-design', 'logo', 'logos', 'logo-design', 'branding', 'brand', 'brand-identity', 'print', 'flyer', 'flyers', 'brochure', 'brochures', 'business-cards', 'illustration', 'creative'],
+        '/ppc-advertising'     => ['ppc', 'google-ads', 'adwords', 'pay-per-click', 'sem', 'paid', 'ads', 'advertising', 'adverts', 'campaign', 'campaigns', 'meta-ads', 'facebook-ads', 'instagram-ads', 'remarketing', 'retargeting', 'display', 'youtube-ads', 'bing-ads', 'microsoft-ads'],
+        '/social-media'        => ['social', 'social-media', 'smm', 'facebook', 'instagram', 'tiktok', 'linkedin', 'pinterest', 'youtube', 'influencer', 'influencers', 'community-management'],
+        '/content-writing'     => ['content', 'content-writing', 'copywriting', 'copywriter', 'copywriters', 'copy', 'writing', 'writer', 'writers', 'article', 'articles', 'blog-writing', 'email-marketing', 'newsletter', 'newsletters'],
+        '/website-development' => ['web', 'website', 'websites', 'web-design', 'webdesign', 'web-development', 'webdevelopment', 'wordpress', 'developer', 'developers', 'development', 'design', 'designer', 'landing-page', 'landing-pages', 'hosting', 'maintenance', 'ux', 'ui', 'cro', 'conversion', 'redesign', 'app', 'apps'],
+        '/seo'                 => ['seo', 'search-engine', 'search-engine-optimisation', 'search-engine-optimization', 'optimisation', 'optimization', 'local-seo', 'google-maps', 'maps', 'gmb', 'gbp', 'google-business', 'google-my-business', 'google-business-profile', 'backlinks', 'backlink', 'link-building', 'keyword', 'keywords', 'ranking', 'rankings', 'rank', 'geo', 'aeo', 'ai-search', 'ai-overviews', 'llm', 'technical-seo', 'citations', 'search'],
+
+        // Company pages
+        '/privacy-policy'   => ['privacy', 'cookie', 'cookies', 'gdpr', 'disclaimer'],
+        '/terms-of-service' => ['terms', 'conditions', 'tos', 'refund', 'refunds'],
+        '/contact'          => ['contact', 'contact-us', 'get-in-touch', 'enquiry', 'enquire', 'enquiries', 'quote', 'free-quote', 'get-a-quote', 'consultation', 'book', 'booking', 'appointment', 'audit', 'free-audit', 'growth-plan', 'call-us', 'get-started', 'thank-you', 'thanks'],
+        '/our-team'         => ['team', 'our-team', 'staff', 'people', 'meet-the-team', 'ceo', 'founder', 'founders', 'author', 'careers', 'career', 'jobs', 'join-us'],
+        '/reviews'          => ['review', 'reviews', 'testimonial', 'testimonials', 'feedback', 'clients-say'],
+        '/faq'              => ['faq', 'faqs', 'questions', 'help', 'support'],
+        '/pricing'          => ['pricing', 'price', 'prices', 'cost', 'costs', 'packages', 'package', 'plans', 'plan', 'rates', 'fees'],
+
+        // Generic sections
+        '/case-studies' => ['case-study', 'case-studies', 'casestudy', 'casestudies', 'portfolio', 'portfolios', 'our-work', 'work', 'works', 'projects', 'project', 'results', 'clients', 'client', 'success-stories', 'gallery', 'showcase'],
+        '/blog'         => ['blog', 'blogs', 'news', 'insights', 'resources', 'tips', 'guide', 'guides', 'post', 'posts', 'category', 'tag', 'tags', 'learn'],
+        '/industries'   => ['industries', 'industry', 'sectors', 'sector', 'who-we-help', 'niches'],
+        '/about'        => ['about', 'about-us', 'who-we-are', 'company', 'our-story', 'mission', 'agency-profile', 'why-us', 'why-choose-us'],
+        '/services'     => ['services', 'service', 'our-services', 'what-we-do', 'solutions', 'digital-marketing', 'marketing', 'digital', 'agency', 'online-marketing', 'internet-marketing', 'strategy', 'consulting', 'growth'],
+        '/'             => ['home', 'homepage', 'index', 'default', 'welcome'],
+    ];
+    foreach ($rules as $target => $keywords) {
+        foreach ($keywords as $kw) {
+            if (strpos($text, '-' . $kw . '-') !== false) {
+                return $target !== $path ? $target : $fallback;
+            }
+        }
+    }
+
+    return $fallback;
+}
+
+// Sends a permanent (301) redirect to the most relevant live page and exits.
+function seo_smart_redirect(string $path, string $fallback = '/'): void
+{
+    $target = seo_smart_redirect_target($path, $fallback);
+    header('Cache-Control: no-cache, must-revalidate');
+    header('Location: ' . SEO_SITE_BASE . $target, true, 301);
+    exit;
+}

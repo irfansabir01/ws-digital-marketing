@@ -31,6 +31,16 @@ if (!$post && $slug !== '') {
     }
 }
 
+// Still no match: an admin redirect for this exact URL wins first, then a
+// permanent (301) redirect to the most relevant live page, falling back to
+// /blog -- a removed URL should never be left as a 404.
+if (!$post && $slug !== '') {
+    require_once __DIR__ . '/includes/seo.php';
+    seo_try_redirect(seo_normalize_path($_SERVER['REQUEST_URI'] ?? '/'));
+    seo_log_404(seo_normalize_path($_SERVER['REQUEST_URI'] ?? '/'));
+    seo_smart_redirect('/' . $slug, '/blog');
+}
+
 if (!$post) {
     header('HTTP/1.0 404 Not Found');
     $page_title = 'Post Not Found';

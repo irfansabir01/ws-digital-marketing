@@ -3,9 +3,12 @@
 // up in .htaccess with "ErrorDocument 404 /not-found.php"). In order:
 //   1. an active redirect from admin -> SEO -> Redirects, if one matches;
 //   2. otherwise the hit is logged for admin -> SEO -> 404 Errors;
-//   3. then what the visitor sees follows the "Unmatched 404" setting in
-//      admin -> SEO -> Site Settings: the original behaviour (send them to the
-//      homepage) or a real 404 page.
+//   3. then the visitor gets a permanent (301) redirect to the most relevant
+//      live page for that URL (see seo_smart_redirect_target() in
+//      includes/seo.php), or to the homepage when nothing relevant fits
+//      (unless "Unmatched 404" in admin -> SEO -> Site Settings is set to
+//      show a real 404 page).
+//      Genuinely missing images/CSS/JS still return a plain 404.
 require_once __DIR__ . '/includes/seo.php';
 
 $requested = (string) ($_SERVER['REQUEST_URI'] ?? '/');
@@ -17,11 +20,24 @@ if (!$requestedDirectly) {
     seo_log_404($path);
 
     $isAsset = (bool) preg_match('/\.(?:jpe?g|png|gif|webp|avif|svg|ico|css|js|map|woff2?|ttf|eot|mp4|webm|pdf|xml|txt)$/i', $path);
-    if (!$isAsset && seo_setting('unmatched_404', 'redirect_home') !== 'show_404') {
-        header('Location: ' . SEO_SITE_BASE . '/', true, 302);
-        exit;
+    // Leftover files from the old WordPress site (wp-content uploads etc.)
+    // and old sitemap URLs are treated as pages, not broken assets: they get
+    // a permanent redirect like every other retired URL below.
+    $isOldSiteFile = (bool) preg_match('#^/(?:wp-[a-z-]+|feed)(?:/|$)|sitemap[^/]*\.xml$#i', $path);
+    if (!$isAsset || $isOldSiteFile) {
+        // Every retired page URL gets a permanent (301) redirect: to the most
+        // relevant live page when the URL's words point to one (old service,
+        // industry, blog or case study URLs), otherwise to the homepage.
+        // The "Unmatched 404" choice in admin -> SEO -> Site Settings still
+        // applies to URLs with no relevant match (default: homepage).
+        $target = seo_smart_redirect_target($path, '/');
+        if ($target !== '/' || seo_setting('unmatched_404', 'redirect_home') !== 'show_404') {
+            header('Cache-Control: no-cache, must-revalidate');
+            header('Location: ' . SEO_SITE_BASE . $target, true, 301);
+            exit;
+        }
     }
-    if ($isAsset) {
+    if ($isAsset && !$isOldSiteFile) {
         http_response_code(404);
         header('Content-Type: text/plain; charset=UTF-8');
         echo 'Not found';

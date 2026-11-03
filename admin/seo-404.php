@@ -60,7 +60,7 @@ flash_render();
 <div class="help-box">
     Every address on this site that returned <strong>404 Not Found</strong> is logged here, most-hit first, with where the visitor came from.
     Fix each one by <strong>redirecting it</strong> to the right page, or <strong>ignore</strong> junk (bots probing for <code>/wp-login.php</code> etc.).
-    Right now, an unmatched address <?php echo $mode === 'show_404' ? 'shows a <strong>real 404 page</strong>' : 'is sent to the <strong>homepage</strong> (302)'; ?>
+    Right now, an unmatched address <?php echo $mode === 'show_404' ? 'shows a <strong>real 404 page</strong>' : 'is sent (301) to the <strong>most relevant page</strong>, or the <strong>homepage</strong> when nothing matches'; ?>
     &mdash; change this in <a href="seo-settings.php">Site Settings &amp; Code</a>.
 </div>
 

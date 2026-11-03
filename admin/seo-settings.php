@@ -72,7 +72,7 @@ flash_render();
     <div class="admin-card">
         <div class="section-title">404 behaviour</div>
         <p style="margin:0 0 8px;">When someone opens an address that doesn't exist and has no redirect:</p>
-        <label class="check"><input type="radio" name="unmatched_404" value="redirect_home" <?php echo $v['unmatched_404'] === 'redirect_home' ? 'checked' : ''; ?>> Send them to the homepage (302) &mdash; the site's original behaviour</label>
+        <label class="check"><input type="radio" name="unmatched_404" value="redirect_home" <?php echo $v['unmatched_404'] === 'redirect_home' ? 'checked' : ''; ?>> Send them to the most relevant page, or the homepage (301) &mdash; the default</label>
         <label class="check"><input type="radio" name="unmatched_404" value="show_404" <?php echo $v['unmatched_404'] === 'show_404' ? 'checked' : ''; ?>> Show a real "Page Not Found" page (404 status) &mdash; what Google recommends for removed pages</label>
         <div class="hint">Either way the miss is logged in <a href="seo-404.php">404 Errors</a> so you can add redirects for the important ones.</div>
     </div>

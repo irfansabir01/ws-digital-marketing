@@ -269,7 +269,7 @@ include 'header.php';
             <div class="svc-grid">
                 <?php foreach ($homeServices as $i => [$icon, $title, $img, $alt, $desc, $href, $aria]): ?>
                 <article class="svc-card">
-                    <div class="svc-media"><img <?php echo $i < 3 ? '' : 'loading="lazy" '; ?>decoding="async" src="<?php echo $img; ?>" alt="<?php echo htmlspecialchars($alt, ENT_QUOTES, 'UTF-8'); ?>"></div>
+                    <div class="svc-media"><img <?php echo $i < 3 ? 'fetchpriority="low" ' : 'loading="lazy" '; ?>decoding="async" src="<?php echo $img; ?>" alt="<?php echo htmlspecialchars($alt, ENT_QUOTES, 'UTF-8'); ?>"></div>
                     <div class="svc-shade"></div>
                     <div class="svc-body">
                         <div class="svc-top">

@@ -1216,7 +1216,11 @@
             background: linear-gradient(90deg, var(--cyan-neon), var(--magenta-neon));
             animation: splashBar 1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
         }
-        @keyframes splashLogoIn { from { opacity: 0; transform: scale(0.82); } to { opacity: 1; transform: scale(1); } }
+        /* Starts at 0.01 rather than 0 -- visually identical, but browsers don't
+           count a fully transparent element as "painted", so starting at exactly 0
+           pushed the page's Largest Contentful Paint back until the first animation
+           frame after all the start-up JS had run. */
+        @keyframes splashLogoIn { from { opacity: 0.01; transform: scale(0.82); } to { opacity: 1; transform: scale(1); } }
         @keyframes splashBar { to { transform: scaleX(1); } }
         @keyframes splashOut { to { opacity: 0; visibility: hidden; pointer-events: none; } }
         @media (prefers-reduced-motion: reduce) {

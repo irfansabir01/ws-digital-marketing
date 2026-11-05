@@ -14,141 +14,41 @@ include 'header.php';
         </div>
     </section>
 
-    <!-- SERVICES OVERVIEW GRID -->
-    <section class="services-section fade-up">
+    <!-- SERVICES OVERVIEW GRID: same image cards as the homepage (css: .svc-*) -->
+    <?php
+    // [anchor id, icon, title, image, image alt, description, link]
+    $services = [
+        ['seo', 'fa-magnifying-glass-chart', 'Search Engine Optimisation', '/images/photos/seo.webp', 'Laptop on an office desk showing a website analytics dashboard with a rising traffic graph', 'Dominate local search and Google Maps with technical SEO, content, and link-building strategies that attract high-intent organic traffic.', '/seo'],
+        ['ecom', 'fa-cart-shopping', 'Ecommerce', '/images/photos/ecommerce.webp', 'Online store owner taping up a customer order in a packing room, with a laptop showing sales and parcels ready to ship', 'Shopify and WooCommerce builds, catalog strategy, and conversion-focused checkout flows that turn browsers into repeat customers.', '/ecommerce'],
+        ['web', 'fa-laptop-code', 'Website Design &amp; Development', '/images/photos/website-development.webp', 'Web developer working on website code and a WordPress page builder across two monitors, with the finished site shown on a laptop and smartphone', 'Fast, mobile-responsive websites engineered specifically for conversion rate optimization, not just aesthetics.', '/website-development'],
+        ['social', 'fa-share-nodes', 'Social Media Marketing', '/images/socialMedia.webp', 'Social media app icons floating around a smartphone', 'Strategic content and community management across Meta and TikTok to build brand presence and engage your target audience.', '/social-media'],
+        ['ppc', 'fa-hand-pointer', 'Paid Advertising', '/images/photos/paid-advertising.webp', 'Marketing specialist reviewing paid advertising campaign charts on a laptop and taking notes in an office', 'Google Ads and paid social campaigns built for instant, high-converting traffic, more phone calls, and maximum ROAS.', '/ppc-advertising'],
+        ['graphic', 'fa-palette', 'Graphic Design', '/images/photos/graphic-design.webp', 'Graphic designer creating a logo in design software with a drawing tablet, colour swatches and logo sketches on the desk', 'Brand identity, ad creative, and marketing collateral designed to stand out and stay consistent across every channel.', '/graphic-design'],
+        ['content', 'fa-pen-nib', 'Content Writing', '/images/photos/content-writing.webp', 'Content writer typing a blog article on a laptop at a home office desk with a notebook of headline ideas', 'SEO-optimized copy, blog content, and website content that ranks, builds authority, and speaks directly to your customers.', '/content-writing'],
+    ];
+    ?>
+    <section class="services-section svc-section fade-up">
         <div class="container">
             <div class="section-header">
                 <span class="eyebrow">WHAT WE DO</span>
                 <h2 style="font-size: clamp(1.8rem, 4vw, 2.8rem); margin-top: 10px;">Seven Disciplines. One Growth Engine.</h2>
             </div>
-            <div class="services-grid">
-
-                <div class="service-card service-card-flip" id="seo" style="scroll-margin-top: 110px;">
-                    <div class="service-card-inner">
-                        <div class="service-card-front">
-                            <div class="service-icon-badge"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
-                            <h3>Search Engine Optimisation</h3>
+            <div class="svc-grid">
+                <?php foreach ($services as $i => [$id, $icon, $title, $img, $alt, $desc, $href]): ?>
+                <article class="svc-card" id="<?php echo $id; ?>" style="scroll-margin-top: 110px;">
+                    <div class="svc-media"><img <?php echo $i < 3 ? '' : 'loading="lazy" '; ?>decoding="async" src="<?php echo $img; ?>" alt="<?php echo htmlspecialchars($alt, ENT_QUOTES, 'UTF-8'); ?>"></div>
+                    <div class="svc-shade"></div>
+                    <div class="svc-body">
+                        <div class="svc-top">
+                            <span class="svc-icon"><i class="fa-solid <?php echo $icon; ?>"></i></span>
+                            <span class="svc-num" aria-hidden="true"><?php echo sprintf('%02d', $i + 1); ?></span>
                         </div>
-                        <div class="service-card-back">
-                            <img loading="lazy" decoding="async" class="service-card-back-img" src="/images/photos/seo.webp" alt="Laptop on an office desk showing a website analytics dashboard with a rising traffic graph">
-                            <div class="service-card-back-overlay"></div>
-                            <div class="service-card-back-content">
-                                <p class="service-card-back-title" aria-hidden="true">Search Engine Optimisation</p>
-                                <p>Dominate local search and Google Maps with technical SEO, content, and link-building strategies that attract high-intent organic traffic.</p>
-                                <a href="/seo" class="service-link">Learn More <i class="fa-solid fa-arrow-right"></i></a>
-                            </div>
-                        </div>
+                        <h3><?php echo $title; ?></h3>
+                        <p><?php echo $desc; ?></p>
+                        <a href="<?php echo $href; ?>" class="svc-link" aria-label="Learn More &ndash; <?php echo htmlspecialchars(html_entity_decode($title, ENT_QUOTES, 'UTF-8'), ENT_QUOTES, 'UTF-8'); ?>">Learn More <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
-                </div>
-
-                <div class="service-card service-card-flip" id="ecom" style="scroll-margin-top: 110px;">
-                    <div class="service-card-inner">
-                        <div class="service-card-front">
-                            <div class="service-icon-badge"><i class="fa-solid fa-cart-shopping"></i></div>
-                            <h3>Ecommerce</h3>
-                        </div>
-                        <div class="service-card-back">
-                            <img loading="lazy" decoding="async" class="service-card-back-img" src="/images/photos/ecommerce.webp" alt="Online store owner taping up a customer order in a packing room, with a laptop showing sales and parcels ready to ship">
-                            <div class="service-card-back-overlay"></div>
-                            <div class="service-card-back-content">
-                                <p class="service-card-back-title" aria-hidden="true">Ecommerce</p>
-                                <p>Shopify and WooCommerce builds, catalog strategy, and conversion-focused checkout flows that turn browsers into repeat customers.</p>
-                                <a href="/ecommerce" class="service-link">Learn More <i class="fa-solid fa-arrow-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="service-card service-card-flip" id="web" style="scroll-margin-top: 110px;">
-                    <div class="service-card-inner">
-                        <div class="service-card-front">
-                            <div class="service-icon-badge"><i class="fa-solid fa-laptop-code"></i></div>
-                            <h3>Website Design &amp; Development</h3>
-                        </div>
-                        <div class="service-card-back">
-                            <img loading="lazy" decoding="async" class="service-card-back-img" src="/images/photos/website-development.webp" alt="Web developer working on website code and a WordPress page builder across two monitors, with the finished site shown on a laptop and smartphone">
-                            <div class="service-card-back-overlay"></div>
-                            <div class="service-card-back-content">
-                                <p class="service-card-back-title" aria-hidden="true">Website Design &amp; Development</p>
-                                <p>Fast, mobile-responsive websites engineered specifically for conversion rate optimization, not just aesthetics.</p>
-                                <a href="/website-development" class="service-link">Learn More <i class="fa-solid fa-arrow-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="service-card service-card-flip" id="social" style="scroll-margin-top: 110px;">
-                    <div class="service-card-inner">
-                        <div class="service-card-front">
-                            <div class="service-icon-badge"><i class="fa-solid fa-share-nodes"></i></div>
-                            <h3>Social Media Marketing</h3>
-                        </div>
-                        <div class="service-card-back">
-                            <img loading="lazy" decoding="async" class="service-card-back-img" src="/images/socialMedia.webp" alt="Social media app icons floating around a smartphone">
-                            <div class="service-card-back-overlay"></div>
-                            <div class="service-card-back-content">
-                                <p class="service-card-back-title" aria-hidden="true">Social Media Marketing</p>
-                                <p>Strategic content and community management across Meta and TikTok to build brand presence and engage your target audience.</p>
-                                <a href="/social-media" class="service-link">Learn More <i class="fa-solid fa-arrow-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="service-card service-card-flip" id="ppc" style="scroll-margin-top: 110px;">
-                    <div class="service-card-inner">
-                        <div class="service-card-front">
-                            <div class="service-icon-badge"><i class="fa-solid fa-hand-pointer"></i></div>
-                            <h3>Paid Advertising</h3>
-                        </div>
-                        <div class="service-card-back">
-                            <img loading="lazy" decoding="async" class="service-card-back-img" src="/images/photos/paid-advertising.webp" alt="Marketing specialist reviewing paid advertising campaign charts on a laptop and taking notes in an office">
-                            <div class="service-card-back-overlay"></div>
-                            <div class="service-card-back-content">
-                                <p class="service-card-back-title" aria-hidden="true">Paid Advertising</p>
-                                <p>Google Ads and paid social campaigns built for instant, high-converting traffic, more phone calls, and maximum ROAS.</p>
-                                <a href="/ppc-advertising" class="service-link">Learn More <i class="fa-solid fa-arrow-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="service-card service-card-flip" id="graphic" style="scroll-margin-top: 110px;">
-                    <div class="service-card-inner">
-                        <div class="service-card-front">
-                            <div class="service-icon-badge"><i class="fa-solid fa-palette"></i></div>
-                            <h3>Graphic Design</h3>
-                        </div>
-                        <div class="service-card-back">
-                            <img loading="lazy" decoding="async" class="service-card-back-img" src="/images/photos/graphic-design.webp" alt="Graphic designer creating a logo in design software with a drawing tablet, colour swatches and logo sketches on the desk">
-                            <div class="service-card-back-overlay"></div>
-                            <div class="service-card-back-content">
-                                <p class="service-card-back-title" aria-hidden="true">Graphic Design</p>
-                                <p>Brand identity, ad creative, and marketing collateral designed to stand out and stay consistent across every channel.</p>
-                                <a href="/graphic-design" class="service-link">Learn More <i class="fa-solid fa-arrow-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="service-card service-card-flip" id="content" style="scroll-margin-top: 110px;">
-                    <div class="service-card-inner">
-                        <div class="service-card-front">
-                            <div class="service-icon-badge"><i class="fa-solid fa-pen-nib"></i></div>
-                            <h3>Content Writing</h3>
-                        </div>
-                        <div class="service-card-back">
-                            <img loading="lazy" decoding="async" class="service-card-back-img" src="/images/photos/content-writing.webp" alt="Content writer typing a blog article on a laptop at a home office desk with a notebook of headline ideas">
-                            <div class="service-card-back-overlay"></div>
-                            <div class="service-card-back-content">
-                                <p class="service-card-back-title" aria-hidden="true">Content Writing</p>
-                                <p>SEO-optimized copy, blog content, and website content that ranks, builds authority, and speaks directly to your customers.</p>
-                                <a href="/content-writing" class="service-link">Learn More <i class="fa-solid fa-arrow-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                </article>
+                <?php endforeach; ?>
             </div>
         </div>
     </section>

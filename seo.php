@@ -85,22 +85,22 @@ include 'header.php';
             <div class="industry-tile-grid">
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
-                    <h5>Technical SEO</h5>
+                    <h3>Technical SEO</h3>
                     <p>Review website structure, search engine access, page speed and mobile usability, then prioritise technical improvements within your agreed scope.</p>
                 </div>
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-file-lines"></i></div>
-                    <h5>On-Page Optimisation</h5>
+                    <h3>On-Page Optimisation</h3>
                     <p>Improve page titles, headings, internal links and content so customers and search engines can understand your products and services.</p>
                 </div>
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-location-dot"></i></div>
-                    <h5>Local SEO &amp; Maps</h5>
+                    <h3>Local SEO &amp; Maps</h3>
                     <p>Refine your Google Business Profile, service information and business listings to support discovery in relevant local searches.</p>
                 </div>
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-link"></i></div>
-                    <h5>Content &amp; Outreach</h5>
+                    <h3>Content &amp; Outreach</h3>
                     <p>Create useful content around customer questions and pursue relevant opportunities to introduce your website to wider audiences.</p>
                 </div>
             </div>
@@ -118,28 +118,28 @@ include 'header.php';
                 <div class="m-step">
                     <div class="m-step-num">01</div>
                     <div class="m-step-content">
-                        <h4><i class="fa-solid fa-magnifying-glass"></i> Understand Your Business</h4>
+                        <h3><i class="fa-solid fa-magnifying-glass"></i> Understand Your Business</h3>
                         <p>We discuss your services, customers and goals, then review your website and existing search performance.</p>
                     </div>
                 </div>
                 <div class="m-step">
                     <div class="m-step-num">02</div>
                     <div class="m-step-content">
-                        <h4><i class="fa-solid fa-key"></i> Research &amp; Prioritise</h4>
+                        <h3><i class="fa-solid fa-key"></i> Research &amp; Prioritise</h3>
                         <p>We investigate relevant searches and competing websites to identify content opportunities and the improvements worth addressing first.</p>
                     </div>
                 </div>
                 <div class="m-step">
                     <div class="m-step-num">03</div>
                     <div class="m-step-content">
-                        <h4><i class="fa-solid fa-screwdriver-wrench"></i> Make Improvements</h4>
+                        <h3><i class="fa-solid fa-screwdriver-wrench"></i> Make Improvements</h3>
                         <p>We implement agreed technical changes, refine website content and improve the information supporting your local presence.</p>
                     </div>
                 </div>
                 <div class="m-step">
                     <div class="m-step-num">04</div>
                     <div class="m-step-content">
-                        <h4><i class="fa-solid fa-chart-line"></i> Review &amp; Refine</h4>
+                        <h3><i class="fa-solid fa-chart-line"></i> Review &amp; Refine</h3>
                         <p>We review search performance and available enquiry data, explain progress and adjust priorities as your website develops.</p>
                     </div>
                 </div>

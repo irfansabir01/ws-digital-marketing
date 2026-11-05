@@ -50,22 +50,22 @@ include 'header.php';
             <div class="industry-tile-grid">
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-bed"></i></div>
-                    <h5>Property &amp; Destination Search</h5>
+                    <h3>Property &amp; Destination Search</h3>
                     <p>Improve visibility for relevant accommodation and destination searches through useful property pages, local information and business profile updates.</p>
                 </div>
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-globe"></i></div>
-                    <h5>Direct Booking Websites</h5>
+                    <h3>Direct Booking Websites</h3>
                     <p>Present rooms, facilities and booking conditions clearly, with links or agreed integrations connecting guests to your booking system.</p>
                 </div>
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-star"></i></div>
-                    <h5>Guest Reviews &amp; Reputation</h5>
+                    <h3>Guest Reviews &amp; Reputation</h3>
                     <p>Support honest guest feedback requests and review monitoring, helping your team respond professionally across relevant platforms.</p>
                 </div>
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-arrows-rotate"></i></div>
-                    <h5>Guest Advertising &amp; Email</h5>
+                    <h3>Guest Advertising &amp; Email</h3>
                     <p>Use targeted advertising and email campaigns to reach prospective guests and reconnect with subscribers who have agreed to receive marketing.</p>
                 </div>
             </div>

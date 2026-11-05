@@ -151,7 +151,7 @@ function seo_validate_json(string $json): ?string
 
 // A <script type="application/ld+json"> tag for stored JSON-LD, re-encoded on
 // the way out so it can never close the script element early.
-function seo_json_ld_tag(?string $json): string
+function seo_json_ld_tag(?string $json, bool $fromCode = false): string
 {
     if ($json === null || trim($json) === '') {
         return '';
@@ -162,7 +162,8 @@ function seo_json_ld_tag(?string $json): string
     }
     $safe = json_encode($decoded, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
     $safe = str_replace('</', '<\\/', (string) $safe);
-    return '    <script type="application/ld+json">' . $safe . "</script>\n";
+    $origin = $fromCode ? ' data-origin="code"' : '';
+    return '    <script type="application/ld+json"' . $origin . '>' . $safe . "</script>\n";
 }
 
 // Defence in depth for the per-page "extra content" HTML: scripts and inline
@@ -510,5 +511,32 @@ function seo_graph_tag(array $nodes): string
     return seo_json_ld_tag(json_encode(
         ['@context' => 'https://schema.org', '@graph' => $nodes],
         JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE
-    ));
+    ), true);
+}
+
+// BreadcrumbList for a static page, derived from the page catalogue (hub
+// pages: Services / Industries). Returns '' for the homepage and for paths
+// that aren't catalogue pages (blog posts, case studies, 404s).
+function seo_auto_breadcrumb_tag(string $path): string
+{
+    if ($path === '/') {
+        return '';
+    }
+    require_once __DIR__ . '/site-pages.php';
+    foreach (site_static_pages() as $p) {
+        if ($p['path'] !== $path) {
+            continue;
+        }
+        $label = html_entity_decode($p['label'], ENT_QUOTES, 'UTF-8');
+        $label = preg_replace('/\s*\((?:listing|Industry)\)$/', '', $label);
+        $crumbs = [['Home', '/']];
+        if ($p['group'] === 'Services' && $path !== '/services') {
+            $crumbs[] = ['Services', '/services'];
+        } elseif ($p['group'] === 'Industries' && $path !== '/industries') {
+            $crumbs[] = ['Industries', '/industries'];
+        }
+        $crumbs[] = [$label, $path];
+        return seo_graph_tag([seo_breadcrumb_schema($crumbs)]);
+    }
+    return '';
 }

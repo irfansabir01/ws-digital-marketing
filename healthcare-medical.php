@@ -50,22 +50,22 @@ include 'header.php';
             <div class="industry-tile-grid">
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-user-doctor"></i></div>
-                    <h5>Local Search Visibility</h5>
+                    <h3>Local Search Visibility</h3>
                     <p>Improve business profiles and service pages so people can find accurate information about your practice, services and locations.</p>
                 </div>
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-briefcase-medical"></i></div>
-                    <h5>Practice Website Design</h5>
+                    <h3>Practice Website Design</h3>
                     <p>Create clear navigation, readable content and mobile-friendly layouts, with straightforward access to practitioner details and appointment information.</p>
                 </div>
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-star"></i></div>
-                    <h5>Reputation &amp; Feedback Support</h5>
+                    <h3>Reputation &amp; Feedback Support</h3>
                     <p>Support review monitoring and response preparation, with your practice approving replies and decisions about using patient feedback.</p>
                 </div>
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-calendar-check"></i></div>
-                    <h5>Appointment &amp; Referral Information</h5>
+                    <h3>Appointment &amp; Referral Information</h3>
                     <p>Develop pages and campaigns that explain appointment options and referral requirements, with booking-system connections scoped to your needs.</p>
                 </div>
             </div>

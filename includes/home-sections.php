@@ -169,7 +169,7 @@ try {
                 </div>
             </div>
         </div>
-        <script type="application/ld+json"><?php echo $hsJson($abSchema); ?></script>
+        <script type="application/ld+json" data-origin="code"><?php echo $hsJson($abSchema); ?></script>
     </section>
 <?php endif; ?>
 
@@ -291,6 +291,6 @@ try {
                 <?php endforeach; ?>
             </div>
         </div>
-        <script type="application/ld+json"><?php echo $hsJson($faqSchema); ?></script>
+        <script type="application/ld+json" data-origin="code"><?php echo $hsJson($faqSchema); ?></script>
     </section>
 <?php endif; ?>

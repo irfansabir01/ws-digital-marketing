@@ -37,7 +37,7 @@ $scatterIcons = ['fa-arrow-trend-up', 'fa-chart-column', 'fa-bullseye', 'fa-trop
 $page_title = 'Digital Marketing Agency Australia';
 $page_description = 'Grow your Australian business with SEO, Google Ads, social media and website design from W&S Digital Marketing. Request your free growth plan today.';
 $extra_head = <<<'HTML'
-<script type="application/ld+json">
+<script type="application/ld+json" data-origin="code">
 {
   "@context": "https://schema.org",
   "@type": ["Organization", "ProfessionalService"],

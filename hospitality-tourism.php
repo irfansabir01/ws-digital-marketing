@@ -50,22 +50,22 @@ include 'header.php';
             <div class="industry-tile-grid">
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-utensils"></i></div>
-                    <h5>Local &amp; Destination Search</h5>
+                    <h3>Local &amp; Destination Search</h3>
                     <p>Improve your website and business profile around the places, dining options and experiences your customers are searching for.</p>
                 </div>
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-star"></i></div>
-                    <h5>Reviews &amp; Reputation</h5>
+                    <h3>Reviews &amp; Reputation</h3>
                     <p>Support honest feedback requests, monitor customer reviews and help your team prepare useful, professional responses.</p>
                 </div>
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-calendar-check"></i></div>
-                    <h5>Websites &amp; Booking Pathways</h5>
+                    <h3>Websites &amp; Booking Pathways</h3>
                     <p>Present menus, tour details and visitor information clearly, with enquiry forms or connections to your existing booking platform.</p>
                 </div>
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-share-nodes"></i></div>
-                    <h5>Social &amp; Search Campaigns</h5>
+                    <h3>Social &amp; Search Campaigns</h3>
                     <p>Promote relevant experiences, events and seasonal offers through campaigns planned around your audience, availability and budget.</p>
                 </div>
             </div>

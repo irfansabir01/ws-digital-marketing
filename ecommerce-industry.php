@@ -50,22 +50,22 @@ include 'header.php';
             <div class="industry-tile-grid">
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-magnifying-glass-dollar"></i></div>
-                    <h5>Search &amp; Shopping Campaigns</h5>
+                    <h3>Search &amp; Shopping Campaigns</h3>
                     <p>Improve product visibility through search optimisation and agreed Google Shopping campaigns, with clear product information and organised feeds.</p>
                 </div>
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-share-nodes"></i></div>
-                    <h5>Social &amp; Returning Visitor Ads</h5>
+                    <h3>Social &amp; Returning Visitor Ads</h3>
                     <p>Introduce products to relevant audiences and reconnect with previous visitors through suitable Meta and TikTok advertising campaigns.</p>
                 </div>
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-gauge-high"></i></div>
-                    <h5>Shopping Experience Improvements</h5>
+                    <h3>Shopping Experience Improvements</h3>
                     <p>Review product pages and purchase journeys, prioritising practical improvements and testing changes where traffic and measurement support reliable comparisons.</p>
                 </div>
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-rotate"></i></div>
-                    <h5>Email &amp; Repeat Purchases</h5>
+                    <h3>Email &amp; Repeat Purchases</h3>
                     <p>Plan newsletters and customer emails, with writing, automation setup and ongoing campaign management agreed around your store's needs.</p>
                 </div>
             </div>

@@ -101,7 +101,7 @@ include 'header.php';
                                     <i class="fa-solid fa-phone"></i>
                                 </div>
                                 <div>
-                                    <h5 style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700; margin-bottom: 2px; letter-spacing: 1px;">Call Us</h5>
+                                    <h3 style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700; margin-bottom: 2px; letter-spacing: 1px;">Call Us</h3>
                                     <a href="tel:+61403889630" style="color: var(--navy); font-weight: 700; font-size: 1.05rem; text-decoration: none; transition: color 0.3s;">+61 403 889 630</a>
                                 </div>
                             </li>
@@ -111,7 +111,7 @@ include 'header.php';
                                     <i class="fa-solid fa-envelope"></i>
                                 </div>
                                 <div>
-                                    <h5 style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700; margin-bottom: 2px; letter-spacing: 1px;">Email Us</h5>
+                                    <h3 style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700; margin-bottom: 2px; letter-spacing: 1px;">Email Us</h3>
                                     <a href="mailto:info@wsdigitalmarketing.com.au" style="color: var(--navy); font-weight: 700; font-size: 1.05rem; text-decoration: none; transition: color 0.3s; word-break: break-all;">info@wsdigitalmarketing.com.au</a>
                                 </div>
                             </li>
@@ -121,7 +121,7 @@ include 'header.php';
                                     <i class="fa-solid fa-location-dot"></i>
                                 </div>
                                 <div>
-                                    <h5 style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700; margin-bottom: 2px; letter-spacing: 1px;">Office Location</h5>
+                                    <h3 style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700; margin-bottom: 2px; letter-spacing: 1px;">Office Location</h3>
                                     <p style="color: var(--navy); font-weight: 600; font-size: 0.95rem; line-height: 1.5;">3 Weebill St, Melonba, NSW 2765, Australia</p>
                                 </div>
                             </li>
@@ -129,7 +129,7 @@ include 'header.php';
                     </div>
 
                     <div style="margin-top: 35px; border-top: 1px solid var(--border-light); padding-top: 20px;">
-                        <h5 style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700; margin-bottom: 12px; letter-spacing: 1px;">Follow Our Socials</h5>
+                        <h3 style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700; margin-bottom: 12px; letter-spacing: 1px;">Follow Our Socials</h3>
                         <div class="contact-social-links">
                             <a href="https://www.facebook.com/w.and.s.digital.marketing" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
                             <a href="https://www.instagram.com/wsdigitalmarketing" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>

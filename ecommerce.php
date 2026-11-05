@@ -74,22 +74,22 @@ include 'header.php';
             <div class="industry-tile-grid">
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-store"></i></div>
-                    <h5>Store Development &amp; Migration</h5>
+                    <h3>Store Development &amp; Migration</h3>
                     <p>Build a new store or plan a platform migration, with agreed requirements for product data, content and essential functionality.</p>
                 </div>
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-boxes-stacked"></i></div>
-                    <h5>Product &amp; Catalogue Structure</h5>
+                    <h3>Product &amp; Catalogue Structure</h3>
                     <p>Organise products, collections and descriptions so customers can browse your range, compare options and find relevant information.</p>
                 </div>
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-credit-card"></i></div>
-                    <h5>Cart &amp; Checkout Improvements</h5>
+                    <h3>Cart &amp; Checkout Improvements</h3>
                     <p>Review the journey to purchase and improve cart information, navigation and available checkout settings within your platform's capabilities.</p>
                 </div>
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-bullhorn"></i></div>
-                    <h5>Shopping Ads &amp; Product Feeds</h5>
+                    <h3>Shopping Ads &amp; Product Feeds</h3>
                     <p>Prepare product feeds and manage agreed shopping campaigns, with advertising management and platform spend clearly scoped.</p>
                 </div>
             </div>
@@ -107,28 +107,28 @@ include 'header.php';
                 <div class="m-step">
                     <div class="m-step-num">01</div>
                     <div class="m-step-content">
-                        <h4><i class="fa-solid fa-magnifying-glass"></i> Review &amp; Plan</h4>
+                        <h3><i class="fa-solid fa-magnifying-glass"></i> Review &amp; Plan</h3>
                         <p>We review your products, current platform and customer journey to establish the store's requirements and priorities.</p>
                     </div>
                 </div>
                 <div class="m-step">
                     <div class="m-step-num">02</div>
                     <div class="m-step-content">
-                        <h4><i class="fa-solid fa-hammer"></i> Design &amp; Develop</h4>
+                        <h3><i class="fa-solid fa-hammer"></i> Design &amp; Develop</h3>
                         <p>We create the store layout, organise the catalogue and configure the functionality included in your project.</p>
                     </div>
                 </div>
                 <div class="m-step">
                     <div class="m-step-num">03</div>
                     <div class="m-step-content">
-                        <h4><i class="fa-solid fa-gauge-high"></i> Test &amp; Prepare</h4>
+                        <h3><i class="fa-solid fa-gauge-high"></i> Test &amp; Prepare</h3>
                         <p>We check product information, mobile layouts and purchase pathways, and validate the agreed data included in any migration.</p>
                     </div>
                 </div>
                 <div class="m-step">
                     <div class="m-step-num">04</div>
                     <div class="m-step-content">
-                        <h4><i class="fa-solid fa-rocket"></i> Launch &amp; Support</h4>
+                        <h3><i class="fa-solid fa-rocket"></i> Launch &amp; Support</h3>
                         <p>We launch the store, explain its management features and provide the support or ongoing improvements agreed for your project.</p>
                     </div>
                 </div>

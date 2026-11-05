@@ -51,22 +51,22 @@ include 'header.php';
             <div class="industry-tile-grid">
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
-                    <h5>Clear Provider Websites</h5>
+                    <h3>Clear Provider Websites</h3>
                     <p>Present your supports, team and contact options through readable content and organised layouts, with accessibility requirements agreed during planning.</p>
                 </div>
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-magnifying-glass-location"></i></div>
-                    <h5>Local &amp; Service Search</h5>
+                    <h3>Local &amp; Service Search</h3>
                     <p>Improve website content and business information around the supports you provide and the locations you serve.</p>
                 </div>
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-people-arrows"></i></div>
-                    <h5>Coordinator &amp; Referrer Information</h5>
+                    <h3>Coordinator &amp; Referrer Information</h3>
                     <p>Develop clear service pages and information materials that help support coordinators and other referrers understand your offering.</p>
                 </div>
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-comments"></i></div>
-                    <h5>Enquiry Pathway Improvements</h5>
+                    <h3>Enquiry Pathway Improvements</h3>
                     <p>Simplify contact forms and explain what happens after an enquiry, helping people reach the appropriate member of your team.</p>
                 </div>
             </div>

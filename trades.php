@@ -50,22 +50,22 @@ include 'header.php';
             <div class="industry-tile-grid">
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-location-dot"></i></div>
-                    <h5>Local Search Visibility</h5>
+                    <h3>Local Search Visibility</h3>
                     <p>Improve business profiles and service pages so customers can find relevant information about your trade and service areas.</p>
                 </div>
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-star"></i></div>
-                    <h5>Reviews &amp; Reputation</h5>
+                    <h3>Reviews &amp; Reputation</h3>
                     <p>Support honest customer feedback requests, monitor reviews and help your team respond professionally to customer experiences.</p>
                 </div>
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-truck-fast"></i></div>
-                    <h5>Targeted Service Advertising</h5>
+                    <h3>Targeted Service Advertising</h3>
                     <p>Plan ads around your services, coverage and working hours, including urgent repairs where your business offers that service.</p>
                 </div>
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-calendar-check"></i></div>
-                    <h5>Websites &amp; Quote Requests</h5>
+                    <h3>Websites &amp; Quote Requests</h3>
                     <p>Build clear, mobile-friendly pages with click-to-call links and enquiry forms that help customers explain the work they need.</p>
                 </div>
             </div>

@@ -50,22 +50,22 @@ include 'header.php';
             <div class="industry-tile-grid">
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-brands fa-google"></i></div>
-                    <h5>Google Ads Management</h5>
+                    <h3>Google Ads Management</h3>
                     <p>Build and manage search and display campaigns with targeting, advertising copy and budgets shaped around your business priorities.</p>
                 </div>
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-hand-pointer"></i></div>
-                    <h5>Paid Social Campaigns</h5>
+                    <h3>Paid Social Campaigns</h3>
                     <p>Develop campaigns for relevant social platforms, combining audience selection, creative testing and clear calls to action.</p>
                 </div>
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-arrow-pointer"></i></div>
-                    <h5>Landing Page Improvements</h5>
+                    <h3>Landing Page Improvements</h3>
                     <p>Review the pages receiving advertising traffic and scope improvements or new pages where the customer journey needs attention.</p>
                 </div>
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-chart-pie"></i></div>
-                    <h5>Tracking &amp; Reporting</h5>
+                    <h3>Tracking &amp; Reporting</h3>
                     <p>Configure agreed conversion tracking and explain campaign performance, including the measurement limitations relevant to your setup.</p>
                 </div>
             </div>
@@ -83,28 +83,28 @@ include 'header.php';
                 <div class="m-step">
                     <div class="m-step-num">01</div>
                     <div class="m-step-content">
-                        <h4><i class="fa-solid fa-magnifying-glass"></i> Review &amp; Set Goals</h4>
+                        <h3><i class="fa-solid fa-magnifying-glass"></i> Review &amp; Set Goals</h3>
                         <p>We review your offer, existing accounts and budget, then agree on campaign objectives and the actions to measure.</p>
                     </div>
                 </div>
                 <div class="m-step">
                     <div class="m-step-num">02</div>
                     <div class="m-step-content">
-                        <h4><i class="fa-solid fa-rocket"></i> Build &amp; Launch</h4>
+                        <h3><i class="fa-solid fa-rocket"></i> Build &amp; Launch</h3>
                         <p>We prepare targeting, advertising creative and tracking, with account access and spending arrangements confirmed before launch.</p>
                     </div>
                 </div>
                 <div class="m-step">
                     <div class="m-step-num">03</div>
                     <div class="m-step-content">
-                        <h4><i class="fa-solid fa-flask"></i> Test &amp; Improve</h4>
+                        <h3><i class="fa-solid fa-flask"></i> Test &amp; Improve</h3>
                         <p>We review search terms, audiences, creative and landing pages, using campaign data to guide ongoing adjustments.</p>
                     </div>
                 </div>
                 <div class="m-step">
                     <div class="m-step-num">04</div>
                     <div class="m-step-content">
-                        <h4><i class="fa-solid fa-chart-line"></i> Review &amp; Plan Ahead</h4>
+                        <h3><i class="fa-solid fa-chart-line"></i> Review &amp; Plan Ahead</h3>
                         <p>We explain what the campaigns are delivering and recommend the next changes within your agreed budget.</p>
                     </div>
                 </div>

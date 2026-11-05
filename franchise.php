@@ -50,22 +50,22 @@ include 'header.php';
             <div class="industry-tile-grid">
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-map-location-dot"></i></div>
-                    <h5>Local Search Management</h5>
+                    <h3>Local Search Management</h3>
                     <p>Improve business profiles and website information so customers can find relevant locations, services, opening hours and contact details.</p>
                 </div>
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-store"></i></div>
-                    <h5>Individual Location Pages</h5>
+                    <h3>Individual Location Pages</h3>
                     <p>Create pages with useful local information and clear enquiry options, while maintaining your franchise's visual identity and messaging.</p>
                 </div>
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-chart-pie"></i></div>
-                    <h5>Network &amp; Location Reporting</h5>
+                    <h3>Network &amp; Location Reporting</h3>
                     <p>Bring agreed campaign measures together to review network activity, compare locations and identify priorities using available tracking data.</p>
                 </div>
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-bullhorn"></i></div>
-                    <h5>Brand &amp; Local Advertising</h5>
+                    <h3>Brand &amp; Local Advertising</h3>
                     <p>Coordinate campaigns around shared brand goals, with local targeting, budgets and approvals agreed with your franchise team.</p>
                 </div>
             </div>

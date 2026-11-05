@@ -50,22 +50,22 @@ include 'header.php';
             <div class="industry-tile-grid">
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-magnifying-glass-dollar"></i></div>
-                    <h5>Local &amp; Specialist Search</h5>
+                    <h3>Local &amp; Specialist Search</h3>
                     <p>Help prospective clients find your accounting, bookkeeping or advisory services through relevant service pages and local search optimisation.</p>
                 </div>
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-file-invoice-dollar"></i></div>
-                    <h5>Service &amp; Enquiry Pages</h5>
+                    <h3>Service &amp; Enquiry Pages</h3>
                     <p>Explain who you help, what your services cover and how prospective clients can contact the right person.</p>
                 </div>
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-shield-halved"></i></div>
-                    <h5>Professional Website Design</h5>
+                    <h3>Professional Website Design</h3>
                     <p>Present your team, qualifications and service information in a clear, accessible layout, with content reviewed by your firm before publication.</p>
                 </div>
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-comments-dollar"></i></div>
-                    <h5>Email &amp; Educational Content</h5>
+                    <h3>Email &amp; Educational Content</h3>
                     <p>Develop newsletters and useful guides, with content creation, campaign setup and ongoing management agreed around your requirements.</p>
                 </div>
             </div>

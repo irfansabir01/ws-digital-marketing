@@ -73,22 +73,22 @@ include 'header.php';
             <div class="industry-tile-grid">
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-pen-ruler"></i></div>
-                    <h5>Website Design &amp; User Experience</h5>
+                    <h3>Website Design &amp; User Experience</h3>
                     <p>Plan layouts and navigation around your services, brand identity and the information customers need before making contact.</p>
                 </div>
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-mobile-screen"></i></div>
-                    <h5>Responsive Development</h5>
+                    <h3>Responsive Development</h3>
                     <p>Build pages that adapt to desktop, tablet and mobile screens, with readable content and straightforward controls.</p>
                 </div>
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-gauge-high"></i></div>
-                    <h5>Speed &amp; Technical Setup</h5>
+                    <h3>Speed &amp; Technical Setup</h3>
                     <p>Optimise images and website resources, and review the technical setup supporting page performance and ongoing maintenance.</p>
                 </div>
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-chart-simple"></i></div>
-                    <h5>Enquiries &amp; Analytics</h5>
+                    <h3>Enquiries &amp; Analytics</h3>
                     <p>Configure agreed forms, calls to action and analytics so you can understand how visitors use your website.</p>
                 </div>
             </div>
@@ -106,28 +106,28 @@ include 'header.php';
                 <div class="m-step">
                     <div class="m-step-num">01</div>
                     <div class="m-step-content">
-                        <h4><i class="fa-solid fa-lightbulb"></i> Discover &amp; Plan</h4>
+                        <h3><i class="fa-solid fa-lightbulb"></i> Discover &amp; Plan</h3>
                         <p>We establish your goals, required pages and functionality, then map the website structure and customer journey.</p>
                     </div>
                 </div>
                 <div class="m-step">
                     <div class="m-step-num">02</div>
                     <div class="m-step-content">
-                        <h4><i class="fa-solid fa-palette"></i> Design &amp; Review</h4>
+                        <h3><i class="fa-solid fa-palette"></i> Design &amp; Review</h3>
                         <p>We develop a visual direction and page layouts, incorporating your feedback through the agreed review stages.</p>
                     </div>
                 </div>
                 <div class="m-step">
                     <div class="m-step-num">03</div>
                     <div class="m-step-content">
-                        <h4><i class="fa-solid fa-code"></i> Develop &amp; Test</h4>
+                        <h3><i class="fa-solid fa-code"></i> Develop &amp; Test</h3>
                         <p>We build the website and test its layouts, links, forms and agreed features across relevant browsers and devices.</p>
                     </div>
                 </div>
                 <div class="m-step">
                     <div class="m-step-num">04</div>
                     <div class="m-step-content">
-                        <h4><i class="fa-solid fa-rocket"></i> Launch &amp; Handover</h4>
+                        <h3><i class="fa-solid fa-rocket"></i> Launch &amp; Handover</h3>
                         <p>We prepare the site for launch, explain how to manage it and confirm the support included after delivery.</p>
                     </div>
                 </div>

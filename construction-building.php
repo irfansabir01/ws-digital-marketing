@@ -50,22 +50,22 @@ include 'header.php';
             <div class="industry-tile-grid">
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-diagram-project"></i></div>
-                    <h5>Project Portfolio Websites</h5>
+                    <h3>Project Portfolio Websites</h3>
                     <p>Present completed work through project descriptions, photographs and clear explanations of your role, capabilities and services.</p>
                 </div>
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-helmet-safety"></i></div>
-                    <h5>Commercial Project Enquiries</h5>
+                    <h3>Commercial Project Enquiries</h3>
                     <p>Develop pages and campaigns that communicate your capabilities to developers, project managers and other commercial decision-makers.</p>
                 </div>
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-house-chimney"></i></div>
-                    <h5>Residential Project Enquiries</h5>
+                    <h3>Residential Project Enquiries</h3>
                     <p>Help homeowners explore your renovation, extension or new-build services, with clear information about project types and service areas.</p>
                 </div>
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-ranking-star"></i></div>
-                    <h5>Local &amp; Regional Search</h5>
+                    <h3>Local &amp; Regional Search</h3>
                     <p>Improve search visibility for the construction services and locations that match the work your business wants to attract.</p>
                 </div>
             </div>

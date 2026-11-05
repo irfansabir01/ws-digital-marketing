@@ -50,22 +50,22 @@ include 'header.php';
             <div class="industry-tile-grid">
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-house"></i></div>
-                    <h5>Local &amp; Suburb Search</h5>
+                    <h3>Local &amp; Suburb Search</h3>
                     <p>Develop useful suburb and service pages that help people discover your agency and understand the areas you work in.</p>
                 </div>
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-id-badge"></i></div>
-                    <h5>Agent &amp; Agency Branding</h5>
+                    <h3>Agent &amp; Agency Branding</h3>
                     <p>Present your experience, local knowledge and approach consistently across agent profiles, website content and campaign materials.</p>
                 </div>
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-bullhorn"></i></div>
-                    <h5>Property Listing Campaigns</h5>
+                    <h3>Property Listing Campaigns</h3>
                     <p>Promote current listings through agreed advertising channels, using accurate property details and clear inspection or enquiry options.</p>
                 </div>
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-user-plus"></i></div>
-                    <h5>Seller &amp; Appraisal Campaigns</h5>
+                    <h3>Seller &amp; Appraisal Campaigns</h3>
                     <p>Create campaigns and landing pages that explain your selling services and help property owners request an appraisal.</p>
                 </div>
             </div>

@@ -50,22 +50,22 @@ include 'header.php';
             <div class="industry-tile-grid">
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-magnifying-glass-dollar"></i></div>
-                    <h5>Local Search Improvements</h5>
+                    <h3>Local Search Improvements</h3>
                     <p>Help nearby customers find your business through accurate profile information, useful service pages and relevant local content.</p>
                 </div>
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-globe"></i></div>
-                    <h5>Small Business Websites</h5>
+                    <h3>Small Business Websites</h3>
                     <p>Create a professional website with clear service information and enquiry options, with features and costs agreed before development.</p>
                 </div>
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-bullhorn"></i></div>
-                    <h5>Focused Advertising Campaigns</h5>
+                    <h3>Focused Advertising Campaigns</h3>
                     <p>Plan campaigns around selected services, locations and an agreed budget, with advertising spend separate from management fees.</p>
                 </div>
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-chart-line"></i></div>
-                    <h5>Clear Progress Reporting</h5>
+                    <h3>Clear Progress Reporting</h3>
                     <p>Review agreed measures such as website enquiries and campaign activity, explaining what the available tracking shows and where gaps remain.</p>
                 </div>
             </div>

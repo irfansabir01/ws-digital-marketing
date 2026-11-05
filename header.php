@@ -1,4 +1,9 @@
 <?php
+// Post-processes the finished page (de-duplicates structured data, adds image
+// dimensions) -- see includes/output-filter.php.
+require_once __DIR__ . '/includes/output-filter.php';
+ob_start('seo_output_filter');
+
 // Pages can set these before including this file; sensible defaults otherwise.
 $page_title = $page_title ?? 'Premium Agency';
 $page_description = $page_description ?? 'Data-driven Google Ads, Meta Ads, SEO and web design strategies that generate high-intent leads, sales, and revenue for ambitious Australian businesses.';
@@ -131,11 +136,15 @@ $seo_og_type = !empty($page_og_type) ? $page_og_type : 'website';
     <link rel="stylesheet" href="/vendor/fontawesome-6.4.2/css/all.min.css" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="/vendor/fontawesome-6.4.2/css/all.min.css"></noscript>
 
-    <?php if (!empty($extra_head)) echo $extra_head; ?>
 <?php
-    // Structured data (JSON-LD): site-wide first, then anything specific to this page.
+    // Structured data (JSON-LD): admin -> SEO site-wide, then this page's own.
     echo seo_json_ld_tag($seo_settings['schema_json'] ?? '');
     echo seo_json_ld_tag($seo_page['schema_json'] ?? '');
+    // Schema the page defines in code ($extra_head, marked data-origin="code")
+    // plus an automatic breadcrumb. Anything the admin already provides above
+    // wins -- includes/output-filter.php drops the duplicate types.
+    if (!empty($extra_head)) echo $extra_head;
+    echo seo_auto_breadcrumb_tag($canonical_path);
     // Custom code from admin -> SEO -> Site Code (Analytics, Search Console
     // verification, etc.) -- printed as-is, it's trusted admin-entered markup.
     if (($seo_settings['head_code'] ?? '') !== '') echo "\n" . $seo_settings['head_code'] . "\n";

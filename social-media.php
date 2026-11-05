@@ -50,22 +50,22 @@ include 'header.php';
             <div class="industry-tile-grid">
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-calendar-days"></i></div>
-                    <h5>Content Strategy &amp; Planning</h5>
+                    <h3>Content Strategy &amp; Planning</h3>
                     <p>Develop content themes and a publishing calendar around your audience, business priorities and the platforms you use.</p>
                 </div>
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-comments"></i></div>
-                    <h5>Content &amp; Channel Management</h5>
+                    <h3>Content &amp; Channel Management</h3>
                     <p>Prepare and schedule agreed posts, maintaining a consistent voice and visual approach across your social channels.</p>
                 </div>
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-bullhorn"></i></div>
-                    <h5>Community Management</h5>
+                    <h3>Community Management</h3>
                     <p>Manage agreed comment and message responses, with clear responsibilities for customer questions, sensitive enquiries and escalation.</p>
                 </div>
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-handshake"></i></div>
-                    <h5>Paid Social &amp; Creator Content</h5>
+                    <h3>Paid Social &amp; Creator Content</h3>
                     <p>Plan advertising or creator collaborations where required, with production, usage rights and additional costs agreed in advance.</p>
                 </div>
             </div>
@@ -119,28 +119,28 @@ include 'header.php';
                 <div class="m-step">
                     <div class="m-step-num">01</div>
                     <div class="m-step-content">
-                        <h4><i class="fa-solid fa-magnifying-glass"></i> Review &amp; Understand</h4>
+                        <h3><i class="fa-solid fa-magnifying-glass"></i> Review &amp; Understand</h3>
                         <p>We review your channels, audience and business goals to establish where social media can support your marketing.</p>
                     </div>
                 </div>
                 <div class="m-step">
                     <div class="m-step-num">02</div>
                     <div class="m-step-content">
-                        <h4><i class="fa-solid fa-pen"></i> Plan &amp; Create</h4>
+                        <h3><i class="fa-solid fa-pen"></i> Plan &amp; Create</h3>
                         <p>We prepare the content calendar and agreed creative, giving your team an opportunity to review material before publishing.</p>
                     </div>
                 </div>
                 <div class="m-step">
                     <div class="m-step-num">03</div>
                     <div class="m-step-content">
-                        <h4><i class="fa-solid fa-thumbs-up"></i> Publish &amp; Engage</h4>
+                        <h3><i class="fa-solid fa-thumbs-up"></i> Publish &amp; Engage</h3>
                         <p>We schedule approved content and manage community activity within the response arrangements included in your plan.</p>
                     </div>
                 </div>
                 <div class="m-step">
                     <div class="m-step-num">04</div>
                     <div class="m-step-content">
-                        <h4><i class="fa-solid fa-chart-line"></i> Review &amp; Improve</h4>
+                        <h3><i class="fa-solid fa-chart-line"></i> Review &amp; Improve</h3>
                         <p>We review audience response and relevant enquiries, then refine content themes, formats and publishing priorities.</p>
                     </div>
                 </div>

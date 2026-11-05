@@ -35,7 +35,7 @@ include 'header.php';
                 <div class="testi-trust-panel fade-up">
                     <div class="testi-trust-rating">4.9<span>/5</span></div>
                     <div class="testi-trust-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                    <h5>Excellent</h5>
+                    <h3>Excellent</h3>
                     <p>Based on 150+ verified Google Reviews from Australian businesses just like yours.</p>
 
                     <?php $stackPhotos = array_filter(array_column(array_slice($reviews, 0, 4), 'photo_path')); ?>
@@ -70,7 +70,7 @@ include 'header.php';
                                 <?php endif; ?>
                             </div>
                             <div class="testi-author-info">
-                                <h5><?php echo htmlspecialchars($review['author_name'], ENT_QUOTES, 'UTF-8'); ?></h5>
+                                <h3><?php echo htmlspecialchars($review['author_name'], ENT_QUOTES, 'UTF-8'); ?></h3>
                                 <?php if ($review['author_role']): ?><span><?php echo htmlspecialchars($review['author_role'], ENT_QUOTES, 'UTF-8'); ?></span><?php endif; ?>
                             </div>
                         </div>

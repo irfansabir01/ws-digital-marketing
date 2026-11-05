@@ -50,22 +50,22 @@ include 'header.php';
             <div class="industry-tile-grid">
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-signature"></i></div>
-                    <h5>Logo &amp; Visual Identity</h5>
+                    <h3>Logo &amp; Visual Identity</h3>
                     <p>Develop a logo and supporting colours, typography and visual elements suited to your business and intended uses.</p>
                 </div>
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-image"></i></div>
-                    <h5>Advertising &amp; Social Graphics</h5>
+                    <h3>Advertising &amp; Social Graphics</h3>
                     <p>Create graphics for agreed advertising formats and social platforms, keeping your message and brand presentation consistent.</p>
                 </div>
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-print"></i></div>
-                    <h5>Print &amp; Marketing Materials</h5>
+                    <h3>Print &amp; Marketing Materials</h3>
                     <p>Design brochures, signage and other business materials, with artwork prepared to the agreed production specifications.</p>
                 </div>
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-swatchbook"></i></div>
-                    <h5>Brand Guidelines &amp; Handover</h5>
+                    <h3>Brand Guidelines &amp; Handover</h3>
                     <p>Document the approved visual direction and provide agreed file formats so your team can apply the brand consistently.</p>
                 </div>
             </div>
@@ -83,28 +83,28 @@ include 'header.php';
                 <div class="m-step">
                     <div class="m-step-num">01</div>
                     <div class="m-step-content">
-                        <h4><i class="fa-solid fa-lightbulb"></i> Understand &amp; Define</h4>
+                        <h3><i class="fa-solid fa-lightbulb"></i> Understand &amp; Define</h3>
                         <p>We discuss your audience, brand and required materials, then agree on the brief, deliverables and review stages.</p>
                     </div>
                 </div>
                 <div class="m-step">
                     <div class="m-step-num">02</div>
                     <div class="m-step-content">
-                        <h4><i class="fa-solid fa-pen-nib"></i> Explore &amp; Design</h4>
+                        <h3><i class="fa-solid fa-pen-nib"></i> Explore &amp; Design</h3>
                         <p>We develop design concepts around the agreed direction, considering both visual presentation and practical use.</p>
                     </div>
                 </div>
                 <div class="m-step">
                     <div class="m-step-num">03</div>
                     <div class="m-step-content">
-                        <h4><i class="fa-solid fa-arrows-rotate"></i> Review &amp; Refine</h4>
+                        <h3><i class="fa-solid fa-arrows-rotate"></i> Review &amp; Refine</h3>
                         <p>We gather your feedback and refine the selected designs through the revision rounds included in your project.</p>
                     </div>
                 </div>
                 <div class="m-step">
                     <div class="m-step-num">04</div>
                     <div class="m-step-content">
-                        <h4><i class="fa-solid fa-box-open"></i> Prepare &amp; Deliver</h4>
+                        <h3><i class="fa-solid fa-box-open"></i> Prepare &amp; Deliver</h3>
                         <p>We prepare approved artwork and agreed files, explaining any relevant usage guidance or third-party licensing requirements.</p>
                     </div>
                 </div>

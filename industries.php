@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/includes/cta-form-handler.php';
 require_once __DIR__ . '/includes/seo.php';
-$page_title = 'Digital Marketing Services by Industry';
+$page_title = 'Digital Marketing by Industry';
 $page_description = 'Digital marketing for trades, healthcare, dental, legal, real estate, NDIS, ecommerce and more. Find website, SEO and advertising support for your sector.';
 
 // FAQ copy feeds both the visible accordion and the FAQPage schema.

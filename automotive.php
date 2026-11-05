@@ -50,22 +50,22 @@ include 'header.php';
             <div class="industry-tile-grid">
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-location-dot"></i></div>
-                    <h5>Local Search Visibility</h5>
+                    <h3>Local Search Visibility</h3>
                     <p>Improve your business profile and website content around the services, vehicles and locations relevant to your customers.</p>
                 </div>
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-star"></i></div>
-                    <h5>Reviews &amp; Reputation</h5>
+                    <h3>Reviews &amp; Reputation</h3>
                     <p>Support honest customer feedback requests, monitor reviews and help your team respond professionally to customer experiences.</p>
                 </div>
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-calendar-check"></i></div>
-                    <h5>Websites &amp; Enquiry Options</h5>
+                    <h3>Websites &amp; Enquiry Options</h3>
                     <p>Create clear pages with calls, enquiry forms and links to existing booking systems, with additional integrations agreed separately.</p>
                 </div>
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-bullhorn"></i></div>
-                    <h5>Search &amp; Social Advertising</h5>
+                    <h3>Search &amp; Social Advertising</h3>
                     <p>Use Google Search ads to reach relevant searches and social campaigns to introduce your offering to suitable audiences.</p>
                 </div>
             </div>

@@ -50,22 +50,22 @@ include 'header.php';
             <div class="industry-tile-grid">
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-scale-balanced"></i></div>
-                    <h5>Practice Area &amp; Local Search</h5>
+                    <h3>Practice Area &amp; Local Search</h3>
                     <p>Improve service and location pages around the legal matters you handle and the areas your firm serves.</p>
                 </div>
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-file-lines"></i></div>
-                    <h5>Legal Website Content</h5>
+                    <h3>Legal Website Content</h3>
                     <p>Develop service explanations, guides and frequently asked questions, with your firm reviewing legal accuracy and suitability before publication.</p>
                 </div>
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-shield-halved"></i></div>
-                    <h5>Professional Website Design</h5>
+                    <h3>Professional Website Design</h3>
                     <p>Present your team, experience and practice areas clearly, with readable layouts and straightforward ways to contact your firm.</p>
                 </div>
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-phone-volume"></i></div>
-                    <h5>Enquiry Journey Improvements</h5>
+                    <h3>Enquiry Journey Improvements</h3>
                     <p>Review forms, contact options and enquiry routing to help prospective clients reach the appropriate team within your firm.</p>
                 </div>
             </div>

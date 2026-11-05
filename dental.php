@@ -50,22 +50,22 @@ include 'header.php';
             <div class="industry-tile-grid">
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-tooth"></i></div>
-                    <h5>Local Search Visibility</h5>
+                    <h3>Local Search Visibility</h3>
                     <p>Improve your business profile and service pages to help people find relevant information about your practice and location.</p>
                 </div>
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-calendar-check"></i></div>
-                    <h5>Websites &amp; Appointment Options</h5>
+                    <h3>Websites &amp; Appointment Options</h3>
                     <p>Create clear, mobile-friendly pages with appointment requests or links to your booking system, with integrations scoped separately.</p>
                 </div>
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-star"></i></div>
-                    <h5>Reputation &amp; Patient Feedback</h5>
+                    <h3>Reputation &amp; Patient Feedback</h3>
                     <p>Support feedback monitoring and careful response processes, with any use of patient comments assessed against applicable advertising requirements.</p>
                 </div>
                 <div class="industry-tile">
                     <div class="industry-tile-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
-                    <h5>Service Information &amp; Campaigns</h5>
+                    <h3>Service Information &amp; Campaigns</h3>
                     <p>Develop clear pages and campaigns for the treatments you offer, with information checked and approved by your practice.</p>
                 </div>
             </div>

@@ -79,17 +79,4 @@ include 'header.php';
         </div>
     </section>
 
-    <!-- Scoped FAQ Accordion Styles -->
-    <style>
-        .faq-list { display: flex; flex-direction: column; gap: 16px; }
-        .faq-item { background: var(--bg-secondary); border: 1px solid var(--border-light); border-radius: 14px; padding: 22px 26px; transition: var(--transition-smooth); }
-        .faq-item:hover { border-color: var(--cyan-neon); }
-        .faq-item summary { cursor: pointer; font-weight: 700; color: var(--navy); font-size: 1.05rem; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 15px; }
-        .faq-item summary::-webkit-details-marker { display: none; }
-        .faq-item summary::after { content: '\f078'; font-family: 'Font Awesome 6 Free'; font-weight: 900; font-size: 0.85rem; color: var(--cyan-neon); transition: transform 0.3s ease; flex-shrink: 0; }
-        .faq-item[open] summary::after { transform: rotate(180deg); }
-        .faq-item p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; margin-top: 15px; }
-        .faq-item p a { color: var(--navy); font-weight: 700; text-decoration: underline; }
-    </style>
-
 <?php include 'footer.php'; ?>

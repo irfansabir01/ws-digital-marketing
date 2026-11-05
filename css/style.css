@@ -524,7 +524,7 @@
             transform: scale(1.1) rotate(-6deg);
             background: linear-gradient(135deg, rgba(0, 242, 254, 0.28), rgba(255, 0, 127, 0.28));
         }
-        .stat-box h3 { font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 800; margin-bottom: 10px; background: linear-gradient(135deg, var(--cyan-neon), var(--magenta-neon)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .stat-box h3, .stat-box .stat-value { font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 800; margin-bottom: 10px; background: linear-gradient(135deg, var(--cyan-neon), var(--magenta-neon)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .stat-box p { font-size: clamp(0.85rem, 1.5vw, 1rem); color: rgba(255,255,255,0.8); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
         .proof-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 24px; margin: 36px auto 0; max-width: 1040px; position: relative; z-index: 2; }
         .proof-gallery-item { margin: 0; }
@@ -732,8 +732,8 @@
             box-shadow: 0 6px 16px rgba(0, 242, 254, 0.3); transition: var(--transition-smooth);
         }
         .m-step:hover .m-step-num { transform: scale(1.08) rotate(-6deg); }
-        .m-step-content h4 { font-size: clamp(1.1rem, 2vw, 1.2rem); color: var(--navy); margin-bottom: 8px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
-        .m-step-content h4 i { color: var(--cyan-neon); font-size: 1.1rem;}
+        .m-step-content h4, .m-step-content h3 { font-size: clamp(1.1rem, 2vw, 1.2rem); color: var(--navy); margin-bottom: 8px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+        .m-step-content h4 i, .m-step-content h3 i { color: var(--cyan-neon); font-size: 1.1rem;}
         .m-step-content p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
 
         /* === CASE STUDIES === */
@@ -946,7 +946,7 @@
             font-size: 1.7rem; background: linear-gradient(135deg, var(--cyan-neon), var(--magenta-neon));
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
-        .industry-tile h5 { font-size: 1.15rem; font-weight: 800; color: var(--navy); margin-bottom: 10px; }
+        .industry-tile h5, .industry-tile h3 { font-size: 1.15rem; font-weight: 800; color: var(--navy); margin-bottom: 10px; }
         .industry-tile p { color: var(--text-muted); font-size: 0.92rem; line-height: 1.6; margin: 0; }
         .industry-tile-btn {
             display: inline-flex; align-items: center; gap: 7px; margin-top: 20px;
@@ -1535,3 +1535,18 @@
             .hfaq-layout { grid-template-columns: 1fr; }
             .hfaq-intro { position: static; }
         }
+
+        /* FAQ accordion (shared by /faq and the FAQ blocks on service/hub pages) */
+        .faq-list { display: flex; flex-direction: column; gap: 16px; }
+        .faq-item { background: var(--bg-secondary); border: 1px solid var(--border-light); border-radius: 14px; padding: 22px 26px; transition: var(--transition-smooth); }
+        .faq-item:hover { border-color: var(--cyan-neon); }
+        .faq-item summary { cursor: pointer; font-weight: 700; color: var(--navy); font-size: 1.05rem; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 15px; }
+        .faq-item summary h3 { font-size: inherit; font-weight: inherit; color: inherit; margin: 0; }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after { content: '\f078'; font-family: 'Font Awesome 6 Free'; font-weight: 900; font-size: 0.85rem; color: var(--cyan-neon); transition: transform 0.3s ease; flex-shrink: 0; }
+        .faq-item[open] summary::after { transform: rotate(180deg); }
+        .faq-item p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; margin-top: 15px; }
+        .faq-item p a { color: var(--navy); font-weight: 700; text-decoration: underline; }
+        .page-intro { max-width: 860px; margin: 0 auto; text-align: center; }
+        .page-intro p { color: var(--text-muted); font-size: 1.02rem; line-height: 1.75; margin-top: 15px; }
+        .page-intro p a { color: var(--navy); font-weight: 700; text-decoration: underline; }

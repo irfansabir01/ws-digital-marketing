@@ -478,3 +478,37 @@ function seo_smart_redirect(string $path, string $fallback = '/'): void
     header('Location: ' . SEO_SITE_BASE . $target, true, 301);
     exit;
 }
+
+// Structured-data builders for pages that define their own JSON-LD in code.
+// FAQ answers may contain inline links for the visible accordion; the schema
+// gets the same text with the tags stripped so the two always match.
+function seo_faq_schema(array $faqs): array
+{
+    $items = [];
+    foreach ($faqs as $f) {
+        $items[] = [
+            '@type' => 'Question',
+            'name' => $f['q'],
+            'acceptedAnswer' => ['@type' => 'Answer', 'text' => trim(strip_tags($f['a']))],
+        ];
+    }
+    return ['@type' => 'FAQPage', 'mainEntity' => $items];
+}
+
+// $crumbs: [['Home', '/'], ['Services', '/services'], ...]
+function seo_breadcrumb_schema(array $crumbs): array
+{
+    $items = [];
+    foreach (array_values($crumbs) as $i => [$name, $path]) {
+        $items[] = ['@type' => 'ListItem', 'position' => $i + 1, 'name' => $name, 'item' => SEO_SITE_BASE . $path];
+    }
+    return ['@type' => 'BreadcrumbList', 'itemListElement' => $items];
+}
+
+function seo_graph_tag(array $nodes): string
+{
+    return seo_json_ld_tag(json_encode(
+        ['@context' => 'https://schema.org', '@graph' => $nodes],
+        JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE
+    ));
+}

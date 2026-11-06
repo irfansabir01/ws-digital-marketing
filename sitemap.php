@@ -15,11 +15,15 @@ $staticPages = site_static_pages();
 
 $caseStudies = [];
 $blogPosts = [];
+// Separate try blocks: a problem reading one table must not drop the other's URLs.
 try {
     $caseStudies = get_db()->query('SELECT slug, updated_at FROM case_studies ORDER BY display_order ASC')->fetchAll();
-    $blogPosts = get_db()->query('SELECT slug, updated_at FROM blog_posts WHERE is_published = 1 ORDER BY created_at DESC')->fetchAll();
 } catch (PDOException $e) {
     $caseStudies = [];
+}
+try {
+    $blogPosts = get_db()->query('SELECT slug, updated_at FROM blog_posts WHERE is_published = 1 ORDER BY created_at DESC')->fetchAll();
+} catch (PDOException $e) {
     $blogPosts = [];
 }
 

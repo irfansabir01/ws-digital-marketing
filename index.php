@@ -46,6 +46,7 @@ $extra_head = <<<'HTML'
   "alternateName": ["WS Digital Marketing", "W and S Digital Marketing"],
   "url": "https://wsdigitalmarketing.com.au/",
   "description": "Digital marketing agency providing SEO, Google Ads, social media management, website development, ecommerce development, graphic design and content writing services for Australian businesses.",
+  "image": "https://wsdigitalmarketing.com.au/images/og-default.jpg",
   "logo": {
     "@type": "ImageObject",
     "url": "https://wsdigitalmarketing.com.au/images/logo-ws.webp",
@@ -69,6 +70,18 @@ $extra_head = <<<'HTML'
     "https://www.instagram.com/wsdigitalmarketing",
     "https://www.linkedin.com/company/w-s-digital-marketing/"
   ]
+}
+</script>
+<script type="application/ld+json" data-origin="code">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://wsdigitalmarketing.com.au/#website",
+  "name": "W&S Digital Marketing",
+  "alternateName": ["WS Digital Marketing", "W and S Digital Marketing"],
+  "url": "https://wsdigitalmarketing.com.au/",
+  "inLanguage": "en-AU",
+  "publisher": { "@id": "https://wsdigitalmarketing.com.au/#organization" }
 }
 </script>
 HTML;

@@ -2,6 +2,19 @@
 require_once __DIR__ . '/includes/cta-form-handler.php';
 $page_title = 'Digital Marketing FAQs';
 $page_description = 'Find answers about W&S Digital Marketing services, pricing, contracts, reporting and getting started. Understand what to expect before making an enquiry.';
+
+// FAQPage schema built from the visible accordion below, so the two always match.
+require_once __DIR__ . '/includes/seo.php';
+$faqItems = [];
+if (preg_match_all('#<details class="faq' . '-item"[^>]*>\s*<summary>(.*?)</summary>\s*<p>(.*?)</p>\s*</details>#s', (string) file_get_contents(__FILE__), $faqMatches, PREG_SET_ORDER)) {
+    foreach ($faqMatches as $fm) {
+        $faqItems[] = [
+            'q' => trim(html_entity_decode(strip_tags($fm[1]), ENT_QUOTES, 'UTF-8')),
+            'a' => trim(html_entity_decode(strip_tags($fm[2]), ENT_QUOTES, 'UTF-8')),
+        ];
+    }
+}
+$extra_head = $faqItems ? seo_graph_tag([seo_faq_schema($faqItems)]) : '';
 include 'header.php';
 ?>
 

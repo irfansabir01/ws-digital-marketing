@@ -149,7 +149,7 @@ include 'header.php';
                         </div>
                     <?php endif; ?>
 
-                    <form toolname="contact_request_growth_plan" tooldescription="Send an enquiry to W&amp;S Digital Marketing (Australian digital marketing agency) to request a free growth plan or a quote. Only submit with the user's confirmation." action="/contact" method="POST" style="display: flex; flex-direction: column; gap: 18px;">
+                    <form id="contact" toolname="contact_request_growth_plan" tooldescription="Send an enquiry to W&amp;S Digital Marketing (Australian digital marketing agency) to request a free growth plan or a quote. Only submit with the user's confirmation." action="/contact" method="POST" style="display: flex; flex-direction: column; gap: 18px;">
                         <?php if ($selected_plan !== ''): ?>
                             <input type="hidden" name="plan" toolparamdescription="Pricing plan the user is enquiring about (Starter, Growth or Scale)" value="<?php echo htmlspecialchars($selected_plan, ENT_QUOTES, 'UTF-8'); ?>">
                         <?php endif; ?>

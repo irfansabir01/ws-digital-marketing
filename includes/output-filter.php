@@ -149,6 +149,17 @@ function seo_add_image_dimensions(string $html): string
     }, $html) ?? $html;
 }
 
+// The header's "GET FREE PLAN" button points at #contact. On pages with no
+// element of that id (privacy, terms...) it goes nowhere, so send it to the
+// contact page instead.
+function seo_fix_contact_anchor(string $html): string
+{
+    if (strpos($html, 'id="contact"') !== false || strpos($html, 'href="#contact"') === false) {
+        return $html;
+    }
+    return str_replace('href="#contact"', 'href="/contact"', $html);
+}
+
 function seo_output_filter(string $html): string
 {
     try {
@@ -156,6 +167,7 @@ function seo_output_filter(string $html): string
             return $html;   // not a full page (redirect stub, JSON, fragment)
         }
         $out = seo_dedupe_json_ld($html);
+        $out = seo_fix_contact_anchor($out);
         $out = seo_add_image_dimensions($out);
         return $out !== '' ? $out : $html;
     } catch (Throwable $e) {

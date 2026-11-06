@@ -50,6 +50,7 @@ $reviewCards = array_slice($reviewCards, 0, (int) $reviewsSection['max_cards']);
 $googleLink = ($google['maps_url'] ?? '') !== '' ? $google['maps_url'] : $reviewsSection['google_url'];
 
 // ------------------------------------------------------------ latest posts
+require_once __DIR__ . '/blog-seo.php';
 $latestPosts = [];
 try {
     try {
@@ -242,7 +243,7 @@ try {
                 <article class="case-card">
                     <div class="case-image">
                         <?php if ($post['category']): ?><span class="case-tag"><?php echo $hs($post['category']); ?></span><?php endif; ?>
-                        <img loading="lazy" decoding="async" src="<?php echo $hs($post['image_path']); ?>" alt="<?php echo $hs(($post['image_alt'] ?? '') !== '' ? $post['image_alt'] : $post['title']); ?>">
+                        <img loading="lazy" decoding="async" src="<?php echo $hs($post['image_path'] !== '' ? $post['image_path'] : blog_fallback_image((string) $post['category'])); ?>" alt="<?php echo $hs(($post['image_alt'] ?? '') !== '' ? $post['image_alt'] : $post['title']); ?>">
                         <h3><?php echo $hs($post['title']); ?></h3>
                     </div>
                     <div class="case-content">

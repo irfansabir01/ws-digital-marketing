@@ -15,6 +15,10 @@ $page_description = $page_description ?? 'Data-driven Google Ads, Meta Ads, SEO 
 // ?wc-ajax=... hitting "/") collapse to the same canonical as a plain
 // request for that path -- for "/" specifically, that's the homepage.
 $canonical_path = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) ?: '/';
+// /blog/some-post/ and /blog/some-post are one page: the canonical never has a trailing slash.
+if ($canonical_path !== '/') {
+    $canonical_path = rtrim($canonical_path, '/') ?: '/';
+}
 $canonical_url = 'https://wsdigitalmarketing.com.au' . $canonical_path;
 
 // SEO dashboard overrides (admin -> SEO): per-page title/description/
@@ -49,6 +53,11 @@ $seo_nofollow = $seo_page && !empty($seo_page['nofollow']);
 $seo_og_title = ($seo_page['og_title'] ?? '') !== '' ? $seo_page['og_title'] : $page_title;
 $seo_og_description = ($seo_page['og_description'] ?? '') !== '' ? $seo_page['og_description'] : $page_description;
 $seo_og_image = ($seo_page['og_image'] ?? '') !== '' ? $seo_page['og_image'] : (!empty($page_og_image) ? $page_og_image : ($seo_settings['default_og_image'] ?? ''));
+// No share image set anywhere (page, admin default): use the branded 1200x630 card
+// instead of sending no image at all.
+if ($seo_og_image === '') {
+    $seo_og_image = '/images/og-default.jpg';
+}
 $seo_og_image = seo_abs_url((string) $seo_og_image);
 $seo_og_type = !empty($page_og_type) ? $page_og_type : 'website';
 ?>

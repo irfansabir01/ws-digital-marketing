@@ -258,8 +258,11 @@
         /* === BLOG POST BODY (blog-post.php, admin-authored HTML content) === */
         .blog-post-body { color: var(--text-muted); font-size: 1.05rem; line-height: 1.8; }
         .blog-post-body p { margin-bottom: 22px; }
-        .blog-post-body h3 { color: var(--navy); font-size: 1.35rem; font-weight: 800; margin: 34px 0 14px; }
-        .blog-post-body h3:first-child { margin-top: 0; }
+        /* Post content is shifted up one heading level at render time (h3 -> h2, h4 -> h3) so the page
+           has a correct heading order; these rules keep every level looking exactly as before. */
+        .blog-post-body h2 { color: var(--navy); font-size: 1.35rem; font-weight: 800; margin: 34px 0 14px; scroll-margin-top: 110px; }
+        .blog-post-body h2:first-child { margin-top: 0; }
+        .blog-post-body h3 { color: var(--navy); font-size: 1.1rem; font-weight: 700; margin: 26px 0 10px; scroll-margin-top: 110px; }
         .blog-post-body h4 { color: var(--navy); font-size: 1.1rem; font-weight: 700; margin: 26px 0 10px; }
         .blog-post-body ul, .blog-post-body ol { margin: 0 0 22px 22px; }
         .blog-post-body li { margin-bottom: 8px; }
@@ -275,7 +278,7 @@
             background: #fff; border: 1px solid var(--border-light); border-radius: 20px;
             padding: clamp(24px, 3vw, 30px); box-shadow: var(--shadow-md);
         }
-        .blog-sidebar-card h4 {
+        .blog-sidebar-card h4, .blog-sidebar-card h2 {
             font-size: 1.05rem; font-weight: 800; color: var(--navy); margin-bottom: 20px;
             padding-bottom: 16px; border-bottom: 1px solid var(--border-light);
         }
@@ -286,11 +289,11 @@
         .blog-sidebar-item:hover .blog-sidebar-thumb img { transform: scale(1.08); }
         .blog-sidebar-item-text { min-width: 0; }
         .blog-sidebar-tag { display: block; color: var(--magenta-neon); font-size: 0.68rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
-        .blog-sidebar-item-text h5 {
+        .blog-sidebar-item-text h5, .blog-sidebar-item-text h3 {
             font-size: 0.9rem; font-weight: 700; color: var(--navy); line-height: 1.4;
             transition: color 0.25s ease;
         }
-        .blog-sidebar-item:hover .blog-sidebar-item-text h5 {
+        .blog-sidebar-item:hover .blog-sidebar-item-text h5, .blog-sidebar-item:hover .blog-sidebar-item-text h3 {
             background: linear-gradient(135deg, var(--cyan-neon), var(--magenta-neon));
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
@@ -752,7 +755,7 @@
         .case-card:hover .case-image img { transform: scale(1.05); }
         .case-image::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(11, 15, 37, 0.9) 0%, transparent 100%); pointer-events: none; }
         .case-tag { position: absolute; top: 20px; left: 20px; background: var(--cyan-neon); color: var(--navy); padding: 6px 14px; border-radius: 30px; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; z-index: 2; box-shadow: 0 4px 10px rgba(0, 242, 254, 0.3); }
-        .case-image h3 { position: absolute; bottom: 20px; left: 20px; color: #fff; font-size: 1.5rem; font-weight: 800; z-index: 2; margin: 0; }
+        .case-image h3, .case-image h2 { position: absolute; bottom: 20px; left: 20px; color: #fff; font-size: 1.5rem; font-weight: 800; z-index: 2; margin: 0; }
         .case-content { padding: clamp(25px, 4vw, 35px); flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
         .case-metrics { display: flex; gap: 15px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--border-light); flex-wrap: wrap;}
         .metric-box { flex: 1; min-width: 110px; background: var(--bg-secondary); padding: 12px; border-radius: 12px;}

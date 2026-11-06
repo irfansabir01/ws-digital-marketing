@@ -40,6 +40,10 @@ $seo_title_suffix = $seo_settings['title_suffix'] ?? SEO_DEFAULT_TITLE_SUFFIX;
 if ($seo_page && !empty($seo_page['no_suffix'])) {
     $seo_title_suffix = '';
 }
+// Pages with a long, descriptive headline (blog posts) skip the site-name suffix.
+if (!empty($page_no_suffix)) {
+    $seo_title_suffix = '';
+}
 $seo_noindex = $seo_page && !empty($seo_page['noindex']);
 $seo_nofollow = $seo_page && !empty($seo_page['nofollow']);
 $seo_og_title = ($seo_page['og_title'] ?? '') !== '' ? $seo_page['og_title'] : $page_title;
@@ -70,11 +74,17 @@ $seo_og_type = !empty($page_og_type) ? $page_og_type : 'website';
 <?php if ($seo_og_image !== ''): ?>
     <meta property="og:image" content="<?php echo htmlspecialchars($seo_og_image, ENT_QUOTES, 'UTF-8'); ?>">
 <?php endif; ?>
+<?php if ($seo_og_image !== '' && !empty($page_og_image_alt)): ?>
+    <meta property="og:image:alt" content="<?php echo htmlspecialchars($page_og_image_alt, ENT_QUOTES, 'UTF-8'); ?>">
+<?php endif; ?>
     <meta name="twitter:card" content="<?php echo $seo_og_image !== '' ? 'summary_large_image' : 'summary'; ?>">
     <meta name="twitter:title" content="<?php echo htmlspecialchars($seo_og_title, ENT_QUOTES, 'UTF-8'); ?>">
     <meta name="twitter:description" content="<?php echo htmlspecialchars($seo_og_description, ENT_QUOTES, 'UTF-8'); ?>">
 <?php if ($seo_og_image !== ''): ?>
     <meta name="twitter:image" content="<?php echo htmlspecialchars($seo_og_image, ENT_QUOTES, 'UTF-8'); ?>">
+<?php if (!empty($page_og_image_alt)): ?>
+    <meta name="twitter:image:alt" content="<?php echo htmlspecialchars($page_og_image_alt, ENT_QUOTES, 'UTF-8'); ?>">
+<?php endif; ?>
 <?php endif; ?>
 
     <!-- Favicon: the W&S logo, shown in every browser tab/bookmark on every page since

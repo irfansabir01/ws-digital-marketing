@@ -1,15 +1,17 @@
 <?php
 require_once __DIR__ . '/includes/cta-form-handler.php';
-$page_title = 'Blog';
-$page_description = 'Digital marketing insights, SEO tips, and growth strategies from the W&S Digital Marketing team to help Australian businesses grow online.';
+require_once __DIR__ . '/includes/blog-seo.php';
+$page_title = 'Digital Marketing Blog: SEO, Google Ads & Website Tips';
+$page_no_suffix = true;
+$page_description = 'Practical SEO, Google Ads, local search and ecommerce guides for Australian businesses, written by the W&S Digital Marketing team. Read our latest articles.';
 
 require_once __DIR__ . '/config.php';
 try {
     try {
-        $posts = get_db()->query('SELECT id, title, slug, category, excerpt, image_path, image_alt FROM blog_posts WHERE is_published = 1 ORDER BY created_at DESC')->fetchAll();
+        $posts = get_db()->query('SELECT id, title, slug, category, excerpt, image_path, image_alt, created_at, updated_at FROM blog_posts WHERE is_published = 1 ORDER BY created_at DESC')->fetchAll();
     } catch (PDOException $e) {
         // image_alt column not added yet (SEO migration pending)
-        $posts = get_db()->query('SELECT id, title, slug, category, excerpt, image_path FROM blog_posts WHERE is_published = 1 ORDER BY created_at DESC')->fetchAll();
+        $posts = get_db()->query('SELECT id, title, slug, category, excerpt, image_path, created_at, updated_at FROM blog_posts WHERE is_published = 1 ORDER BY created_at DESC')->fetchAll();
     }
 } catch (PDOException $e) {
     // Falls back to an empty grid (with the CTA still showing) rather than a
@@ -17,6 +19,28 @@ try {
     // yet, or the database is briefly unreachable.
     $posts = [];
 }
+
+// Blog + ItemList schema so search and AI engines can see every article and its dates.
+$blogItems = [];
+foreach ($posts as $i => $bp) {
+    $blogItems[] = [
+        '@type' => 'BlogPosting',
+        '@id' => SEO_SITE_BASE . '/blog/' . $bp['slug'] . '#article',
+        'headline' => html_entity_decode((string) $bp['title'], ENT_QUOTES, 'UTF-8'),
+        'url' => SEO_SITE_BASE . '/blog/' . $bp['slug'],
+        'datePublished' => blog_iso_date($bp['created_at'] ?? null),
+        'dateModified' => blog_iso_date($bp['updated_at'] ?? ($bp['created_at'] ?? null)),
+    ];
+}
+$extra_head = seo_graph_tag([[
+    '@type' => 'Blog',
+    '@id' => SEO_SITE_BASE . '/blog#blog',
+    'name' => 'W&S Digital Marketing Blog',
+    'url' => SEO_SITE_BASE . '/blog',
+    'inLanguage' => 'en-AU',
+    'publisher' => ['@type' => 'Organization', '@id' => SEO_SITE_BASE . '/#organization', 'name' => 'W&S Digital Marketing'],
+    'blogPost' => $blogItems,
+]]);
 
 include 'header.php';
 ?>
@@ -39,8 +63,8 @@ include 'header.php';
                 <article class="case-card">
                     <div class="case-image">
                         <?php if ($post['category']): ?><span class="case-tag"><?php echo htmlspecialchars($post['category'], ENT_QUOTES, 'UTF-8'); ?></span><?php endif; ?>
-                        <img loading="lazy" decoding="async" src="<?php echo htmlspecialchars($post['image_path'], ENT_QUOTES, 'UTF-8'); ?>" alt="<?php echo htmlspecialchars(($post['image_alt'] ?? '') !== '' ? $post['image_alt'] : $post['title'], ENT_QUOTES, 'UTF-8'); ?>">
-                        <h3><?php echo htmlspecialchars($post['title'], ENT_QUOTES, 'UTF-8'); ?></h3>
+                        <img loading="lazy" decoding="async" src="<?php echo htmlspecialchars($post['image_path'] !== '' ? $post['image_path'] : blog_fallback_image((string) $post['category']), ENT_QUOTES, 'UTF-8'); ?>" alt="<?php echo htmlspecialchars(($post['image_alt'] ?? '') !== '' ? $post['image_alt'] : $post['title'], ENT_QUOTES, 'UTF-8'); ?>">
+                        <h2><?php echo htmlspecialchars($post['title'], ENT_QUOTES, 'UTF-8'); ?></h2>
                     </div>
                     <div class="case-content">
                         <div>

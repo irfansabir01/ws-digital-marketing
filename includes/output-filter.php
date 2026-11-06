@@ -17,6 +17,7 @@
 const SEO_SINGLETON_LD_TYPES = [
     'FAQPage', 'BreadcrumbList', 'Organization', 'LocalBusiness',
     'ProfessionalService', 'WebSite', 'Service', 'ItemList',
+    'Article', 'BlogPosting', 'NewsArticle', 'Blog',
 ];
 
 function seo_ld_node_types($node): array

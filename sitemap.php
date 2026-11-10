@@ -8,6 +8,11 @@ require_once __DIR__ . '/includes/site-pages.php';
 require_once __DIR__ . '/includes/seo.php';
 
 header('Content-Type: application/xml; charset=UTF-8');
+// Always build from the live database: stop the web server's page cache
+// (LiteSpeed on Hostinger), a CDN or a browser from serving an old copy, so a
+// newly published blog post shows up in the sitemap straight away.
+header('Cache-Control: no-cache, must-revalidate, max-age=0');
+header('X-LiteSpeed-Cache-Control: no-cache');
 
 $base = 'https://wsdigitalmarketing.com.au';
 

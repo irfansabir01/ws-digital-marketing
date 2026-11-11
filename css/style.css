@@ -1548,6 +1548,8 @@
         .faq-item summary::-webkit-details-marker { display: none; }
         .faq-item summary::after { content: '\f078'; font-family: 'Font Awesome 6 Free'; font-weight: 900; font-size: 0.85rem; color: var(--cyan-neon); transition: transform 0.3s ease; flex-shrink: 0; }
         .faq-item[open] summary::after { transform: rotate(180deg); }
+        /* Set by js/main.js while a <details> is animating shut, so the chevron turns back with it. */
+        .faq-item.is-closing[open] summary::after { transform: none; }
         .faq-item p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; margin-top: 15px; }
         .faq-item p a { color: var(--navy); font-weight: 700; text-decoration: underline; }
         .page-intro { max-width: 860px; margin: 0 auto; text-align: center; }

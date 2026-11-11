@@ -719,25 +719,96 @@ if (window.matchMedia('(hover: none)').matches) {
     }, 6000);
 })();
 
-// Homepage FAQ accordion. The answers are all in the HTML on load (so crawlers
-// and no-JS visitors see everything); this collapses all but the first into an
-// accordion made of <button aria-expanded> triggers.
+// FAQ accordions (smooth open/close). Two flavours share one animation:
+//  1. Homepage: <button aria-expanded> triggers. The answers are all in the HTML
+//     on load (so crawlers and no-JS visitors see everything); this collapses
+//     all but the first into an accordion.
+//  2. /faq, services, industries, content-writing: native <details class="faq-item">.
+//     A native <details> snaps open/shut, so the click is intercepted and the
+//     element's height is animated instead. Keyboard use (Enter/Space on the
+//     summary) fires the same click, and without JS it still works natively.
+// Anything is skipped for visitors who ask for reduced motion.
 (function () {
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const DURATION = 320;
+    const EASE = 'cubic-bezier(0.4, 0, 0.2, 1)';
+    const px = v => (parseFloat(v) || 0);
+
+    // Homepage accordion
     const list = document.querySelector('[data-faq]');
-    if (!list) return;
-    const items = Array.from(list.querySelectorAll('.hfaq-item'));
-    const setOpen = (item, open) => {
-        const btn = item.querySelector('.hfaq-q');
-        const panel = item.querySelector('.hfaq-answer');
-        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-        panel.hidden = !open;
-        item.classList.toggle('is-open', open);
-    };
-    items.forEach((item, i) => setOpen(item, i === 0));
-    list.addEventListener('click', e => {
-        const btn = e.target.closest('.hfaq-q');
-        if (!btn) return;
-        const item = btn.closest('.hfaq-item');
-        setOpen(item, btn.getAttribute('aria-expanded') !== 'true');
+    if (list) {
+        const items = Array.from(list.querySelectorAll('.hfaq-item'));
+        const setOpen = (item, open, animate) => {
+            const btn = item.querySelector('.hfaq-q');
+            const panel = item.querySelector('.hfaq-answer');
+            btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+            item.classList.toggle('is-open', open);
+            if (panel._anim) {
+                // Interrupted mid-animation: start from what is on screen right now.
+                var cs = getComputedStyle(panel);
+                var from = { height: panel.offsetHeight + 'px', paddingBottom: cs.paddingBottom, opacity: cs.opacity };
+                panel._anim.cancel();
+                panel._anim = null;
+            }
+            if (!animate || reduce || !panel.animate) {
+                panel.hidden = !open;
+                return;
+            }
+            const wasHidden = panel.hidden;
+            panel.hidden = false;
+            const full = panel.offsetHeight;
+            const padBottom = getComputedStyle(panel).paddingBottom;
+            const shut = { height: '0px', paddingBottom: '0px', opacity: 0 };
+            const shown = { height: full + 'px', paddingBottom: padBottom, opacity: 1 };
+            const start = from || (wasHidden ? shut : shown);
+            panel.style.overflow = 'hidden';
+            const anim = panel._anim = panel.animate(
+                open ? [start, shown] : [start, shut],
+                { duration: DURATION, easing: EASE }
+            );
+            anim.onfinish = () => {
+                panel._anim = null;
+                panel.style.overflow = '';
+                panel.hidden = !open;
+            };
+        };
+        items.forEach((item, i) => setOpen(item, i === 0, false));
+        list.addEventListener('click', e => {
+            const btn = e.target.closest('.hfaq-q');
+            if (!btn) return;
+            const item = btn.closest('.hfaq-item');
+            setOpen(item, btn.getAttribute('aria-expanded') !== 'true', true);
+        });
+    }
+
+    // Native <details> accordions
+    if (reduce) return;
+    document.querySelectorAll('details.faq-item').forEach(d => {
+        const summary = d.querySelector('summary');
+        if (!summary || !d.animate) return;
+        summary.addEventListener('click', e => {
+            e.preventDefault();
+            const cs = getComputedStyle(d);
+            const chrome = px(cs.paddingTop) + px(cs.paddingBottom) + px(cs.borderTopWidth) + px(cs.borderBottomWidth);
+            const start = d.offsetHeight;                       // what is on screen right now
+            const opening = d._closing || !d.open;
+            if (d._anim) { d._anim.cancel(); d._anim = null; }
+            d._closing = !opening;
+            d.classList.toggle('is-closing', !opening);
+            if (opening) d.open = true;
+            const end = opening ? d.offsetHeight : summary.offsetHeight + chrome;
+            d.style.overflow = 'hidden';
+            const anim = d._anim = d.animate(
+                { height: [start + 'px', end + 'px'] },
+                { duration: DURATION, easing: EASE }
+            );
+            anim.onfinish = () => {
+                if (!opening) d.open = false;
+                d._anim = null;
+                d._closing = false;
+                d.classList.remove('is-closing');
+                d.style.overflow = '';
+            };
+        });
     });
 })();

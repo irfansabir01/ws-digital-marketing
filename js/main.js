@@ -730,8 +730,8 @@ if (window.matchMedia('(hover: none)').matches) {
 // Anything is skipped for visitors who ask for reduced motion.
 (function () {
     const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const DURATION = 320;
-    const EASE = 'cubic-bezier(0.4, 0, 0.2, 1)';
+    const DURATION = 150;
+    const EASE = 'ease-out';
     const px = v => (parseFloat(v) || 0);
 
     // Homepage accordion

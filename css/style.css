@@ -756,6 +756,10 @@
         .case-image::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(11, 15, 37, 0.9) 0%, transparent 100%); pointer-events: none; }
         .case-tag { position: absolute; top: 20px; left: 20px; background: var(--cyan-neon); color: var(--navy); padding: 6px 14px; border-radius: 30px; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; z-index: 2; box-shadow: 0 4px 10px rgba(0, 242, 254, 0.3); }
         .case-image h3, .case-image h2 { position: absolute; bottom: 20px; left: 20px; color: #fff; font-size: 1.5rem; font-weight: 800; z-index: 2; margin: 0; }
+        /* Blog cards (/blog and the homepage Latest Blog): the title sits under the cover image, not over it,
+           so it never covers text that is already part of the image. Case study cards keep the overlay. */
+        .blog-card .case-image::after { display: none; }
+        .blog-card .bc-title { font-size: clamp(1.1rem, 2.4vw, 1.25rem); font-weight: 800; line-height: 1.3; color: var(--navy); margin: 0 0 14px; }
         .case-content { padding: clamp(25px, 4vw, 35px); flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
         .case-metrics { display: flex; gap: 15px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--border-light); flex-wrap: wrap;}
         .metric-box { flex: 1; min-width: 110px; background: var(--bg-secondary); padding: 12px; border-radius: 12px;}

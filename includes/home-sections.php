@@ -240,14 +240,14 @@ try {
             </div>
             <div class="case-grid">
                 <?php foreach ($latestPosts as $post): ?>
-                <article class="case-card">
+                <article class="case-card blog-card">
                     <div class="case-image">
                         <?php if ($post['category']): ?><span class="case-tag"><?php echo $hs($post['category']); ?></span><?php endif; ?>
                         <img loading="lazy" decoding="async" src="<?php echo $hs($post['image_path'] !== '' ? $post['image_path'] : blog_fallback_image((string) $post['category'])); ?>" alt="<?php echo $hs(($post['image_alt'] ?? '') !== '' ? $post['image_alt'] : $post['title']); ?>">
-                        <h3><?php echo $hs($post['title']); ?></h3>
                     </div>
                     <div class="case-content">
                         <div>
+                            <h3 class="bc-title"><?php echo $hs($post['title']); ?></h3>
                             <?php if (!empty($post['created_at'])): ?><p class="lb-date"><i class="fa-regular fa-calendar"></i> <?php echo $hs(date('j F Y', strtotime($post['created_at']))); ?></p><?php endif; ?>
                             <p class="lb-excerpt"><?php echo $hs($post['excerpt']); ?></p>
                         </div>

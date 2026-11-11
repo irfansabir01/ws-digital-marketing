@@ -60,14 +60,14 @@ include 'header.php';
             <?php if ($posts): ?>
             <div class="case-grid">
                 <?php foreach ($posts as $post): ?>
-                <article class="case-card">
+                <article class="case-card blog-card">
                     <div class="case-image">
                         <?php if ($post['category']): ?><span class="case-tag"><?php echo htmlspecialchars($post['category'], ENT_QUOTES, 'UTF-8'); ?></span><?php endif; ?>
                         <img loading="lazy" decoding="async" src="<?php echo htmlspecialchars($post['image_path'] !== '' ? $post['image_path'] : blog_fallback_image((string) $post['category']), ENT_QUOTES, 'UTF-8'); ?>" alt="<?php echo htmlspecialchars(($post['image_alt'] ?? '') !== '' ? $post['image_alt'] : $post['title'], ENT_QUOTES, 'UTF-8'); ?>">
-                        <h2><?php echo htmlspecialchars($post['title'], ENT_QUOTES, 'UTF-8'); ?></h2>
                     </div>
                     <div class="case-content">
                         <div>
+                            <h2 class="bc-title"><?php echo htmlspecialchars($post['title'], ENT_QUOTES, 'UTF-8'); ?></h2>
                             <p><?php echo htmlspecialchars($post['excerpt'], ENT_QUOTES, 'UTF-8'); ?></p>
                         </div>
                         <div>

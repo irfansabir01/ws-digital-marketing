@@ -34,8 +34,12 @@ if (!$hasRealStats) {
 $dashTitle = $hasRealStats ? 'Combined Client Results' : 'SEO Ranking Results';
 $scatterIcons = ['fa-arrow-trend-up', 'fa-chart-column', 'fa-bullseye', 'fa-trophy'];
 
-$page_title = 'Digital Marketing Agency Australia';
-$page_description = 'Grow your Australian business with SEO, Google Ads, social media and website design from W&S Digital Marketing. Request your free growth plan today.';
+// Both spellings of the brand ("W&S" and "WS") lead the title and description:
+// people search either way, and the ampersand is dropped by Google when matching.
+// The title is the full brand-led title, so the site-name suffix is skipped.
+$page_title = 'W&S Digital Marketing | WS Digital Marketing Agency Sydney';
+$page_no_suffix = true;
+$page_description = 'W&S Digital Marketing (WS Digital Marketing) is a Sydney agency helping Australian businesses grow with SEO, Google Ads, social media and web design.';
 $extra_head = <<<'HTML'
 <script type="application/ld+json" data-origin="code">
 {
@@ -43,7 +47,7 @@ $extra_head = <<<'HTML'
   "@type": ["Organization", "ProfessionalService"],
   "@id": "https://wsdigitalmarketing.com.au/#organization",
   "name": "W&S Digital Marketing",
-  "alternateName": ["WS Digital Marketing", "W and S Digital Marketing"],
+  "alternateName": ["WS Digital Marketing", "W and S Digital Marketing", "W & S Digital Marketing", "WandS Digital Marketing"],
   "url": "https://wsdigitalmarketing.com.au/",
   "description": "Digital marketing agency providing SEO, Google Ads, social media management, website development, ecommerce development, graphic design and content writing services for Australian businesses.",
   "image": "https://wsdigitalmarketing.com.au/images/og-default.jpg",
@@ -64,7 +68,11 @@ $extra_head = <<<'HTML'
     "postalCode": "2765",
     "addressCountry": "AU"
   },
-  "areaServed": "AU",
+  "areaServed": [
+    { "@type": "City", "name": "Sydney" },
+    { "@type": "Country", "name": "Australia" }
+  ],
+  "knowsAbout": ["Search engine optimisation", "Google Ads", "Social media marketing", "Website design and development", "Ecommerce development", "Local SEO"],
   "sameAs": [
     "https://www.facebook.com/w.and.s.digital.marketing",
     "https://www.instagram.com/wsdigitalmarketing",
@@ -78,10 +86,28 @@ $extra_head = <<<'HTML'
   "@type": "WebSite",
   "@id": "https://wsdigitalmarketing.com.au/#website",
   "name": "W&S Digital Marketing",
-  "alternateName": ["WS Digital Marketing", "W and S Digital Marketing"],
+  "alternateName": ["WS Digital Marketing", "W and S Digital Marketing", "W & S Digital Marketing", "WandS Digital Marketing"],
   "url": "https://wsdigitalmarketing.com.au/",
   "inLanguage": "en-AU",
   "publisher": { "@id": "https://wsdigitalmarketing.com.au/#organization" }
+}
+</script>
+<script type="application/ld+json" data-origin="code">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://wsdigitalmarketing.com.au/#webpage",
+  "url": "https://wsdigitalmarketing.com.au/",
+  "name": "W&S Digital Marketing | WS Digital Marketing Agency Sydney",
+  "inLanguage": "en-AU",
+  "isPartOf": { "@id": "https://wsdigitalmarketing.com.au/#website" },
+  "about": { "@id": "https://wsdigitalmarketing.com.au/#organization" },
+  "primaryImageOfPage": {
+    "@type": "ImageObject",
+    "url": "https://wsdigitalmarketing.com.au/images/og-default.jpg",
+    "width": 1200,
+    "height": 630
+  }
 }
 </script>
 HTML;
@@ -298,6 +324,16 @@ include 'header.php';
             </div>
             <div style="text-align: center; margin-top: clamp(30px, 4vw, 40px);">
                 <a href="/services" class="btn-secondary">VIEW ALL SERVICES <i class="fa-solid fa-arrow-right" style="margin-left: 6px;"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brand intro: states the business name in both spellings in visible copy. -->
+    <section class="agency-section">
+        <div class="container">
+            <div class="agency-summary">
+                <h2 style="color: var(--navy); font-size: clamp(1.6rem, 3.5vw, 2.4rem); font-weight: 800; margin-bottom: 16px; line-height: 1.15;">About W&amp;S Digital Marketing (WS Digital Marketing)</h2>
+                <p>W&amp;S Digital Marketing, also searched as WS Digital Marketing, is a Sydney-based digital marketing agency at 3 Weebill St, Melonba NSW 2765. We help Australian businesses win more calls, enquiries and sales through SEO, Google Ads, social media marketing, website design and ecommerce development, on simple month-to-month plans with no lock-in contracts.</p>
             </div>
         </div>
     </section>

@@ -182,7 +182,7 @@ $seo_og_type = !empty($page_og_type) ? $page_og_type : 'website';
     <header>
         <div class="container nav-wrapper">
             <a href="/" class="logo" style="display: flex; align-items: center;">
-                <img src="/images/logo-ws.webp" alt="W&S Digital Marketing Logo" class="logo-img">
+                <img src="/images/logo-ws.webp" alt="W&S Digital Marketing (WS Digital Marketing) logo" class="logo-img">
             </a>
             
             <nav>

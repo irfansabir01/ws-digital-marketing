@@ -174,7 +174,7 @@ $seo_og_type = !empty($page_og_type) ? $page_og_type : 'website';
 
     <!-- SPLASH SCREEN: plays on every page load/navigation and on refresh -->
     <div id="splash-screen" aria-hidden="true">
-        <img src="/images/logo-ws.webp" alt="" class="splash-logo">
+        <img src="/images/logo-ws.webp" alt="W&amp;S Digital Marketing logo" class="splash-logo">
         <div class="splash-bar"></div>
     </div>
 

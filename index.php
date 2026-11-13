@@ -177,35 +177,35 @@ include 'header.php';
                         <div class="serp-screen">
                             <div class="serp-item">
                                 <a href="https://wsdigitalmarketing.com.au" target="_blank" rel="noopener noreferrer" class="serp-link">
-                                    <div class="serp-url"><img loading="lazy" decoding="async" src="https://wsdigitalmarketing.com.au/favicon.ico" alt="" onerror="this.style.display='none'"> wsdigitalmarketing.com.au</div>
+                                    <div class="serp-url"><img loading="lazy" decoding="async" src="https://wsdigitalmarketing.com.au/favicon.ico" alt="W&amp;S Digital Marketing favicon" onerror="this.style.display='none'"> wsdigitalmarketing.com.au</div>
                                     <div class="serp-title">W&S Digital Marketing | #1 Agency in Australia</div>
                                     <div class="serp-desc">Drive high-intent traffic, build custom sites, and scale revenue.</div>
                                 </a>
                             </div>
                             <div class="serp-item">
                                 <a href="https://wsdigitalmarketing.com.au/seo" target="_blank" rel="noopener noreferrer" class="serp-link">
-                                    <div class="serp-url"><img loading="lazy" decoding="async" src="https://wsdigitalmarketing.com.au/favicon.ico" alt="" onerror="this.style.display='none'"> wsdigitalmarketing.com.au › seo</div>
+                                    <div class="serp-url"><img loading="lazy" decoding="async" src="https://wsdigitalmarketing.com.au/favicon.ico" alt="W&amp;S Digital Marketing favicon" onerror="this.style.display='none'"> wsdigitalmarketing.com.au › seo</div>
                                     <div class="serp-title">Search Engine Optimisation Services</div>
                                     <div class="serp-desc">Dominate local search results and Google Maps effortlessly.</div>
                                 </a>
                             </div>
                             <div class="serp-item">
                                 <a href="https://wsdigitalmarketing.com.au/ppc" target="_blank" rel="noopener noreferrer" class="serp-link">
-                                    <div class="serp-url"><img loading="lazy" decoding="async" src="https://wsdigitalmarketing.com.au/favicon.ico" alt="" onerror="this.style.display='none'"> wsdigitalmarketing.com.au › ppc</div>
+                                    <div class="serp-url"><img loading="lazy" decoding="async" src="https://wsdigitalmarketing.com.au/favicon.ico" alt="W&amp;S Digital Marketing favicon" onerror="this.style.display='none'"> wsdigitalmarketing.com.au › ppc</div>
                                     <div class="serp-title">Google Ads & PPC Management</div>
                                     <div class="serp-desc">Maximize your ROAS and get instant high-converting calls.</div>
                                 </a>
                             </div>
                             <div class="serp-item">
                                 <a href="https://wsdigitalmarketing.com.au/web-design" target="_blank" rel="noopener noreferrer" class="serp-link">
-                                    <div class="serp-url"><img loading="lazy" decoding="async" src="https://wsdigitalmarketing.com.au/favicon.ico" alt="" onerror="this.style.display='none'"> wsdigitalmarketing.com.au › web-design</div>
+                                    <div class="serp-url"><img loading="lazy" decoding="async" src="https://wsdigitalmarketing.com.au/favicon.ico" alt="W&amp;S Digital Marketing favicon" onerror="this.style.display='none'"> wsdigitalmarketing.com.au › web-design</div>
                                     <div class="serp-title">Web Design & CRO Solutions</div>
                                     <div class="serp-desc">Fast, responsive websites engineered specifically to convert.</div>
                                 </a>
                             </div>
                             <div class="serp-item">
                                 <a href="https://wsdigitalmarketing.com.au/contact" target="_blank" rel="noopener noreferrer" class="serp-link">
-                                    <div class="serp-url"><img loading="lazy" decoding="async" src="https://wsdigitalmarketing.com.au/favicon.ico" alt="" onerror="this.style.display='none'"> wsdigitalmarketing.com.au › contact</div>
+                                    <div class="serp-url"><img loading="lazy" decoding="async" src="https://wsdigitalmarketing.com.au/favicon.ico" alt="W&amp;S Digital Marketing favicon" onerror="this.style.display='none'"> wsdigitalmarketing.com.au › contact</div>
                                     <div class="serp-title">Contact W&S Digital - Get a Free Plan</div>
                                     <div class="serp-desc">Ready to scale your business revenue? Get in touch today.</div>
                                 </a>
@@ -213,7 +213,7 @@ include 'header.php';
                         </div>
                     </div>
                     <div class="logo-screen">
-                        <img loading="lazy" decoding="async" src="/images/logo-ws.webp" alt="W&S Animated Logo">
+                        <img loading="lazy" decoding="async" src="/images/logo-ws.webp" alt="W&amp;S Digital Marketing animated logo">
                         <div class="logo-screen-sub">Measurable Growth</div>
                     </div>
                 </div>

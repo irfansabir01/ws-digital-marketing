@@ -2,6 +2,15 @@
 // Expects $page_title to be set by the including page.
 $page_title = $page_title ?? 'Admin';
 $current = basename($_SERVER['SCRIPT_NAME']);
+// "New" enquiries badge in the nav (admins only; hidden if the table isn't there yet).
+$newEnquiries = 0;
+if (admin_has_role('admin')) {
+    try {
+        $newEnquiries = (int) get_db()->query("SELECT COUNT(*) FROM enquiries WHERE status = 'new'")->fetchColumn();
+    } catch (Throwable $e) {
+        $newEnquiries = 0;
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,6 +28,7 @@ $current = basename($_SERVER['SCRIPT_NAME']);
         <div class="admin-nav-role"><?php echo admin_has_role('admin') ? 'Administrator' : (admin_has_role('seo') ? 'SEO Manager' : ''); ?></div>
         <a href="index.php" class="<?php echo $current === 'index.php' ? 'active' : ''; ?>">Dashboard</a>
 <?php if (admin_has_role('admin')): ?>
+        <a href="enquiries.php" class="<?php echo in_array($current, ['enquiries.php', 'enquiry-view.php'], true) ? 'active' : ''; ?>">Enquiries<?php echo $newEnquiries > 0 ? ' <span class="badge badge-info">' . $newEnquiries . ' new</span>' : ''; ?></a>
         <a href="blog-list.php" class="<?php echo in_array($current, ['blog-list.php', 'blog-form.php'], true) ? 'active' : ''; ?>">Blog Posts</a>
         <a href="team-list.php" class="<?php echo in_array($current, ['team-list.php', 'team-form.php'], true) ? 'active' : ''; ?>">Team Members</a>
         <a href="case-list.php" class="<?php echo in_array($current, ['case-list.php', 'case-form.php', 'case-weekly.php'], true) ? 'active' : ''; ?>">Case Studies</a>

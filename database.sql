@@ -441,3 +441,24 @@ CREATE TABLE IF NOT EXISTS case_study_weekly_stats (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     INDEX idx_case_study (case_study_id)
 );
+
+-- Enquiry tracker (admin: Enquiries). Created automatically by the site on first use.
+CREATE TABLE IF NOT EXISTS enquiries (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(150) NOT NULL,
+    email VARCHAR(190) NOT NULL,
+    phone VARCHAR(60) NOT NULL DEFAULT '',
+    service VARCHAR(150) NOT NULL DEFAULT '',
+    plan VARCHAR(50) NOT NULL DEFAULT '',
+    source VARCHAR(40) NOT NULL DEFAULT '',
+    page VARCHAR(255) NOT NULL DEFAULT '',
+    message TEXT NOT NULL,
+    status VARCHAR(20) NOT NULL DEFAULT 'new',
+    notes TEXT NULL,
+    deal_value DECIMAL(12,2) NULL,
+    email_sent TINYINT(1) NOT NULL DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    INDEX idx_status (status),
+    INDEX idx_created (created_at)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

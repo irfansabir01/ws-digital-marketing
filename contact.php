@@ -29,6 +29,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $plan = in_array($_POST['plan'] ?? '', $valid_plans, true) ? $_POST['plan'] : '';
 
+        // Save to the enquiry tracker (admin -> Enquiries) before emailing, so
+        // the lead is kept even if the email fails. Fail-safe: never blocks.
+        require_once __DIR__ . '/includes/enquiries.php';
+        $enquiry_id = enquiry_save([
+            'name' => $name, 'email' => $email, 'phone' => $phone,
+            'service' => $service, 'plan' => $plan, 'source' => 'contact-page',
+            'page' => '/contact', 'message' => $message,
+        ]);
+
         $email_content = "Name: $name\n";
         $email_content .= "Email: $email\n";
         $email_content .= "Phone: $phone\n";
@@ -44,7 +53,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $headers .= "Reply-To: $name <$email>\r\n";
         $headers .= "X-Mailer: PHP/" . phpversion();
 
-        if (mail($to, $subject, $email_content, $headers)) {
+        $mailed = mail($to, $subject, $email_content, $headers);
+        enquiry_mark_emailed($enquiry_id, $mailed);
+        // The enquiry counts as received if it was emailed OR saved to the tracker.
+        if ($mailed || $enquiry_id) {
             $email_sent = true;
         } else {
             $form_error = 'Something went wrong sending your message. Please try again or call us directly.';

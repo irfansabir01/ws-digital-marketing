@@ -37,6 +37,28 @@ include __DIR__ . '/includes/layout-header.php';
 <?php endif; ?>
 <p>Signed in as <strong><?php echo h($_SESSION['admin_username']); ?></strong> (<?php echo $isAdmin ? 'Administrator' : 'SEO Manager'; ?>).</p>
 
+<?php
+$enq = null;
+if ($isAdmin) {
+    try {
+        $enq = ['new' => 0, 'week' => 0, 'won' => 0];
+        $enq['new'] = (int) $pdo->query("SELECT COUNT(*) FROM enquiries WHERE status = 'new'")->fetchColumn();
+        $enq['week'] = (int) $pdo->query("SELECT COUNT(*) FROM enquiries WHERE status <> 'spam' AND created_at > (NOW() - INTERVAL 7 DAY)")->fetchColumn();
+        $enq['won'] = (int) $pdo->query("SELECT COUNT(*) FROM enquiries WHERE status = 'won'")->fetchColumn();
+    } catch (PDOException $e) {
+        $enq = null; // table is created on first visit to Enquiries
+    }
+}
+?>
+<?php if ($enq !== null): ?>
+<h2 style="font-size:1.1rem; margin:24px 0 12px;">Enquiries</h2>
+<div class="stat-row">
+    <a class="admin-card" href="enquiries.php?status=new"><div class="num"><?php echo $enq['new']; ?></div><div class="label">New enquiries to follow up</div></a>
+    <a class="admin-card" href="enquiries.php"><div class="num"><?php echo $enq['week']; ?></div><div class="label">Enquiries in the last 7 days</div></a>
+    <a class="admin-card" href="enquiries.php?status=won"><div class="num"><?php echo $enq['won']; ?></div><div class="label">Won</div></a>
+</div>
+<?php endif; ?>
+
 <h2 style="font-size:1.1rem; margin:24px 0 12px;">SEO overview</h2>
 <?php if ($seo['open404'] === null): ?>
     <div class="alert alert-warning">The SEO tools need a one-time database setup: run <code>seo-dashboard-migration.sql</code> in phpMyAdmin (SQL tab).</div>

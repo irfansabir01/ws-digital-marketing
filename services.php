@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/includes/cta-form-handler.php';
+require_once __DIR__ . '/includes/sydney-pages.php';
 require_once __DIR__ . '/includes/seo.php';
 $page_title = 'Digital Marketing Services Australia';
 $page_description = 'Explore SEO, Google Ads, social media, websites, ecommerce, graphic design and content writing for Australian businesses. Request a free growth plan.';
@@ -97,6 +98,27 @@ include 'header.php';
                     </div>
                 </article>
                 <?php endforeach; ?>
+            </div>
+        </div>
+    </section>
+
+    <!-- SYDNEY SERVICE PAGES: one link per Sydney page, so the hub passes authority to each -->
+    <section class="sy-section sy-alt fade-up" id="sydney-services">
+        <div class="container">
+            <div class="section-header">
+                <span class="eyebrow">SYDNEY BUSINESSES</span>
+                <h2 class="sy-h2">Our Services For Sydney Businesses</h2>
+                <p class="sy-lead-single">Based in Melonba, in Sydney&rsquo;s north-west, we work with businesses across Greater Sydney. Each guide below explains how a service works locally, what it involves and what to ask before you hire.</p>
+            </div>
+            <div class="sy-link-grid sy-link-grid-3" role="list">
+<?php foreach (sydney_registry() as $syReg): ?>
+                <a class="sy-link-card" role="listitem" href="<?php echo htmlspecialchars($syReg['path'], ENT_QUOTES, 'UTF-8'); ?>">
+                    <span class="sy-link-eyebrow"><?php echo htmlspecialchars(html_entity_decode($syReg['parent_label'], ENT_QUOTES, 'UTF-8'), ENT_QUOTES, 'UTF-8'); ?></span>
+                    <strong><?php echo htmlspecialchars($syReg['label'], ENT_QUOTES, 'UTF-8'); ?></strong>
+                    <span><?php echo htmlspecialchars($syReg['teaser'], ENT_QUOTES, 'UTF-8'); ?></span>
+                    <em>Read the guide <i class="fa-solid fa-arrow-right"></i></em>
+                </a>
+<?php endforeach; ?>
             </div>
         </div>
     </section>

@@ -124,6 +124,12 @@ ErrorDocument 404 /not-found.php
     RewriteRule ^web-design/?$ /website-development [R=301,L]
     RewriteRule ^ppc/?$ /ppc-advertising [R=301,L]
 
+    # 0.8) The six Sydney service pages: /seo/sydney, /website-development/sydney, ...
+    #      One script (sydney-service.php) renders all of them. A trailing slash is
+    #      collapsed to the canonical URL first.
+    RewriteRule ^(seo|website-development|ppc-advertising|social-media|graphic-design|ecommerce)/sydney/$ /$1/sydney [R=301,L]
+    RewriteRule ^(seo|website-development|ppc-advertising|social-media|graphic-design|ecommerce)/sydney$ sydney-service.php?s=$1 [L,QSA]
+
     # 1) A browser that actually requests a URL ending in .php gets sent to
     #    the same URL minus .php, permanently (301) so bookmarks and search
     #    engines update. THE_REQUEST is the raw request line as the browser

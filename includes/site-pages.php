@@ -20,6 +20,12 @@ function site_static_pages(): array
         ['/ppc-advertising', 'Paid Advertising (PPC)', 'Services', '0.9', 'monthly'],
         ['/graphic-design', 'Graphic Design', 'Services', '0.9', 'monthly'],
         ['/content-writing', 'Content Writing', 'Services', '0.9', 'monthly'],
+        ['/seo/sydney', 'SEO Sydney', 'Services', '0.8', 'monthly'],
+        ['/website-development/sydney', 'Web Design Sydney', 'Services', '0.8', 'monthly'],
+        ['/ppc-advertising/sydney', 'Google Ads Agency Sydney', 'Services', '0.8', 'monthly'],
+        ['/social-media/sydney', 'Social Media Marketing Sydney', 'Services', '0.8', 'monthly'],
+        ['/graphic-design/sydney', 'Graphic Designer Sydney', 'Services', '0.8', 'monthly'],
+        ['/ecommerce/sydney', 'Ecommerce Web Design Sydney', 'Services', '0.8', 'monthly'],
 
         ['/industries', 'All Industries', 'Industries', '0.8', 'monthly'],
         ['/accounting-finance', 'Accounting & Finance', 'Industries', '0.7', 'monthly'],
@@ -74,6 +80,12 @@ function site_page_file(string $path): ?string
 function site_page_defaults(string $path): array
 {
     $result = ['title' => null, 'description' => null];
+    // The six Sydney service pages take their copy from includes/sydney/<key>.php.
+    require_once __DIR__ . '/sydney-pages.php';
+    $sydneyKey = sydney_key_for_path($path);
+    if ($sydneyKey !== null && ($sydneyPage = sydney_page($sydneyKey)) !== null) {
+        return ['title' => $sydneyPage['meta_title'], 'description' => $sydneyPage['meta_description']];
+    }
     $file = site_page_file($path);
     if ($file === null) {
         return $result;

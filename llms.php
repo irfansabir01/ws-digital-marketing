@@ -85,6 +85,15 @@ $updated = date('Y-m-d');
 - [Graphic Design](<?php echo $base; ?>/graphic-design): Logo design, brand identity, advertising creative, social graphics and print materials.
 - [Content Writing & Copywriting](<?php echo $base; ?>/content-writing): Website copy, SEO blog articles and email content written around the audience and relevant searches.
 
+## Sydney service pages
+
+- [SEO Sydney](<?php echo $base; ?>/seo/sydney): Local search plans for Sydney businesses: technical SEO, keyword and content work, Google Business Profile support and reporting tied to enquiries.
+- [Web Design Sydney](<?php echo $base; ?>/website-development/sydney): Mobile-friendly business websites for Sydney companies, from discovery and sitemap to testing, launch and handover.
+- [Google Ads Agency Sydney](<?php echo $base; ?>/ppc-advertising/sydney): Google Ads management for Sydney businesses: campaign planning, ad copy, landing page review, conversion tracking and monthly reporting.
+- [Social Media Marketing Sydney](<?php echo $base; ?>/social-media/sydney): Content planning, creation, publishing and paid social for Sydney businesses, with reporting that explains what changed.
+- [Graphic Designer Sydney](<?php echo $base; ?>/graphic-design/sydney): Logo design, brand identity, campaign graphics and print design for Sydney businesses.
+- [Ecommerce Web Design Sydney](<?php echo $base; ?>/ecommerce/sydney): Shopify and WooCommerce store design and development for Sydney retailers, including migrations, product pages and checkout.
+
 ## Industries
 
 - [Digital Marketing by Industry](<?php echo $base; ?>/industries): How strategy is tailored to each sector.

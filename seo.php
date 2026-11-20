@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/includes/cta-form-handler.php';
+require_once __DIR__ . '/includes/sydney-pages.php';
 require_once __DIR__ . '/config.php';
 require_once __DIR__ . '/includes/case-study-helpers.php';
 
@@ -206,6 +207,8 @@ include 'header.php';
         </div>
     </section>
     <?php endif; ?>
+
+    <?php sydney_parent_section('seo'); ?>
 
     <!-- FINAL CTA -->
     <section class="cta-section" id="contact">

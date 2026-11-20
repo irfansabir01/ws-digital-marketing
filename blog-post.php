@@ -2,6 +2,7 @@
 require_once __DIR__ . '/includes/cta-form-handler.php';
 require_once __DIR__ . '/config.php';
 require_once __DIR__ . '/includes/blog-seo.php';
+require_once __DIR__ . '/includes/sydney-pages.php';
 
 $slug = $_GET['slug'] ?? '';
 $post = null;
@@ -132,6 +133,14 @@ include 'header.php';
                 <div class="blog-post-body">
                     <?php echo $postBody; ?>
                 </div>
+<?php $sydKey = sydney_key_for_post($post); if ($sydKey): $sydReg = sydney_registry()[$sydKey]; ?>
+                <a class="sy-link-card sy-post-box" href="<?php echo htmlspecialchars($sydReg['path'], ENT_QUOTES, 'UTF-8'); ?>" style="margin-top: 40px;">
+                    <span class="sy-link-eyebrow">Based in Sydney?</span>
+                    <strong><?php echo htmlspecialchars($sydReg['label'], ENT_QUOTES, 'UTF-8'); ?></strong>
+                    <span><?php echo htmlspecialchars($sydReg['teaser'], ENT_QUOTES, 'UTF-8'); ?></span>
+                    <em>Read the Sydney guide <i class="fa-solid fa-arrow-right"></i></em>
+                </a>
+<?php endif; ?>
                 <div style="margin-top: 40px;">
                     <a href="/blog" class="service-link"><i class="fa-solid fa-arrow-left"></i> Back To All Articles</a>
                 </div>

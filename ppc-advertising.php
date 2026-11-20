@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/includes/cta-form-handler.php';
+require_once __DIR__ . '/includes/sydney-pages.php';
 $page_title = 'PPC & Google Ads Agency Australia';
 $page_description = 'Grow leads with expert PPC advertising across Google Ads, Facebook & Instagram. Smart targeting, conversion tracking and clear reports. Get a free ads audit.';
 include 'header.php';
@@ -117,6 +118,8 @@ include 'header.php';
     $relatedHeading = 'Explore Our Paid Advertising Work';
     include __DIR__ . '/includes/related-case-studies-section.php';
     ?>
+
+    <?php sydney_parent_section('ppc-advertising'); ?>
 
     <!-- FINAL CTA -->
     <section class="cta-section" id="contact">

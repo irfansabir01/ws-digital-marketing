@@ -193,14 +193,50 @@ $seo_og_type = !empty($page_og_type) ? $page_og_type : 'website';
                     <!-- SERVICES DROPDOWN -->
                     <li class="dropdown" onclick="toggleDropdown(event)">
                         <a href="/services">Services <i class="fa-solid fa-chevron-down" style="font-size: 0.75rem; margin-left: 4px;"></i></a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu dropdown-menu-services">
                             <li><a href="/services" class="dropdown-hub-link">All Services</a></li>
-                            <li><a href="/seo">Search Engine Optimisation</a></li>
-                            <li><a href="/ecommerce">Ecommerce</a></li>
-                            <li><a href="/website-development">Website Design &amp; Development</a></li>
-                            <li><a href="/social-media">Social Media Marketing</a></li>
-                            <li><a href="/ppc-advertising">Paid Advertising</a></li>
-                            <li><a href="/graphic-design">Graphic Design</a></li>
+                            <li class="has-sub">
+                                <a href="/seo">Search Engine Optimisation</a>
+                                <button type="button" class="sub-toggle" aria-label="Show SEO Sydney" aria-expanded="false"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
+                                <ul class="sub-menu">
+                                    <li><a href="/seo/sydney">SEO Sydney</a></li>
+                                </ul>
+                            </li>
+                            <li class="has-sub">
+                                <a href="/ecommerce">Ecommerce</a>
+                                <button type="button" class="sub-toggle" aria-label="Show Ecommerce Web Design Sydney" aria-expanded="false"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
+                                <ul class="sub-menu">
+                                    <li><a href="/ecommerce/sydney">Ecommerce Web Design Sydney</a></li>
+                                </ul>
+                            </li>
+                            <li class="has-sub">
+                                <a href="/website-development">Website Design &amp; Development</a>
+                                <button type="button" class="sub-toggle" aria-label="Show Web Design Sydney" aria-expanded="false"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
+                                <ul class="sub-menu">
+                                    <li><a href="/website-development/sydney">Web Design Sydney</a></li>
+                                </ul>
+                            </li>
+                            <li class="has-sub">
+                                <a href="/social-media">Social Media Marketing</a>
+                                <button type="button" class="sub-toggle" aria-label="Show Social Media Marketing Sydney" aria-expanded="false"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
+                                <ul class="sub-menu">
+                                    <li><a href="/social-media/sydney">Social Media Marketing Sydney</a></li>
+                                </ul>
+                            </li>
+                            <li class="has-sub">
+                                <a href="/ppc-advertising">Paid Advertising</a>
+                                <button type="button" class="sub-toggle" aria-label="Show Google Ads Agency Sydney" aria-expanded="false"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
+                                <ul class="sub-menu">
+                                    <li><a href="/ppc-advertising/sydney">Google Ads Agency Sydney</a></li>
+                                </ul>
+                            </li>
+                            <li class="has-sub">
+                                <a href="/graphic-design">Graphic Design</a>
+                                <button type="button" class="sub-toggle" aria-label="Show Graphic Designer Sydney" aria-expanded="false"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
+                                <ul class="sub-menu">
+                                    <li><a href="/graphic-design/sydney">Graphic Designer Sydney</a></li>
+                                </ul>
+                            </li>
                             <li><a href="/content-writing">Content Writing</a></li>
                         </ul>
                     </li>

@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/includes/cta-form-handler.php';
+require_once __DIR__ . '/includes/sydney-pages.php';
 $page_title = 'Social Media Management Australia';
 $page_description = 'Keep your social channels active with content planning, regular posting and community engagement. Explore social media management for your business.';
 include 'header.php';
@@ -153,6 +154,8 @@ include 'header.php';
     $relatedHeading = 'Explore Our Social Media Work';
     include __DIR__ . '/includes/related-case-studies-section.php';
     ?>
+
+    <?php sydney_parent_section('social-media'); ?>
 
     <!-- FINAL CTA -->
     <section class="cta-section" id="contact">

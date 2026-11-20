@@ -23,6 +23,19 @@ function toggleDropdown(e) {
     e.currentTarget.classList.toggle('active');
 }
 
+// Services dropdown: each service row that has a Sydney page (<li class="has-sub">) gets a
+// small chevron button. On desktop the sub-menu also opens on hover/focus via CSS; on
+// tablet/mobile this button expands it inline. Clicking it never follows the row's link.
+document.querySelectorAll('.has-sub > .sub-toggle').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const item = btn.closest('.has-sub');
+        const open = item.classList.toggle('open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+});
+
 // .active now keeps a dropdown's submenu visible independent of :hover (see the
 // matching CSS rule), so on desktop a click-opened dropdown no longer auto-closes
 // just because the pointer moves away. Close it explicitly on any click outside

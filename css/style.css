@@ -1735,3 +1735,32 @@
             .sub-menu li.has-sub > .sub-toggle i { transform: none; }
             .sub-menu li.has-sub.open > .sub-toggle i { transform: rotate(180deg); }
         }
+
+        /* === HOMEPAGE "ABOUT W&S DIGITAL MARKETING" SECTION (index.php #about-ws) === */
+        .sy-home-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); gap: clamp(28px, 5vw, 70px); align-items: center; }
+        .sy-home-text h2 { font-size: clamp(1.8rem, 4vw, 2.7rem); font-weight: 800; line-height: 1.15; letter-spacing: -0.5px; color: var(--navy); margin: 10px 0 18px; }
+        .sy-home-text h2 .text-gradient { display: inline-block; }
+        .sy-home-text > p { color: var(--text-muted); font-size: clamp(0.98rem, 1.5vw, 1.06rem); line-height: 1.8; margin-bottom: 22px; }
+        .sy-home-facts { list-style: none; display: grid; gap: 12px; margin: 0 0 28px; }
+        .sy-home-facts li { display: flex; align-items: center; gap: 14px; font-size: 0.95rem; color: var(--text-muted); }
+        .sy-home-facts li > i { flex: none; width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; color: var(--navy); background: linear-gradient(135deg, rgba(0,242,254,0.18), rgba(255,0,127,0.14)); }
+        .sy-home-facts strong { display: block; font-size: 0.72rem; letter-spacing: 1px; text-transform: uppercase; color: var(--navy); }
+        .sy-home-actions { display: flex; flex-wrap: wrap; gap: 14px; }
+        .sy-home-panel { background: #fff; border: 1px solid var(--border-light); border-radius: 24px; padding: clamp(22px, 3vw, 34px); box-shadow: var(--shadow-md); position: relative; overflow: hidden; }
+        .sy-home-panel::before { content: ''; position: absolute; inset: 0 0 auto 0; height: 4px; background: linear-gradient(90deg, var(--cyan-neon), var(--magenta-neon)); }
+        .sy-home-panel h3 { font-size: 1.1rem; font-weight: 800; color: var(--navy); margin-bottom: 16px; }
+        .sy-home-panel h3.sy-home-sub { margin-top: 26px; font-size: 0.8rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--magenta-neon); }
+        .sy-home-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+        .sy-home-links a { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 14px; background: var(--bg-secondary); border: 1px solid var(--border-light); text-decoration: none; color: var(--navy); font-weight: 700; font-size: 0.9rem; line-height: 1.3; transition: var(--transition-smooth); }
+        .sy-home-links a:hover { border-color: var(--cyan-neon); background: #fff; transform: translateY(-3px); box-shadow: var(--shadow-sm); }
+        .sy-home-ico { flex: none; width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, var(--cyan-neon), var(--magenta-neon)); color: #fff; font-size: 0.9rem; }
+        .sy-home-label { flex: 1; min-width: 0; }
+        .sy-home-arrow { flex: none; font-size: 0.7rem; color: var(--magenta-neon); opacity: 0.7; transition: transform 0.3s ease; }
+        .sy-home-links a:hover .sy-home-arrow { transform: translateX(3px); opacity: 1; }
+        @media (max-width: 900px) {
+            .sy-home-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 520px) {
+            .sy-home-links { grid-template-columns: 1fr; }
+            .sy-home-actions a { width: 100%; text-align: center; }
+        }

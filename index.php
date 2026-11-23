@@ -329,16 +329,40 @@ include 'header.php';
         </div>
     </section>
 
-    <!-- Brand intro: states the business name in both spellings in visible copy. -->
-    <section class="agency-section">
+    <!-- ABOUT: states the business name in both spellings in visible copy, and links to the Sydney service and suburb pages. -->
+    <section class="agency-section sy-home fade-up" id="about-ws">
         <div class="container">
-            <div class="agency-summary">
-                <h2 style="color: var(--navy); font-size: clamp(1.6rem, 3.5vw, 2.4rem); font-weight: 800; margin-bottom: 16px; line-height: 1.15;">About W&amp;S Digital Marketing (WS Digital Marketing)</h2>
-                <p>W&amp;S Digital Marketing, also searched as WS Digital Marketing, is a Sydney-based digital marketing agency at 3 Weebill St, Melonba NSW 2765. We help Australian businesses win more calls, enquiries and sales through SEO, Google Ads, social media marketing, website design and ecommerce development, on simple month-to-month plans with no lock-in contracts.</p>
-                <p style="margin-top: 18px;"><strong>Services for Sydney businesses:</strong>
-<?php $syLinks = []; foreach (sydney_registry() as $syReg) { $syLinks[] = '<a href="' . htmlspecialchars($syReg['path'], ENT_QUOTES, 'UTF-8') . '">' . htmlspecialchars($syReg['label'], ENT_QUOTES, 'UTF-8') . '</a>'; } echo implode(' &middot; ', $syLinks); ?></p>
-                <p style="margin-top: 10px;"><strong>Local SEO by area:</strong>
-<?php $syAreaLinks = []; foreach (sydney_area_registry() as $syArea) { $syAreaLinks[] = '<a href="' . htmlspecialchars($syArea['path'], ENT_QUOTES, 'UTF-8') . '">' . htmlspecialchars($syArea['suburb'], ENT_QUOTES, 'UTF-8') . '</a>'; } echo implode(' &middot; ', $syAreaLinks); ?></p>
+            <div class="sy-home-grid">
+                <div class="sy-home-text">
+                    <span class="eyebrow">WHO WE ARE</span>
+                    <h2>About W&amp;S Digital Marketing <span class="text-gradient">(WS Digital Marketing)</span></h2>
+                    <p>W&amp;S Digital Marketing, also searched as WS Digital Marketing, is a Sydney-based digital marketing agency at 3 Weebill St, Melonba NSW 2765. We help Australian businesses win more calls, enquiries and sales through SEO, Google Ads, social media marketing, website design and ecommerce development, on simple month-to-month plans with no lock-in contracts.</p>
+                    <ul class="sy-home-facts">
+                        <li><i class="fa-solid fa-location-dot"></i><span><strong>Based in</strong> Melonba, Sydney&rsquo;s north-west</span></li>
+                        <li><i class="fa-solid fa-calendar-check"></i><span><strong>Plans</strong> Month-to-month, no lock-in</span></li>
+                        <li><i class="fa-solid fa-chart-line"></i><span><strong>Reporting</strong> Monthly, in plain English</span></li>
+                    </ul>
+                    <div class="sy-home-actions">
+                        <a href="/about" class="btn-primary">MEET THE AGENCY <i class="fa-solid fa-arrow-right" style="margin-left: 5px;"></i></a>
+                        <a href="#contact" class="btn-secondary">GET A FREE PLAN</a>
+                    </div>
+                </div>
+                <aside class="sy-home-panel" aria-label="Services for Sydney businesses">
+                    <h3>Services for Sydney businesses</h3>
+                    <div class="sy-home-links">
+<?php
+$syIcons = ['seo' => 'fa-magnifying-glass-chart', 'website-development' => 'fa-laptop-code', 'ppc-advertising' => 'fa-bullseye', 'social-media' => 'fa-share-nodes', 'graphic-design' => 'fa-palette', 'ecommerce' => 'fa-cart-shopping'];
+foreach (sydney_registry() as $syKey => $syReg): ?>
+                        <a href="<?php echo htmlspecialchars($syReg['path'], ENT_QUOTES, 'UTF-8'); ?>"><span class="sy-home-ico"><i class="fa-solid <?php echo $syIcons[$syKey] ?? 'fa-circle-check'; ?>"></i></span><span class="sy-home-label"><?php echo htmlspecialchars($syReg['label'], ENT_QUOTES, 'UTF-8'); ?></span><i class="fa-solid fa-arrow-right sy-home-arrow"></i></a>
+<?php endforeach; ?>
+                    </div>
+                    <h3 class="sy-home-sub">Local SEO by area</h3>
+                    <ul class="sy-chips">
+<?php foreach (sydney_area_registry() as $syArea): ?>
+                        <li><i class="fa-solid fa-location-dot"></i> <a href="<?php echo htmlspecialchars($syArea['path'], ENT_QUOTES, 'UTF-8'); ?>"><?php echo htmlspecialchars($syArea['suburb'], ENT_QUOTES, 'UTF-8'); ?></a></li>
+<?php endforeach; ?>
+                    </ul>
+                </aside>
             </div>
         </div>
     </section>

@@ -337,6 +337,8 @@ include 'header.php';
                 <p>W&amp;S Digital Marketing, also searched as WS Digital Marketing, is a Sydney-based digital marketing agency at 3 Weebill St, Melonba NSW 2765. We help Australian businesses win more calls, enquiries and sales through SEO, Google Ads, social media marketing, website design and ecommerce development, on simple month-to-month plans with no lock-in contracts.</p>
                 <p style="margin-top: 18px;"><strong>Services for Sydney businesses:</strong>
 <?php $syLinks = []; foreach (sydney_registry() as $syReg) { $syLinks[] = '<a href="' . htmlspecialchars($syReg['path'], ENT_QUOTES, 'UTF-8') . '">' . htmlspecialchars($syReg['label'], ENT_QUOTES, 'UTF-8') . '</a>'; } echo implode(' &middot; ', $syLinks); ?></p>
+                <p style="margin-top: 10px;"><strong>Local SEO by area:</strong>
+<?php $syAreaLinks = []; foreach (sydney_area_registry() as $syArea) { $syAreaLinks[] = '<a href="' . htmlspecialchars($syArea['path'], ENT_QUOTES, 'UTF-8') . '">' . htmlspecialchars($syArea['suburb'], ENT_QUOTES, 'UTF-8') . '</a>'; } echo implode(' &middot; ', $syAreaLinks); ?></p>
             </div>
         </div>
     </section>

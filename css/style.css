@@ -1617,6 +1617,8 @@
         .sy-chips { list-style: none; display: flex; flex-wrap: wrap; gap: 8px 10px; margin: 6px 0 22px; }
         .sy-chips li { display: inline-flex; align-items: center; gap: 7px; padding: 7px 14px; border-radius: 999px; background: #fff; border: 1px solid var(--border-light); font-size: 0.85rem; font-weight: 700; color: var(--navy); box-shadow: var(--shadow-sm); }
         .sy-chips i { color: var(--magenta-neon); font-size: 0.8rem; }
+        .sy-chips a { color: var(--navy); text-decoration: underline; text-decoration-color: var(--cyan-neon); text-underline-offset: 3px; }
+        .sy-chips a:hover { color: var(--magenta-neon); }
 
         .sy-card-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(18px, 2.4vw, 26px); }
         .sy-card { position: relative; overflow: hidden; background: #fff; border: 1px solid var(--border-light); border-radius: 20px; padding: clamp(22px, 3vw, 34px); box-shadow: var(--shadow-sm); transition: var(--transition-smooth); }
@@ -1626,6 +1628,7 @@
         .sy-card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
         .sy-card-icon { width: 54px; height: 54px; border-radius: 16px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(0,242,254,0.18), rgba(255,0,127,0.14)); }
         .sy-card-icon i { font-size: 1.3rem; color: var(--navy); }
+        .sy-card-badge { width: 54px; height: 54px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.15rem; font-weight: 800; color: #fff; background: linear-gradient(135deg, var(--cyan-neon), var(--magenta-neon)); box-shadow: 0 8px 20px rgba(0, 242, 254, 0.28); }
         .sy-card-num { font-size: 2.2rem; font-weight: 800; line-height: 1; color: transparent; -webkit-text-stroke: 1.5px var(--border-light); }
         .sy-card h3 { font-size: clamp(1.1rem, 2vw, 1.3rem); font-weight: 800; color: var(--navy); margin-bottom: 12px; line-height: 1.3; }
         .sy-card p, .sy-tile p, .m-step-content p { color: var(--text-muted); font-size: 0.97rem; line-height: 1.75; margin-bottom: 12px; }
@@ -1633,6 +1636,7 @@
         .sy-card-grid > .sy-card:last-child:nth-child(odd) { grid-column: 1 / -1; }
         .sy-blog-grid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); }
         .sy-tile-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(18px, 2.4vw, 26px); }
+        .sy-after { margin-top: clamp(24px, 3vw, 38px); }
         .sy-tile-grid.sy-tiles-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
         .industry-tile.sy-tile { text-align: left; align-items: flex-start; }
         .industry-tile.sy-tile .industry-tile-icon { margin: 0 0 18px; width: 60px; height: 60px; }
@@ -1670,6 +1674,8 @@
         .cta-box .sy-cta-copy { margin-bottom: 24px; }
         .sy-parent-link .agency-text .btn-primary { display: inline-block; margin-top: 6px; }
         .sy-parent-link a.agency-image-wrapper { display: block; }
+        .sy-parent-link .sy-areas-line { margin: 4px 0 22px; font-size: 0.95rem; }
+        .sy-parent-link .sy-areas-line a { color: var(--magenta-neon); font-weight: 600; }
 
         @media (max-width: 900px) {
             .sy-split, .sy-split-flip { grid-template-columns: 1fr; }
@@ -1701,6 +1707,15 @@
         .sub-menu li { width: 100%; text-align: left; }
         .sub-menu li a { display: block; padding: 10px 20px; font-size: 0.9rem; color: rgba(255,255,255,0.85); white-space: nowrap; }
         .sub-menu li a::before { content: '\f3c5'; font-family: 'Font Awesome 6 Free'; font-weight: 900; font-size: 0.7rem; color: var(--magenta-neon); margin-right: 9px; }
+        /* Third level (SEO Sydney -> suburb pages): expands downward inside the flyout. */
+        .sub-menu li.has-sub { position: relative; display: flex; flex-wrap: wrap; align-items: stretch; }
+        .sub-menu li.has-sub > a { flex: 1 1 0; min-width: 0; }
+        .sub-menu li.has-sub > .sub-toggle i { transition: transform 0.25s ease; }
+        .sub-menu li.has-sub:hover > .sub-toggle i, .sub-menu li.has-sub.open > .sub-toggle i { transform: rotate(180deg); }
+        .sub-menu .sub-menu { position: static; left: auto; top: auto; min-width: 0; width: 100%; opacity: 1; visibility: visible; transform: none; background: rgba(255,255,255,0.04); border: 0; border-radius: 0; box-shadow: none; padding: 0; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+        .sub-menu .has-sub:hover > .sub-menu, .sub-menu .has-sub:focus-within > .sub-menu, .sub-menu .has-sub.open > .sub-menu { max-height: 320px; padding: 4px 0 6px; }
+        .sub-menu .sub-menu li a { padding: 8px 20px 8px 42px; font-size: 0.86rem; color: rgba(255,255,255,0.78); }
+        .sub-menu .sub-menu li a::before { content: ''; display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: var(--cyan-neon); margin-right: 10px; vertical-align: middle; font-family: inherit; }
         @media (max-width: 1200px) {
             .dropdown-menu.dropdown-menu-services { min-width: 0; }
             .dropdown-menu li.has-sub { flex-wrap: wrap; }
@@ -1710,6 +1725,13 @@
             .sub-toggle i { transition: transform 0.25s ease; transform: rotate(90deg); }
             .has-sub.open > .sub-toggle i { transform: rotate(-90deg); }
             .sub-menu, .has-sub:hover > .sub-menu, .has-sub:focus-within > .sub-menu { position: static; width: 100%; min-width: 0; opacity: 1; visibility: visible; transform: none; background: rgba(255,255,255,0.05); border: 0; border-radius: 0; box-shadow: none; padding: 0; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
-            .has-sub.open > .sub-menu { max-height: 120px; }
+            .has-sub.open > .sub-menu { max-height: 420px; }
             .sub-menu li a { text-align: center; white-space: normal; padding: 12px 20px; }
+            .sub-menu li.has-sub > a { padding-left: 40px; }
+            .sub-menu .sub-menu, .sub-menu .has-sub:hover > .sub-menu, .sub-menu .has-sub:focus-within > .sub-menu { max-height: 0; padding: 0; }
+            .sub-menu .has-sub.open > .sub-menu { max-height: 320px; padding: 4px 0 6px; }
+            .sub-menu .sub-menu li a { padding: 10px 20px; font-size: 0.92rem; text-align: center; }
+            .sub-menu .sub-menu li a::before { display: none; }
+            .sub-menu li.has-sub > .sub-toggle i { transform: none; }
+            .sub-menu li.has-sub.open > .sub-toggle i { transform: rotate(180deg); }
         }

@@ -199,7 +199,17 @@ $seo_og_type = !empty($page_og_type) ? $page_og_type : 'website';
                                 <a href="/seo">Search Engine Optimisation</a>
                                 <button type="button" class="sub-toggle" aria-label="Show SEO Sydney" aria-expanded="false"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
                                 <ul class="sub-menu">
-                                    <li><a href="/seo/sydney">SEO Sydney</a></li>
+                                    <li class="has-sub">
+                                        <a href="/seo/sydney">SEO Sydney</a>
+                                        <button type="button" class="sub-toggle" aria-label="Show SEO pages by Sydney area" aria-expanded="false"><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button>
+                                        <ul class="sub-menu sub-menu-areas">
+                                            <li><a href="/seo/sydney/marsden-park">SEO Marsden Park</a></li>
+                                            <li><a href="/seo/sydney/rouse-hill">SEO Rouse Hill</a></li>
+                                            <li><a href="/seo/sydney/blacktown">SEO Blacktown</a></li>
+                                            <li><a href="/seo/sydney/penrith">SEO Penrith</a></li>
+                                            <li><a href="/seo/sydney/castle-hill">SEO Castle Hill</a></li>
+                                        </ul>
+                                    </li>
                                 </ul>
                             </li>
                             <li class="has-sub">

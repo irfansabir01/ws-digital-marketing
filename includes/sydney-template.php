@@ -10,6 +10,12 @@ $reg = $sy['reg'];
 $img = $sy['images'];
 $url = $base . $sy['path'];
 $short = $sy['short'];
+$isArea = ($sy['type'] ?? '') === 'area';      // suburb page under /seo/sydney (see sydney-area.php)
+$parentLabelPlain = html_entity_decode($sy['parent_label'], ENT_QUOTES, 'UTF-8');
+// Breadcrumb trail, shared by the visible crumbs and the BreadcrumbList schema.
+$crumbs = $isArea
+    ? [['Home', '/'], ['Services', '/services'], ['Search Engine Optimisation', '/seo'], ['SEO Sydney', '/seo/sydney'], [$reg['label'], $sy['path']]]
+    : [['Home', '/'], ['Services', '/services'], [$parentLabelPlain, $sy['parent_path']], [$reg['label'], $sy['path']]];
 
 // Responsive <img> for one of this page's images (a, b or c).
 $syImg = static function (string $slot, string $sizes, string $class = '', bool $eager = false) use ($img, $e): string {
@@ -25,7 +31,8 @@ $page_title = $sy['meta_title'];
 $page_no_suffix = true;                     // the title already carries the brand ("... | W&S")
 $page_description = $sy['meta_description'];
 $page_og_image = $img['og']['file'] ?? '';
-$page_og_image_alt = $sy['h1_main'] . ' - W&S Digital Marketing';
+$h1Plain = $isArea ? trim($sy['h1_main'] . ' ' . $sy['h1_sub']) : $sy['h1_main'];
+$page_og_image_alt = ($isArea ? $h1Plain : $sy['h1_main']) . ' - W&S Digital Marketing';
 
 $faqForSchema = array_map(static fn($f) => ['q' => html_entity_decode(strip_tags($f['q']), ENT_QUOTES, 'UTF-8'), 'a' => html_entity_decode(strip_tags($f['a']), ENT_QUOTES, 'UTF-8')], $sy['faqs']);
 $catalog = [];
@@ -55,7 +62,21 @@ foreach (['a', 'b', 'c'] as $slot) {
     }
 }
 if (!empty($img['og'])) {
-    $imageNodes[] = ['@type' => 'ImageObject', '@id' => $url . '#primaryimage', 'url' => $base . $img['og']['file'], 'contentUrl' => $base . $img['og']['file'], 'width' => $img['og']['w'], 'height' => $img['og']['h'], 'caption' => $sy['h1_main'] . ' - W&S Digital Marketing', 'inLanguage' => 'en-AU'];
+    $imageNodes[] = ['@type' => 'ImageObject', '@id' => $url . '#primaryimage', 'url' => $base . $img['og']['file'], 'contentUrl' => $base . $img['og']['file'], 'width' => $img['og']['w'], 'height' => $img['og']['h'], 'caption' => ($isArea ? $h1Plain : $sy['h1_main']) . ' - W&S Digital Marketing', 'inLanguage' => 'en-AU'];
+}
+// Where the service is offered: the suburb page names its own suburb and the nearby areas the copy
+// says are genuinely served, inside Sydney; the service pages name Sydney as a whole.
+$areaServed = [
+    ['@type' => 'City', 'name' => 'Sydney'],
+    ['@type' => 'AdministrativeArea', 'name' => 'Greater Sydney, New South Wales'],
+];
+if ($isArea) {
+    $sydneyPlace = ['@type' => 'City', 'name' => 'Sydney'];
+    $areaServed = [['@type' => 'Place', 'name' => $sy['suburb'], 'address' => ['@type' => 'PostalAddress', 'addressLocality' => $sy['suburb'], 'addressRegion' => 'NSW', 'addressCountry' => 'AU'], 'containedInPlace' => $sydneyPlace]];
+    foreach ($sy['nearby'] as $nb) {
+        $areaServed[] = ['@type' => 'Place', 'name' => $nb, 'address' => ['@type' => 'PostalAddress', 'addressLocality' => $nb, 'addressRegion' => 'NSW', 'addressCountry' => 'AU'], 'containedInPlace' => $sydneyPlace];
+    }
+    $areaServed[] = ['@type' => 'AdministrativeArea', 'name' => 'Greater Sydney, New South Wales'];
 }
 $nodes = [
     [
@@ -64,17 +85,14 @@ $nodes = [
         'breadcrumb' => ['@id' => $url . '#breadcrumb'], 'about' => ['@id' => $url . '#service'], 'mainEntity' => ['@id' => $url . '#service'],
     ],
     [
-        '@type' => 'Service', '@id' => $url . '#service', 'name' => $sy['h1_main'], 'serviceType' => $sy['service'],
+        '@type' => 'Service', '@id' => $url . '#service', 'name' => $isArea ? $h1Plain : $sy['h1_main'], 'serviceType' => $sy['service'],
         'description' => $sy['og_description'], 'url' => $url, 'image' => $base . ($img['og']['file'] ?? '/images/og-default.jpg'),
         'provider' => $provider,
-        'areaServed' => [
-            ['@type' => 'City', 'name' => 'Sydney'],
-            ['@type' => 'AdministrativeArea', 'name' => 'Greater Sydney, New South Wales'],
-        ],
+        'areaServed' => $areaServed,
         'availableChannel' => ['@type' => 'ServiceChannel', 'serviceUrl' => $base . '/contact', 'servicePhone' => ['@type' => 'ContactPoint', 'telephone' => '+61403889630', 'contactType' => 'customer service', 'areaServed' => 'AU', 'availableLanguage' => 'English']],
     ] + ($catalog ? ['hasOfferCatalog' => ['@type' => 'OfferCatalog', 'name' => $short . ' services for Sydney businesses', 'itemListElement' => $catalog]] : []),
     seo_faq_schema($faqForSchema) + ['@id' => $url . '#faq'],
-    seo_breadcrumb_schema([['Home', '/'], ['Services', '/services'], [html_entity_decode($sy['parent_label'], ENT_QUOTES, 'UTF-8'), $sy['parent_path']], [$reg['label'], $sy['path']]]) + ['@id' => $url . '#breadcrumb'],
+    seo_breadcrumb_schema($crumbs) + ['@id' => $url . '#breadcrumb'],
 ];
 $extra_head = seo_graph_tag(array_merge($nodes, $imageNodes));
 
@@ -88,7 +106,10 @@ $tocItems = [];
 foreach ($sy['sections'] as $sec) {
     $tocItems[] = [$sec['id'], $sec['title']];
 }
-$tocItems[] = ['sydney-coverage', 'Where we work across Sydney'];
+if ($sy['key'] === 'seo') {
+    $tocItems[] = ['sydney-seo-areas', 'SEO by Sydney area'];
+}
+$tocItems[] = ['sydney-coverage', $isArea ? 'Nearby areas and the Sydney hub' : 'Where we work across Sydney'];
 $tocItems[] = ['faqs', 'Frequently asked questions'];
 $areas = ['Marsden Park', 'Rouse Hill', 'Hills District', 'Blacktown', 'Parramatta', 'Inner West', 'North Sydney', 'Sydney CBD'];
 $coverageText = [
@@ -104,7 +125,7 @@ $hasAreasSection = (bool) array_filter($sy['sections'], static fn($s) => $s['kin
 // Case studies for this service (the ones ticked for it in admin), at most three.
 $syCases = [];
 try {
-    $syCases = array_slice(service_page_case_studies($sy['key']), 0, 3);
+    $syCases = array_slice(service_page_case_studies($isArea ? 'seo' : $sy['key']), 0, 3);
 } catch (Throwable $ex) {
     $syCases = [];
 }
@@ -142,21 +163,22 @@ $registry = sydney_registry();
             <nav class="sy-crumbs" aria-label="Breadcrumb">
                 <ol>
                     <li><a href="/">Home</a></li>
-                    <li><a href="/services">Services</a></li>
-                    <li><a href="<?php echo $e($sy['parent_path']); ?>"><?php echo $e(html_entity_decode($sy['parent_label'], ENT_QUOTES, 'UTF-8')); ?></a></li>
+                    <?php foreach (array_slice($crumbs, 1, -1) as [$cLabel, $cPath]): ?>
+                    <li><a href="<?php echo $e($cPath); ?>"><?php echo $e($cLabel); ?></a></li>
+                    <?php endforeach; ?>
                     <li aria-current="page"><?php echo $e($reg['label']); ?></li>
                 </ol>
             </nav>
-            <span class="eyebrow fade-up"><?php echo $e(strtoupper($short)); ?> &middot; SYDNEY</span>
-            <h1 class="fade-up"><?php echo $e($sy['h1_main']); ?><?php if ($sy['h1_sub'] !== ''): ?><br><span class="text-gradient"><?php echo $e($sy['h1_sub']); ?></span><?php endif; ?></h1>
+            <span class="eyebrow fade-up"><?php echo $e(strtoupper($short)); ?> &middot; <?php echo $e(strtoupper($isArea ? $sy['suburb'] : 'Sydney')); ?></span>
+            <h1 class="fade-up"><?php echo $e($sy['h1_main']); ?><?php if ($sy['h1_sub'] !== ''): ?> <br><span class="text-gradient"><?php echo $e($sy['h1_sub']); ?></span><?php endif; ?></h1>
             <p class="hero-subtitle fade-up"><?php echo $e($sy['lead']); ?></p>
             <div class="hero-buttons fade-up">
                 <a href="#contact" class="btn-primary"><?php echo $e($sy['cta_label']); ?> <i class="fa-solid fa-arrow-right" style="margin-left: 5px;"></i></a>
-                <a href="<?php echo $e($sy['parent_path']); ?>" class="btn-secondary">OUR <?php echo $e(strtoupper($short)); ?> SERVICE</a>
+                <a href="<?php echo $e($sy['parent_path']); ?>" class="btn-secondary"><?php echo $isArea ? 'VIEW SEO SYDNEY' : 'OUR ' . $e(strtoupper($short)) . ' SERVICE'; ?></a>
             </div>
             <ul class="sy-trust fade-up">
                 <li><i class="fa-solid fa-location-dot"></i> Based in Melonba, NSW</li>
-                <li><i class="fa-solid fa-city"></i> Serving Greater Sydney</li>
+                <li><i class="fa-solid fa-city"></i> <?php echo $isArea ? 'Local SEO for ' . $e($sy['suburb']) : 'Serving Greater Sydney'; ?></li>
                 <li><i class="fa-solid fa-calendar-check"></i> Month-to-month plans</li>
             </ul>
         </div>
@@ -170,8 +192,8 @@ $registry = sydney_registry();
                     <span class="eyebrow">AT A GLANCE</span>
                     <?php echo $paras($sy['intro']); ?>
                     <ul class="sy-facts">
-                        <li><i class="fa-solid fa-bullseye"></i><span><strong>Service</strong> <?php echo $e(html_entity_decode($sy['service'], ENT_QUOTES, 'UTF-8')); ?> for Sydney businesses</span></li>
-                        <li><i class="fa-solid fa-location-dot"></i><span><strong>Coverage</strong> Greater Sydney, from our office in Melonba</span></li>
+                        <li><i class="fa-solid fa-bullseye"></i><span><strong>Service</strong> <?php echo $e(html_entity_decode($sy['service'], ENT_QUOTES, 'UTF-8')); ?> for <?php echo $isArea ? $e($sy['suburb']) : 'Sydney'; ?> businesses</span></li>
+                        <li><i class="fa-solid fa-location-dot"></i><span><strong><?php echo $isArea ? 'Nearby areas' : 'Coverage'; ?></strong> <?php echo $isArea ? $e($sy['nearby_text']) : 'Greater Sydney, from our office in Melonba'; ?></span></li>
                         <li><i class="fa-solid fa-file-contract"></i><span><strong>Plans</strong> Month-to-month, no lock-in contracts</span></li>
                         <li><i class="fa-solid fa-comments"></i><span><strong>Next step</strong> A zero-obligation review of what you have now</span></li>
                     </ul>
@@ -209,6 +231,26 @@ foreach ($sy['sections'] as $i => $sec):
                 <?php foreach ($sec['subs'] as $n => $sub): ?>
                 <article class="sy-card">
                     <div class="sy-card-top"><span class="sy-card-icon"><i class="<?php echo $e(strpos($sub['icon'], 'fa-brands') === 0 ? $sub['icon'] : 'fa-solid ' . $sub['icon']); ?>"></i></span><span class="sy-card-num" aria-hidden="true"><?php echo sprintf('%02d', $n + 1); ?></span></div>
+                    <h3><?php echo $e($sub['title']); ?></h3>
+                    <?php echo $paras($sub['paras']); ?>
+                </article>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </section>
+
+<?php elseif ($kind === 'numbered'): ?>
+    <section class="sy-section<?php echo $alt; ?> fade-up" id="<?php echo $sid; ?>">
+        <div class="container">
+            <div class="section-header">
+                <span class="eyebrow">KEY DECISIONS</span>
+                <h2 class="sy-h2"><?php echo $e($sec['title']); ?></h2>
+                <?php if ($sec['paras']): ?><div class="sy-lead"><?php echo $paras($sec['paras']); ?></div><?php endif; ?>
+            </div>
+            <div class="sy-card-grid sy-card-grid-num">
+                <?php foreach ($sec['subs'] as $n => $sub): ?>
+                <article class="sy-card">
+                    <div class="sy-card-top"><span class="sy-card-badge"><?php echo sprintf('%02d', $n + 1); ?></span></div>
                     <h3><?php echo $e($sub['title']); ?></h3>
                     <?php echo $paras($sub['paras']); ?>
                 </article>
@@ -256,6 +298,7 @@ foreach ($sy['sections'] as $i => $sec):
                 </article>
                 <?php endforeach; ?>
             </div>
+            <?php if (!empty($sec['after'])): ?><div class="sy-narrow sy-after"><?php echo $paras($sec['after']); ?></div><?php endif; ?>
         </div>
     </section>
 
@@ -263,7 +306,7 @@ foreach ($sy['sections'] as $i => $sec):
     <section class="sy-section<?php echo $alt; ?> fade-up" id="<?php echo $sid; ?>">
         <div class="container">
             <div class="sy-callout">
-                <div class="sy-callout-icon"><i class="fa-solid <?php echo preg_match('/report/i', $sec['title']) ? 'fa-chart-line' : 'fa-coins'; ?>"></i></div>
+                <div class="sy-callout-icon"><i class="fa-solid <?php echo preg_match('/report|measure/i', $sec['title']) ? 'fa-chart-line' : 'fa-coins'; ?>"></i></div>
                 <div class="sy-callout-body">
                     <h2 class="sy-h2"><?php echo $e($sec['title']); ?></h2>
                     <?php echo $paras($sec['paras']); ?>
@@ -297,7 +340,8 @@ foreach ($sy['sections'] as $i => $sec):
                 <div class="sy-split-text">
                     <h2 class="sy-h2"><?php echo $e($sec['title']); ?></h2>
                     <?php echo $paras($sec['paras']); ?>
-                    <ul class="sy-chips" aria-label="Sydney areas we work with"><?php foreach ($areas as $a): ?><li><i class="fa-solid fa-location-dot"></i> <?php echo $e($a); ?></li><?php endforeach; ?></ul>
+                    <?php $areaPages = []; foreach (sydney_area_registry() as $ar) { $areaPages[$ar['suburb']] = $ar['path']; } ?>
+                    <ul class="sy-chips" aria-label="Sydney areas we work with"><?php foreach ($areas as $a): ?><li><i class="fa-solid fa-location-dot"></i> <?php echo isset($areaPages[$a]) ? '<a href="' . $e($areaPages[$a]) . '">' . $e($a) . '</a>' : $e($a); ?></li><?php endforeach; ?></ul>
                 </div>
                 <div class="sy-split-media"><?php echo $syImg('c', '(max-width: 900px) 92vw, 560px'); ?></div>
             </div>
@@ -338,7 +382,23 @@ foreach ($sy['sections'] as $i => $sec):
 <?php endif; ?>
 <?php endforeach; ?>
 
-<?php if (!$hasAreasSection && $coverageText !== ''): ?>
+<?php if ($isArea): ?>
+    <!-- NEARBY AREAS + SYDNEY HUB -->
+    <section class="sy-section<?php echo (count($sy['sections']) % 2 === 1) ? ' sy-alt' : ''; ?> fade-up" id="sydney-coverage">
+        <div class="container">
+            <div class="sy-split">
+                <div class="sy-split-text">
+                    <span class="eyebrow">LOCAL CATCHMENT</span>
+                    <h2 class="sy-h2">SEO For <?php echo $e($sy['suburb']); ?> And Nearby Areas</h2>
+                    <p>We plan <?php echo $e($sy['suburb']); ?> work around the customers you genuinely serve, including nearby areas such as <?php echo $e($sy['nearby_text']); ?>. Where a place needs its own page we say so; where one clear service-area section is enough, we keep it simple. For the wider offer across the city, see our <a href="/seo/sydney">Sydney SEO overview</a>.</p>
+                    <ul class="sy-chips" aria-label="Nearby areas"><?php foreach ($sy['nearby'] as $a): ?><li><i class="fa-solid fa-location-dot"></i> <?php echo $e($a); ?></li><?php endforeach; ?></ul>
+                    <p class="sy-note">Our team is based in Melonba, in Sydney&rsquo;s north-west. We do not operate a physical office in every suburb &mdash; we shape the work around the places you serve.</p>
+                </div>
+                <div class="sy-split-media"><?php echo $syImg('c', '(max-width: 900px) 92vw, 560px'); ?></div>
+            </div>
+        </div>
+    </section>
+<?php elseif (!$hasAreasSection && $coverageText !== ''): ?>
     <!-- SERVICE AREA -->
     <section class="sy-section<?php echo (count($sy['sections']) % 2 === 1) ? ' sy-alt' : ''; ?> fade-up" id="sydney-coverage">
         <div class="container">
@@ -358,6 +418,29 @@ foreach ($sy['sections'] as $i => $sec):
     <span id="sydney-coverage" aria-hidden="true"></span>
 <?php endif; ?>
 
+<?php if ($sy['key'] === 'seo'): ?>
+    <!-- SEO BY SYDNEY AREA: the hub links to each suburb page -->
+    <section class="sy-section sy-alt fade-up" id="sydney-seo-areas">
+        <div class="container">
+            <div class="section-header">
+                <span class="eyebrow">LOCAL SEO PAGES</span>
+                <h2 class="sy-h2">SEO By Sydney Area</h2>
+                <p class="sy-lead-single">Where a suburb has distinct customers, competition and search needs, we explain how local SEO applies there. Choose the area closest to where your customers are.</p>
+            </div>
+            <div class="sy-link-grid" role="list">
+                <?php foreach (sydney_area_registry() as $ar): ?>
+                <a class="sy-link-card" role="listitem" href="<?php echo $e($ar['path']); ?>">
+                    <span class="sy-link-eyebrow">Local SEO</span>
+                    <strong><?php echo $e($ar['label']); ?></strong>
+                    <span><?php echo $e($ar['teaser']); ?></span>
+                    <em>Read the guide <i class="fa-solid fa-arrow-right"></i></em>
+                </a>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </section>
+
+<?php endif; ?>
 <?php if ($syCases): ?>
     <!-- SYDNEY CLIENT WORK -->
     <section class="services-section sy-cases fade-up">
@@ -394,8 +477,8 @@ foreach ($sy['sections'] as $i => $sec):
         <div class="container hfaq-layout">
             <div class="hfaq-intro">
                 <span class="eyebrow">FAQS</span>
-                <h2><?php echo $e($short); ?> In Sydney: Your Questions Answered</h2>
-                <p>Straight answers to the questions Sydney businesses ask before they enquire. For general questions about working with us, see our <a href="/faq">full FAQ</a>.</p>
+                <h2><?php echo $e($short); ?> In <?php echo $e($isArea ? $sy['suburb'] : 'Sydney'); ?>: Your Questions Answered</h2>
+                <p>Straight answers to the questions <?php echo $e($isArea ? $sy['suburb'] : 'Sydney'); ?> businesses ask before they enquire. For general questions about working with us, see our <a href="/faq">full FAQ</a>.</p>
                 <a href="#contact" class="btn-secondary">SPEAK WITH OUR TEAM <i class="fa-solid fa-arrow-right" style="margin-left: 6px;"></i></a>
             </div>
             <div class="hfaq-list" data-faq>
@@ -443,9 +526,37 @@ foreach ($sy['sections'] as $i => $sec):
         <div class="container">
             <div class="section-header">
                 <span class="eyebrow">KEEP EXPLORING</span>
-                <h2 class="sy-h2">More Ways We Help Sydney Businesses</h2>
+                <h2 class="sy-h2"><?php echo $isArea ? 'More Local SEO Help Around Sydney' : 'More Ways We Help Sydney Businesses'; ?></h2>
             </div>
             <div class="sy-link-grid sy-link-grid-3" role="list">
+<?php if ($isArea): ?>
+                <a class="sy-link-card" role="listitem" href="/seo/sydney">
+                    <span class="sy-link-eyebrow">Sydney hub</span>
+                    <strong>SEO Sydney</strong>
+                    <span><?php echo $e($registry['seo']['teaser']); ?></span>
+                    <em>Read the guide <i class="fa-solid fa-arrow-right"></i></em>
+                </a>
+                <?php foreach ($sy['neighbors'] as $nk): $na = sydney_area_registry()[$nk] ?? null; if (!$na) { continue; } ?>
+                <a class="sy-link-card" role="listitem" href="<?php echo $e($na['path']); ?>">
+                    <span class="sy-link-eyebrow">Nearby area</span>
+                    <strong><?php echo $e($na['label']); ?></strong>
+                    <span><?php echo $e($na['teaser']); ?></span>
+                    <em>Read the guide <i class="fa-solid fa-arrow-right"></i></em>
+                </a>
+                <?php endforeach; ?>
+                <a class="sy-link-card" role="listitem" href="/ppc-advertising/sydney">
+                    <span class="sy-link-eyebrow">Paid search</span>
+                    <strong><?php echo $e($registry['ppc-advertising']['label']); ?></strong>
+                    <span><?php echo $e($registry['ppc-advertising']['teaser']); ?></span>
+                    <em>Read the guide <i class="fa-solid fa-arrow-right"></i></em>
+                </a>
+                <a class="sy-link-card" role="listitem" href="/website-development/sydney">
+                    <span class="sy-link-eyebrow">Website</span>
+                    <strong><?php echo $e($registry['website-development']['label']); ?></strong>
+                    <span><?php echo $e($registry['website-development']['teaser']); ?></span>
+                    <em>Read the guide <i class="fa-solid fa-arrow-right"></i></em>
+                </a>
+<?php else: ?>
                 <a class="sy-link-card" role="listitem" href="<?php echo $e($sy['parent_path']); ?>">
                     <span class="sy-link-eyebrow">National service</span>
                     <strong><?php echo $e(html_entity_decode($sy['parent_label'], ENT_QUOTES, 'UTF-8')); ?></strong>
@@ -460,6 +571,7 @@ foreach ($sy['sections'] as $i => $sec):
                     <em>Read the guide <i class="fa-solid fa-arrow-right"></i></em>
                 </a>
                 <?php endforeach; ?>
+<?php endif; ?>
             </div>
         </div>
     </section>

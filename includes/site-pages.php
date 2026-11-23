@@ -26,6 +26,11 @@ function site_static_pages(): array
         ['/social-media/sydney', 'Social Media Marketing Sydney', 'Services', '0.8', 'monthly'],
         ['/graphic-design/sydney', 'Graphic Designer Sydney', 'Services', '0.8', 'monthly'],
         ['/ecommerce/sydney', 'Ecommerce Web Design Sydney', 'Services', '0.8', 'monthly'],
+        ['/seo/sydney/marsden-park', 'SEO Marsden Park', 'Services', '0.7', 'monthly'],
+        ['/seo/sydney/rouse-hill', 'SEO Rouse Hill', 'Services', '0.7', 'monthly'],
+        ['/seo/sydney/blacktown', 'SEO Blacktown', 'Services', '0.7', 'monthly'],
+        ['/seo/sydney/penrith', 'SEO Penrith', 'Services', '0.7', 'monthly'],
+        ['/seo/sydney/castle-hill', 'SEO Castle Hill', 'Services', '0.7', 'monthly'],
 
         ['/industries', 'All Industries', 'Industries', '0.8', 'monthly'],
         ['/accounting-finance', 'Accounting & Finance', 'Industries', '0.7', 'monthly'],
@@ -82,8 +87,8 @@ function site_page_defaults(string $path): array
     $result = ['title' => null, 'description' => null];
     // The six Sydney service pages take their copy from includes/sydney/<key>.php.
     require_once __DIR__ . '/sydney-pages.php';
-    $sydneyKey = sydney_key_for_path($path);
-    if ($sydneyKey !== null && ($sydneyPage = sydney_page($sydneyKey)) !== null) {
+    $sydneyPage = sydney_any_page_for_path($path);
+    if ($sydneyPage !== null) {
         return ['title' => $sydneyPage['meta_title'], 'description' => $sydneyPage['meta_description']];
     }
     $file = site_page_file($path);

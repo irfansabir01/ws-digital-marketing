@@ -88,6 +88,11 @@ $updated = date('Y-m-d');
 ## Sydney service pages
 
 - [SEO Sydney](<?php echo $base; ?>/seo/sydney): Local search plans for Sydney businesses: technical SEO, keyword and content work, Google Business Profile support and reporting tied to enquiries.
+- [SEO Marsden Park](<?php echo $base; ?>/seo/sydney/marsden-park): Local SEO for Marsden Park businesses, from new-estate services to retailers and trade suppliers around Sydney Business Park.
+- [SEO Rouse Hill](<?php echo $base; ?>/seo/sydney/rouse-hill): Local SEO for Rouse Hill family services, appointment-led businesses and town-centre retail and hospitality.
+- [SEO Blacktown](<?php echo $base; ?>/seo/sydney/blacktown): Local SEO for Blacktown repairs, trades, health, training and business-to-business services.
+- [SEO Penrith](<?php echo $base; ?>/seo/sydney/penrith): Local SEO for Penrith tourism, health, education, trades and facility services.
+- [SEO Castle Hill](<?php echo $base; ?>/seo/sydney/castle-hill): Local SEO for Castle Hill high-consideration home services, medical and wellness practices and professional advisers.
 - [Web Design Sydney](<?php echo $base; ?>/website-development/sydney): Mobile-friendly business websites for Sydney companies, from discovery and sitemap to testing, launch and handover.
 - [Google Ads Agency Sydney](<?php echo $base; ?>/ppc-advertising/sydney): Google Ads management for Sydney businesses: campaign planning, ad copy, landing page review, conversion tracking and monthly reporting.
 - [Social Media Marketing Sydney](<?php echo $base; ?>/social-media/sydney): Content planning, creation, publishing and paid social for Sydney businesses, with reporting that explains what changed.

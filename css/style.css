@@ -1713,7 +1713,7 @@
         .sub-menu li.has-sub > .sub-toggle i { transition: transform 0.25s ease; }
         .sub-menu li.has-sub:hover > .sub-toggle i, .sub-menu li.has-sub.open > .sub-toggle i { transform: rotate(180deg); }
         .sub-menu .sub-menu { position: static; left: auto; top: auto; min-width: 0; width: 100%; opacity: 1; visibility: visible; transform: none; background: rgba(255,255,255,0.04); border: 0; border-radius: 0; box-shadow: none; padding: 0; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
-        .sub-menu .has-sub:hover > .sub-menu, .sub-menu .has-sub:focus-within > .sub-menu, .sub-menu .has-sub.open > .sub-menu { max-height: 320px; padding: 4px 0 6px; }
+        .sub-menu .has-sub:hover > .sub-menu, .sub-menu .has-sub:focus-within > .sub-menu, .sub-menu .has-sub.open > .sub-menu { max-height: 520px; padding: 4px 0 6px; }
         .sub-menu .sub-menu li a { padding: 8px 20px 8px 42px; font-size: 0.86rem; color: rgba(255,255,255,0.78); }
         .sub-menu .sub-menu li a::before { content: ''; display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: var(--cyan-neon); margin-right: 10px; vertical-align: middle; font-family: inherit; }
         @media (max-width: 1200px) {
@@ -1725,11 +1725,11 @@
             .sub-toggle i { transition: transform 0.25s ease; transform: rotate(90deg); }
             .has-sub.open > .sub-toggle i { transform: rotate(-90deg); }
             .sub-menu, .has-sub:hover > .sub-menu, .has-sub:focus-within > .sub-menu { position: static; width: 100%; min-width: 0; opacity: 1; visibility: visible; transform: none; background: rgba(255,255,255,0.05); border: 0; border-radius: 0; box-shadow: none; padding: 0; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
-            .has-sub.open > .sub-menu { max-height: 420px; }
+            .has-sub.open > .sub-menu { max-height: 760px; }
             .sub-menu li a { text-align: center; white-space: normal; padding: 12px 20px; }
             .sub-menu li.has-sub > a { padding-left: 40px; }
             .sub-menu .sub-menu, .sub-menu .has-sub:hover > .sub-menu, .sub-menu .has-sub:focus-within > .sub-menu { max-height: 0; padding: 0; }
-            .sub-menu .has-sub.open > .sub-menu { max-height: 320px; padding: 4px 0 6px; }
+            .sub-menu .has-sub.open > .sub-menu { max-height: 560px; padding: 4px 0 6px; }
             .sub-menu .sub-menu li a { padding: 10px 20px; font-size: 0.92rem; text-align: center; }
             .sub-menu .sub-menu li a::before { display: none; }
             .sub-menu li.has-sub > .sub-toggle i { transform: none; }
@@ -1763,4 +1763,52 @@
         @media (max-width: 520px) {
             .sy-home-links { grid-template-columns: 1fr; }
             .sy-home-actions a { width: 100%; text-align: center; }
+        }
+
+        /* =====================================================================
+           SYDNEY PAGES: editorial "chapter" and timeline layouts + motion
+           ===================================================================== */
+        .sy-h2::after { content: ''; display: block; width: 64px; height: 4px; border-radius: 4px; margin-top: 14px; background: linear-gradient(90deg, var(--cyan-neon), var(--magenta-neon)); transform-origin: left center; transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1); }
+        .section-header .sy-h2::after, .sy-lead + .sy-h2::after { margin-left: auto; margin-right: auto; transform-origin: center; }
+        .sy-callout-body .sy-h2::after { margin-top: 12px; }
+        .sy-anim .sy-h2:not(.is-drawn)::after { transform: scaleX(0); }
+
+        .sy-chapter { display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); gap: clamp(24px, 5vw, 76px); align-items: start; }
+        .sy-chapter-head { position: sticky; top: 118px; }
+        .sy-chapter-num { display: block; font-size: clamp(3rem, 6.5vw, 5.4rem); font-weight: 800; line-height: 1; letter-spacing: -2px; margin-bottom: 8px; background: linear-gradient(135deg, var(--cyan-neon), var(--magenta-neon)); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; }
+        .sy-chapter-head .sy-h2 { font-size: clamp(1.4rem, 2.7vw, 2.05rem); margin: 0; }
+        .sy-chapter-body { position: relative; padding-left: clamp(18px, 2.6vw, 34px); border-left: 3px solid transparent; border-image: linear-gradient(to bottom, var(--cyan-neon), var(--magenta-neon) 70%, transparent) 1; }
+        .sy-chapter-body p { color: var(--text-muted); font-size: clamp(0.98rem, 1.5vw, 1.06rem); line-height: 1.85; margin-bottom: 18px; }
+        .sy-chapter-body p:last-child, .sy-timeline p:last-child { margin-bottom: 0; }
+        .sy-chapter-body a, .sy-timeline a { color: var(--magenta-neon); font-weight: 600; }
+        .sy-linkline { display: flex; align-items: flex-start; gap: 12px; background: #fff; border: 1px solid var(--border-light); border-left: 4px solid var(--cyan-neon); border-radius: 14px; padding: 14px 18px; box-shadow: var(--shadow-sm); font-weight: 600; font-size: 0.95rem !important; line-height: 1.6 !important; color: var(--navy) !important; }
+        .sy-linkline > i { flex: none; margin-top: 4px; color: var(--magenta-neon); transition: transform 0.3s ease; }
+        .sy-linkline:hover > i { transform: translateX(5px); }
+        .sy-callout-body .sy-linkline, .sy-checklist .sy-linkline, .sy-split-text .sy-linkline, .sy-narrow .sy-linkline { margin-top: 6px; }
+
+        .sy-timeline-wrap { max-width: 900px; margin: 0 auto; }
+        .sy-timeline { list-style: none; position: relative; display: grid; gap: 20px; margin-top: 28px; padding-left: 0; }
+        .sy-timeline::before { content: ''; position: absolute; top: 26px; bottom: 26px; left: 25px; width: 3px; border-radius: 3px; background: linear-gradient(to bottom, var(--cyan-neon), var(--magenta-neon)); opacity: 0.35; transform-origin: top; transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1); }
+        .sy-anim .sy-timeline:not(.is-drawn)::before { transform: scaleY(0); }
+        .sy-phase { position: relative; display: flex; gap: 20px; align-items: flex-start; }
+        .sy-phase-dot { flex: none; z-index: 1; width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.05rem; color: #fff; background: linear-gradient(135deg, var(--cyan-neon), var(--magenta-neon)); box-shadow: 0 8px 20px rgba(0, 242, 254, 0.3); }
+        .sy-phase-card { flex: 1; min-width: 0; background: #fff; border: 1px solid var(--border-light); border-radius: 18px; padding: clamp(18px, 2.6vw, 28px); box-shadow: var(--shadow-sm); transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease; }
+        .sy-phase:hover .sy-phase-card { transform: translateX(6px); border-color: var(--cyan-neon); box-shadow: var(--shadow-hover); }
+        .sy-phase-card p { color: var(--text-muted); font-size: clamp(0.96rem, 1.5vw, 1.03rem); line-height: 1.8; margin: 0; }
+
+        /* Steps connector line draws itself on the Sydney pages (class added by js/main.js when motion is allowed). */
+        .sy-anim .sy-section .methodology-steps::before { transform-origin: top; transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1); }
+        .sy-anim .sy-section .methodology-steps:not(.is-drawn)::before { transform: scaleY(0); }
+        .sy-split-media, .sy-intro .agency-image-wrapper { will-change: transform; }
+
+        @media (max-width: 900px) {
+            .sy-chapter { grid-template-columns: 1fr; gap: 14px; }
+            .sy-chapter-head { position: static; display: flex; align-items: center; gap: 16px; }
+            .sy-chapter-num { font-size: 2.6rem; margin: 0; flex: none; }
+            .sy-chapter-body { padding-left: 16px; }
+        }
+        @media (max-width: 576px) {
+            .sy-phase { gap: 14px; }
+            .sy-phase-dot { width: 44px; height: 44px; font-size: 0.95rem; }
+            .sy-timeline::before { left: 21px; }
         }

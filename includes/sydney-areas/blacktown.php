@@ -28,7 +28,7 @@ return [
     'cta_service' => 'Search Engine Optimisation',
     'nearby' => ['Seven Hills', 'Prospect', 'Kings Langley'],
     'nearby_text' => 'Seven Hills, Prospect and Kings Langley',
-    'neighbors' => ['marsden-park', 'penrith'],
+    'neighbors' => ['marsden-park', 'penrith', 'western-sydney'],
     'blog' => ['business-not-showing-on-google-maps', 'how-much-does-seo-cost-australia', 'is-seo-worth-it-for-small-business'],
     'sections' => [
         [

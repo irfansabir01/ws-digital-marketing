@@ -100,7 +100,10 @@ include __DIR__ . '/../header.php';
 
 // ------------------------------------------------------------------ small helpers
 $paras = static function (array $list): string {
-    return implode('', array_map(static fn($p) => '<p>' . $p . '</p>', $list));
+    // A paragraph marked '§LINK§' is a one-line pointer to another page: shown as a highlighted link bar.
+    return implode('', array_map(static fn($p) => strpos($p, '§LINK§') === 0
+        ? '<p class="sy-linkline"><i class="fa-solid fa-arrow-right-long" aria-hidden="true"></i><span>' . substr($p, strlen('§LINK§')) . '</span></p>'
+        : '<p>' . $p . '</p>', $list));
 };
 $tocItems = [];
 foreach ($sy['sections'] as $sec) {
@@ -259,6 +262,34 @@ foreach ($sy['sections'] as $i => $sec):
         </div>
     </section>
 
+<?php elseif ($kind === 'chapter'): ?>
+    <section class="sy-section<?php echo $alt; ?> fade-up" id="<?php echo $sid; ?>">
+        <div class="container">
+            <div class="sy-chapter">
+                <div class="sy-chapter-head">
+                    <span class="sy-chapter-num" aria-hidden="true"><?php echo sprintf('%02d', $i + 1); ?></span>
+                    <h2 class="sy-h2"><?php echo $e($sec['title']); ?></h2>
+                </div>
+                <div class="sy-chapter-body"><?php echo $paras($sec['paras']); ?></div>
+            </div>
+        </div>
+    </section>
+
+<?php elseif ($kind === 'timeline'): ?>
+    <section class="sy-section<?php echo $alt; ?> fade-up" id="<?php echo $sid; ?>">
+        <div class="container">
+            <div class="sy-timeline-wrap">
+                <span class="eyebrow">STEP BY STEP</span>
+                <h2 class="sy-h2"><?php echo $e($sec['title']); ?></h2>
+                <ol class="sy-timeline">
+                    <?php foreach ($sec['paras'] as $n => $tp): ?>
+                    <li class="sy-phase"><span class="sy-phase-dot"><?php echo sprintf('%02d', $n + 1); ?></span><div class="sy-phase-card"><?php echo $paras([$tp]); ?></div></li>
+                    <?php endforeach; ?>
+                </ol>
+            </div>
+        </div>
+    </section>
+
 <?php elseif ($kind === 'steps'): ?>
     <section class="sy-section methodology-section<?php echo $alt; ?> fade-up" id="<?php echo $sid; ?>">
         <div class="container">
@@ -310,7 +341,7 @@ foreach ($sy['sections'] as $i => $sec):
                 <div class="sy-callout-body">
                     <h2 class="sy-h2"><?php echo $e($sec['title']); ?></h2>
                     <?php echo $paras($sec['paras']); ?>
-                    <?php if (preg_match('/cost|spend|price/i', $sec['title'])): ?>
+                    <?php if (preg_match('/cost|spend|price|budget/i', $sec['title'])): ?>
                     <a href="/pricing" class="btn-secondary sy-callout-btn">SEE PRICING PLANS <i class="fa-solid fa-arrow-right" style="margin-left: 6px;"></i></a>
                     <?php endif; ?>
                 </div>
@@ -326,7 +357,7 @@ foreach ($sy['sections'] as $i => $sec):
                 <h2 class="sy-h2"><?php echo $e($sec['title']); ?></h2>
                 <ul class="sy-checklist">
                     <?php foreach ($sec['paras'] as $p): ?>
-                    <li><span class="sy-check"><i class="fa-solid fa-check"></i></span><div><?php echo '<p>' . $p . '</p>'; ?></div></li>
+                    <li><span class="sy-check"><i class="fa-solid fa-check"></i></span><div><?php echo $paras([$p]); ?></div></li>
                     <?php endforeach; ?>
                 </ul>
             </div>

@@ -28,7 +28,7 @@ return [
     'cta_service' => 'Search Engine Optimisation',
     'nearby' => ['Melonba', 'Riverstone', 'Schofields', 'Box Hill'],
     'nearby_text' => 'Melonba, Riverstone, Schofields and Box Hill',
-    'neighbors' => ['rouse-hill', 'blacktown'],
+    'neighbors' => ['rouse-hill', 'blacktown', 'western-sydney'],
     'blog' => ['business-not-showing-on-google-maps', 'local-seo-wins-for-small-business', 'how-much-does-seo-cost-australia'],
     'sections' => [
         [

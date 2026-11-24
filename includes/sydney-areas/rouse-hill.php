@@ -28,7 +28,7 @@ return [
     'cta_service' => 'Search Engine Optimisation',
     'nearby' => ['Kellyville', 'Kellyville Ridge', 'Beaumont Hills'],
     'nearby_text' => 'Kellyville, Kellyville Ridge and Beaumont Hills',
-    'neighbors' => ['marsden-park', 'castle-hill'],
+    'neighbors' => ['marsden-park', 'castle-hill', 'hills-district'],
     'blog' => ['local-seo-wins-for-small-business', 'business-not-showing-on-google-maps', 'is-seo-worth-it-for-small-business'],
     'sections' => [
         [

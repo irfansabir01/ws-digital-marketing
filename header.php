@@ -208,6 +208,11 @@ $seo_og_type = !empty($page_og_type) ? $page_og_type : 'website';
                                             <li><a href="/seo/sydney/blacktown">SEO Blacktown</a></li>
                                             <li><a href="/seo/sydney/penrith">SEO Penrith</a></li>
                                             <li><a href="/seo/sydney/castle-hill">SEO Castle Hill</a></li>
+                                            <li><a href="/seo/sydney/norwest">SEO Norwest</a></li>
+                                            <li><a href="/seo/sydney/baulkham-hills">SEO Baulkham Hills</a></li>
+                                            <li><a href="/seo/sydney/parramatta">SEO Parramatta</a></li>
+                                            <li><a href="/seo/sydney/hills-district">SEO Hills District</a></li>
+                                            <li><a href="/seo/sydney/western-sydney">SEO Western Sydney</a></li>
                                         </ul>
                                     </li>
                                 </ul>

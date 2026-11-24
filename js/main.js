@@ -462,7 +462,8 @@ if (window.matchMedia('(hover: none)').matches) {
                 '.case-grid', '.testimonials-grid', '.industry-tile-grid',
                 '.stats-4-grid', '.pricing-grid', '.methodology-steps', '.agency-list',
                 '.cta-features', '.faq-list', '.mobile-dash-cards', '.partner-strip', '.team-grid',
-                '.seo-proof-grid'
+                '.seo-proof-grid',
+                '.sy-card-grid', '.sy-tile-grid', '.sy-link-grid', '.sy-checklist', '.sy-timeline', '.sy-chips', '.sy-home-links', '.sy-facts'
             ];
             gridSelectors.forEach(selector => {
                 gsap.utils.toArray(selector).forEach(grid => {
@@ -497,6 +498,46 @@ if (window.matchMedia('(hover: none)').matches) {
                             .to(card.querySelector('.svc-media img'), { scale: 1.03, duration: 1.4, ease: 'power2.out', clearProps: 'transform' }, 0)
                             .to(svcParts(card), { opacity: 1, y: 0, duration: 0.6, stagger: 0.09, ease: 'power2.out', clearProps: 'opacity,transform' }, 0.35);
                     })
+                });
+            }
+
+            // === SYDNEY SERVICE + SUBURB PAGES (sydney-service.php / sydney-area.php): extra motion ===
+            // Headings draw their underline, step/timeline connector lines draw themselves, images
+            // wipe in and then drift gently, chapter columns slide in from opposite sides and icons
+            // pop. Everything starts from the normal visible CSS state: the html.sy-anim class that
+            // hides the underline/line is only added here, so no-JS and reduced-motion visitors see
+            // the finished page.
+            if (document.querySelector('.sy-hero, .sy-section, .sy-home')) {
+                document.documentElement.classList.add('sy-anim');
+                const syDraw = (selector, start) => gsap.utils.toArray(selector).forEach(el => {
+                    ScrollTrigger.create({ trigger: el, start: start || 'top 88%', once: true, onEnter: () => el.classList.add('is-drawn') });
+                });
+                syDraw('.sy-h2');
+                syDraw('.sy-section .methodology-steps', 'top 80%');
+                syDraw('.sy-timeline', 'top 80%');
+
+                if (document.querySelector('.sy-trust')) gsap.from('.sy-trust li', { opacity: 0, y: 18, duration: 0.6, stagger: 0.12, delay: 0.9, ease: 'power2.out', clearProps: 'transform,opacity' });
+
+                gsap.utils.toArray('.sy-split-media img, .sy-intro .agency-image-wrapper img, .sy-parent-link .agency-image-wrapper img').forEach(img => {
+                    gsap.fromTo(img,
+                        { clipPath: 'inset(0% 0% 100% 0% round 22px)', scale: 1.1 },
+                        { clipPath: 'inset(0% 0% 0% 0% round 22px)', scale: 1, duration: 1.1, ease: 'power3.out', clearProps: 'clipPath,scale',
+                          scrollTrigger: { trigger: img, start: 'top 88%', toggleActions: 'play none none none' } });
+                    gsap.to(img.parentElement, { y: -9, duration: 3.4, ease: 'sine.inOut', yoyo: true, repeat: -1 });
+                });
+
+                gsap.utils.toArray('.sy-chapter').forEach(chapter => {
+                    const trigger = { trigger: chapter, start: 'top 82%', toggleActions: 'play none none none' };
+                    gsap.from(chapter.querySelector('.sy-chapter-head'), { opacity: 0, x: -44, duration: 0.8, ease: 'power3.out', clearProps: 'transform,opacity', scrollTrigger: trigger });
+                    gsap.from(chapter.querySelector('.sy-chapter-body'), { opacity: 0, x: 44, duration: 0.8, delay: 0.1, ease: 'power3.out', clearProps: 'transform,opacity', scrollTrigger: trigger });
+                    const num = chapter.querySelector('.sy-chapter-num');
+                    if (num) gsap.from(num, { scale: 0.5, rotate: -12, transformOrigin: 'left center', duration: 0.9, ease: 'back.out(2)', clearProps: 'transform', scrollTrigger: trigger });
+                });
+
+                gsap.utils.toArray('.sy-card-icon, .sy-card-badge, .sy-tile .industry-tile-icon, .sy-callout-icon, .sy-phase-dot, .sy-section .m-step-num, .sy-home-ico').forEach(el => {
+                    gsap.from(el, { scale: 0, rotate: -35, duration: 0.7, ease: 'back.out(2.2)', clearProps: 'transform',
+                        onStart: () => { el.style.transition = 'none'; }, onComplete: () => { el.style.transition = ''; },
+                        scrollTrigger: { trigger: el, start: 'top 92%', toggleActions: 'play none none none' } });
                 });
             }
 

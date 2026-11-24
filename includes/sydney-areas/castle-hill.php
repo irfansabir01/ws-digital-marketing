@@ -28,7 +28,7 @@ return [
     'cta_service' => 'Search Engine Optimisation',
     'nearby' => ['Cherrybrook', 'West Pennant Hills', 'Baulkham Hills'],
     'nearby_text' => 'Cherrybrook, West Pennant Hills and Baulkham Hills',
-    'neighbors' => ['rouse-hill', 'blacktown'],
+    'neighbors' => ['rouse-hill', 'blacktown', 'hills-district'],
     'blog' => ['how-much-does-seo-cost-australia', 'is-seo-worth-it-for-small-business', 'local-seo-wins-for-small-business'],
     'sections' => [
         [

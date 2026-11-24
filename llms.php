@@ -93,6 +93,11 @@ $updated = date('Y-m-d');
 - [SEO Blacktown](<?php echo $base; ?>/seo/sydney/blacktown): Local SEO for Blacktown repairs, trades, health, training and business-to-business services.
 - [SEO Penrith](<?php echo $base; ?>/seo/sydney/penrith): Local SEO for Penrith tourism, health, education, trades and facility services.
 - [SEO Castle Hill](<?php echo $base; ?>/seo/sydney/castle-hill): Local SEO for Castle Hill high-consideration home services, medical and wellness practices and professional advisers.
+- [SEO Norwest](<?php echo $base; ?>/seo/sydney/norwest): SEO for Norwest professional firms, specialist suppliers and clinics, focused on qualified business enquiries and credible service pages.
+- [SEO Baulkham Hills](<?php echo $base; ?>/seo/sydney/baulkham-hills): Local SEO for Baulkham Hills trades, family clinics and shops that depend on booked work.
+- [SEO Parramatta](<?php echo $base; ?>/seo/sydney/parramatta): SEO for Parramatta clinics, hospitality, services and professional firms, including multi-location accuracy and city-centre competition.
+- [SEO Hills District](<?php echo $base; ?>/seo/sydney/hills-district): Regional SEO planning across Castle Hill, Norwest, Baulkham Hills and Rouse Hill for mixed local and B2B businesses.
+- [SEO Western Sydney](<?php echo $base; ?>/seo/sydney/western-sydney): Regional SEO for Western Sydney businesses serving several suburbs, with a location matrix that avoids duplicate pages.
 - [Web Design Sydney](<?php echo $base; ?>/website-development/sydney): Mobile-friendly business websites for Sydney companies, from discovery and sitemap to testing, launch and handover.
 - [Google Ads Agency Sydney](<?php echo $base; ?>/ppc-advertising/sydney): Google Ads management for Sydney businesses: campaign planning, ad copy, landing page review, conversion tracking and monthly reporting.
 - [Social Media Marketing Sydney](<?php echo $base; ?>/social-media/sydney): Content planning, creation, publishing and paid social for Sydney businesses, with reporting that explains what changed.

@@ -28,7 +28,7 @@ return [
     'cta_service' => 'Search Engine Optimisation',
     'nearby' => ['Jamisontown', 'Kingswood', 'Emu Plains', 'St Marys'],
     'nearby_text' => 'Jamisontown, Kingswood, Emu Plains and St Marys',
-    'neighbors' => ['blacktown', 'marsden-park'],
+    'neighbors' => ['blacktown', 'marsden-park', 'western-sydney'],
     'blog' => ['is-seo-worth-it-for-small-business', 'local-seo-wins-for-small-business', 'how-much-does-seo-cost-australia'],
     'sections' => [
         [

@@ -31,6 +31,11 @@ function site_static_pages(): array
         ['/seo/sydney/blacktown', 'SEO Blacktown', 'Services', '0.7', 'monthly'],
         ['/seo/sydney/penrith', 'SEO Penrith', 'Services', '0.7', 'monthly'],
         ['/seo/sydney/castle-hill', 'SEO Castle Hill', 'Services', '0.7', 'monthly'],
+        ['/seo/sydney/norwest', 'SEO Norwest', 'Services', '0.7', 'monthly'],
+        ['/seo/sydney/baulkham-hills', 'SEO Baulkham Hills', 'Services', '0.7', 'monthly'],
+        ['/seo/sydney/parramatta', 'SEO Parramatta', 'Services', '0.7', 'monthly'],
+        ['/seo/sydney/hills-district', 'SEO Hills District', 'Services', '0.7', 'monthly'],
+        ['/seo/sydney/western-sydney', 'SEO Western Sydney', 'Services', '0.7', 'monthly'],
 
         ['/industries', 'All Industries', 'Industries', '0.8', 'monthly'],
         ['/accounting-finance', 'Accounting & Finance', 'Industries', '0.7', 'monthly'],

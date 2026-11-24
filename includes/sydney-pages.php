@@ -157,6 +157,16 @@ function sydney_area_registry(): array
             'teaser' => 'Search help for Penrith tourism, health, education and trade businesses reaching a wide regional catchment.'],
         'castle-hill' => ['path' => '/seo/sydney/castle-hill', 'label' => 'SEO Castle Hill', 'suburb' => 'Castle Hill',
             'teaser' => 'Local SEO for high-consideration services, practices and advisers in Castle Hill.'],
+        'norwest' => ['path' => '/seo/sydney/norwest', 'label' => 'SEO Norwest', 'suburb' => 'Norwest',
+            'teaser' => 'SEO for Norwest professional firms and specialist suppliers, built around qualified business enquiries.'],
+        'baulkham-hills' => ['path' => '/seo/sydney/baulkham-hills', 'label' => 'SEO Baulkham Hills', 'suburb' => 'Baulkham Hills',
+            'teaser' => 'Local SEO for Baulkham Hills trades, clinics and shops that depend on booked work.'],
+        'parramatta' => ['path' => '/seo/sydney/parramatta', 'label' => 'SEO Parramatta', 'suburb' => 'Parramatta',
+            'teaser' => 'SEO for Parramatta clinics, hospitality, services and professional firms in a competitive city market.'],
+        'western-sydney' => ['path' => '/seo/sydney/western-sydney', 'label' => 'SEO Western Sydney', 'suburb' => 'Western Sydney',
+            'teaser' => 'A regional SEO approach for Western Sydney businesses serving several suburbs, without duplicate location pages.'],
+        'hills-district' => ['path' => '/seo/sydney/hills-district', 'label' => 'SEO Hills District', 'suburb' => 'Hills District',
+            'teaser' => 'SEO across the Hills District: how regional and suburb pages work together for mixed local and B2B businesses.'],
     ];
 }
 

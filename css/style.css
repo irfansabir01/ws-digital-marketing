@@ -1600,7 +1600,7 @@
         .sy-toc li a::before { content: counter(sy, decimal-leading-zero); color: var(--cyan-neon); font-weight: 800; min-width: 22px; -webkit-text-stroke: 0.4px var(--navy); }
         .sy-toc li a:hover { color: var(--magenta-neon); }
 
-        .sy-section { padding: clamp(52px, 7vw, 92px) 0; background: rgba(255,255,255,0.8); }
+        .sy-section { padding: clamp(52px, 7vw, 92px) 0; background: rgba(255,255,255,0.8); overflow-x: clip; }
         .sy-section.sy-alt { background: var(--bg-secondary); }
         .sy-h2 { font-size: clamp(1.65rem, 3.6vw, 2.5rem); font-weight: 800; line-height: 1.15; letter-spacing: -0.5px; color: var(--navy); margin: 10px 0 18px; }
         .section-header .sy-h2 { margin-bottom: 16px; }

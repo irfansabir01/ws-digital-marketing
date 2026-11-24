@@ -528,8 +528,11 @@ if (window.matchMedia('(hover: none)').matches) {
 
                 gsap.utils.toArray('.sy-chapter').forEach(chapter => {
                     const trigger = { trigger: chapter, start: 'top 82%', toggleActions: 'play none none none' };
-                    gsap.from(chapter.querySelector('.sy-chapter-head'), { opacity: 0, x: -44, duration: 0.8, ease: 'power3.out', clearProps: 'transform,opacity', scrollTrigger: trigger });
-                    gsap.from(chapter.querySelector('.sy-chapter-body'), { opacity: 0, x: 44, duration: 0.8, delay: 0.1, ease: 'power3.out', clearProps: 'transform,opacity', scrollTrigger: trigger });
+                    // Side-to-side slide only where there is room (two columns, wide screens); on phones and
+                    // tablets the pieces rise from below instead, so nothing ever sits outside the viewport.
+                    const wide = window.innerWidth > 900;
+                    gsap.from(chapter.querySelector('.sy-chapter-head'), { opacity: 0, x: wide ? -44 : 0, y: wide ? 0 : 26, duration: 0.8, ease: 'power3.out', clearProps: 'transform,opacity', scrollTrigger: trigger });
+                    gsap.from(chapter.querySelector('.sy-chapter-body'), { opacity: 0, x: wide ? 44 : 0, y: wide ? 0 : 26, duration: 0.8, delay: 0.1, ease: 'power3.out', clearProps: 'transform,opacity', scrollTrigger: trigger });
                     const num = chapter.querySelector('.sy-chapter-num');
                     if (num) gsap.from(num, { scale: 0.5, rotate: -12, transformOrigin: 'left center', duration: 0.9, ease: 'back.out(2)', clearProps: 'transform', scrollTrigger: trigger });
                 });

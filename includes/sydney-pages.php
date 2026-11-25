@@ -167,6 +167,16 @@ function sydney_area_registry(): array
             'teaser' => 'A regional SEO approach for Western Sydney businesses serving several suburbs, without duplicate location pages.'],
         'hills-district' => ['path' => '/seo/sydney/hills-district', 'label' => 'SEO Hills District', 'suburb' => 'Hills District',
             'teaser' => 'SEO across the Hills District: how regional and suburb pages work together for mixed local and B2B businesses.'],
+        'liverpool' => ['path' => '/seo/sydney/liverpool', 'label' => 'SEO Liverpool', 'suburb' => 'Liverpool',
+            'teaser' => 'SEO for the Liverpool health precinct, logistics and commercial suppliers, built for qualified enquiries.'],
+        'chatswood' => ['path' => '/seo/sydney/chatswood', 'label' => 'SEO Chatswood', 'suburb' => 'Chatswood',
+            'teaser' => 'SEO for Chatswood professional services, retailers and restaurants competing in a busy North Shore centre.'],
+        'hornsby' => ['path' => '/seo/sydney/hornsby', 'label' => 'SEO Hornsby', 'suburb' => 'Hornsby',
+            'teaser' => 'Local SEO for Hornsby practices, trades and tutoring businesses serving the Upper North Shore.'],
+        'campbelltown' => ['path' => '/seo/sydney/campbelltown', 'label' => 'SEO Campbelltown', 'suburb' => 'Campbelltown',
+            'teaser' => 'SEO for Campbelltown and Macarthur trades, healthcare and business suppliers planning their next stage of growth.'],
+        'bankstown' => ['path' => '/seo/sydney/bankstown', 'label' => 'SEO Bankstown', 'suburb' => 'Bankstown',
+            'teaser' => 'Local SEO for Bankstown shops, mobile trades and commercial suppliers serving a multilingual customer base.'],
     ];
 }
 

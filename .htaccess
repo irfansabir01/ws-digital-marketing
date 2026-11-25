@@ -128,8 +128,8 @@ ErrorDocument 404 /not-found.php
     #      One script (sydney-service.php) renders all of them. A trailing slash is
     #      collapsed to the canonical URL first. The five suburb pages under
     #      /seo/sydney/<suburb> are rendered by sydney-area.php.
-    RewriteRule ^seo/sydney/(marsden-park|rouse-hill|blacktown|penrith|castle-hill|norwest|baulkham-hills|parramatta|western-sydney|hills-district)/$ /seo/sydney/$1 [R=301,L]
-    RewriteRule ^seo/sydney/(marsden-park|rouse-hill|blacktown|penrith|castle-hill|norwest|baulkham-hills|parramatta|western-sydney|hills-district)$ sydney-area.php?a=$1 [L,QSA]
+    RewriteRule ^seo/sydney/(marsden-park|rouse-hill|blacktown|penrith|castle-hill|norwest|baulkham-hills|parramatta|western-sydney|hills-district|liverpool|chatswood|hornsby|campbelltown|bankstown)/$ /seo/sydney/$1 [R=301,L]
+    RewriteRule ^seo/sydney/(marsden-park|rouse-hill|blacktown|penrith|castle-hill|norwest|baulkham-hills|parramatta|western-sydney|hills-district|liverpool|chatswood|hornsby|campbelltown|bankstown)$ sydney-area.php?a=$1 [L,QSA]
     RewriteRule ^(seo|website-development|ppc-advertising|social-media|graphic-design|ecommerce)/sydney/$ /$1/sydney [R=301,L]
     RewriteRule ^(seo|website-development|ppc-advertising|social-media|graphic-design|ecommerce)/sydney$ sydney-service.php?s=$1 [L,QSA]
 

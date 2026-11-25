@@ -45,6 +45,72 @@ document.addEventListener('click', (e) => {
     document.querySelectorAll('.dropdown.active').forEach(d => d.classList.remove('active'));
 });
 
+// Sydney area pages: floating "Sections" button + split-view section list. The list stays open
+// while the visitor scrolls (so they can jump to any other heading), highlights the section being
+// read, and on wide screens pushes the page left instead of covering it.
+(function () {
+    const panel = document.getElementById('syTocPanel');
+    const fab = document.querySelector('.sy-toc-fab');
+    if (!panel || !fab) return;
+    document.body.classList.add('sy-has-toc');
+    const links = Array.from(panel.querySelectorAll('.sy-toc-list a'));
+    const targets = links.map(a => document.getElementById(a.getAttribute('href').slice(1)));
+    const bar = panel.querySelector('.sy-toc-bar span');
+    const list = panel.querySelector('.sy-toc-list');
+    const setOpen = (open) => {
+        panel.classList.toggle('is-open', open);
+        panel.setAttribute('aria-hidden', open ? 'false' : 'true');
+        fab.classList.toggle('is-active', open);
+        fab.setAttribute('aria-expanded', open ? 'true' : 'false');
+        document.body.classList.toggle('sy-toc-open', open);
+        links.forEach(a => open ? a.removeAttribute('tabindex') : a.setAttribute('tabindex', '-1'));
+        if (open) update();
+    };
+    fab.addEventListener('click', () => setOpen(!panel.classList.contains('is-open')));
+    panel.querySelector('.sy-toc-close').addEventListener('click', () => { setOpen(false); fab.focus(); });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && panel.classList.contains('is-open')) { setOpen(false); fab.focus(); }
+    });
+    let current = -1;
+    function update() {
+        const y = window.scrollY;
+        const doc = document.documentElement;
+        fab.classList.toggle('is-visible', y > 260);
+        if (bar) bar.style.width = Math.min(100, Math.max(0, y / Math.max(1, doc.scrollHeight - window.innerHeight) * 100)) + '%';
+        if (!panel.classList.contains('is-open')) return;
+        const line = window.innerHeight * 0.36;
+        let idx = -1;
+        targets.forEach((t, i) => { if (t && t.getBoundingClientRect().top <= line) idx = i; });
+        if (idx === current) return;
+        current = idx;
+        links.forEach((a, i) => a.classList.toggle('is-active', i === idx));
+        if (idx >= 0) {
+            const a = links[idx];
+            const top = a.offsetTop - list.clientHeight / 2 + a.offsetHeight / 2;
+            list.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+        }
+    }
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => { update(); ticking = false; });
+    }, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+})();
+
+// Cursor spotlight on cards of "fx" Sydney pages (position only; the glow itself is CSS).
+if (document.querySelector('[data-sy-fx]') && window.matchMedia('(hover: hover)').matches) {
+    document.addEventListener('pointermove', (e) => {
+        const card = e.target.closest && e.target.closest('.sy-card, .sy-link-card, .sy-tile, .sy-phase-card, .sy-checklist li');
+        if (!card) return;
+        const r = card.getBoundingClientRect();
+        card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+        card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    }, { passive: true });
+}
+
 // services.php's "WHAT WE DO" flip cards (.service-card-flip) rely on :hover
 // to flip on desktop, which works fine with a real pointer but is unreliable
 // on touch -- there's no hover state to "move off of" to flip back, and a tap
@@ -509,6 +575,23 @@ if (window.matchMedia('(hover: none)').matches) {
             // the finished page.
             if (document.querySelector('.sy-hero, .sy-section, .sy-home')) {
                 document.documentElement.classList.add('sy-anim');
+                const syFx = !!document.querySelector('[data-sy-fx]');
+                if (syFx) {
+                    document.documentElement.classList.add('sy-fx');
+                    // slow parallax orbs behind the hero and every alternate section (skipped on phones)
+                    if (window.innerWidth > 760) {
+                        gsap.utils.toArray('.sy-hero[data-sy-fx], .sy-section.sy-alt').slice(0, 7).forEach((section, i) => {
+                            ['sy-orb-a', 'sy-orb-b'].forEach((cls, n) => {
+                                const orb = document.createElement('span');
+                                orb.className = 'sy-orb ' + cls;
+                                orb.setAttribute('aria-hidden', 'true');
+                                section.insertBefore(orb, section.firstChild);
+                                gsap.fromTo(orb, { y: n ? 70 : -60 }, { y: n ? -80 : 70, ease: 'none',
+                                    scrollTrigger: { trigger: section, start: 'top bottom', end: 'bottom top', scrub: 0.6 } });
+                            });
+                        });
+                    }
+                }
                 const syDraw = (selector, start) => gsap.utils.toArray(selector).forEach(el => {
                     ScrollTrigger.create({ trigger: el, start: start || 'top 88%', once: true, onEnter: () => el.classList.add('is-drawn') });
                 });
@@ -532,12 +615,17 @@ if (window.matchMedia('(hover: none)').matches) {
                     // tablets the pieces rise from below instead, so nothing ever sits outside the viewport.
                     const wide = window.innerWidth > 900;
                     gsap.from(chapter.querySelector('.sy-chapter-head'), { opacity: 0, x: wide ? -44 : 0, y: wide ? 0 : 26, duration: 0.8, ease: 'power3.out', clearProps: 'transform,opacity', scrollTrigger: trigger });
-                    gsap.from(chapter.querySelector('.sy-chapter-body'), { opacity: 0, x: wide ? 44 : 0, y: wide ? 0 : 26, duration: 0.8, delay: 0.1, ease: 'power3.out', clearProps: 'transform,opacity', scrollTrigger: trigger });
+                    if (syFx) {
+                        // fx pages: each paragraph of the chapter rises in one after another
+                        gsap.from(chapter.querySelector('.sy-chapter-body').children, { opacity: 0, y: 24, duration: 0.7, stagger: 0.12, delay: 0.1, ease: 'power3.out', clearProps: 'transform,opacity', scrollTrigger: trigger });
+                    } else {
+                        gsap.from(chapter.querySelector('.sy-chapter-body'), { opacity: 0, x: wide ? 44 : 0, y: wide ? 0 : 26, duration: 0.8, delay: 0.1, ease: 'power3.out', clearProps: 'transform,opacity', scrollTrigger: trigger });
+                    }
                     const num = chapter.querySelector('.sy-chapter-num');
                     if (num) gsap.from(num, { scale: 0.5, rotate: -12, transformOrigin: 'left center', duration: 0.9, ease: 'back.out(2)', clearProps: 'transform', scrollTrigger: trigger });
                 });
 
-                gsap.utils.toArray('.sy-card-icon, .sy-card-badge, .sy-tile .industry-tile-icon, .sy-callout-icon, .sy-phase-dot, .sy-section .m-step-num, .sy-home-ico').forEach(el => {
+                gsap.utils.toArray('.sy-card-icon, .sy-card-badge, .sy-tile .industry-tile-icon, .sy-callout-icon, .sy-phase-dot, .sy-check, .sy-section .m-step-num, .sy-home-ico').forEach(el => {
                     gsap.from(el, { scale: 0, rotate: -35, duration: 0.7, ease: 'back.out(2.2)', clearProps: 'transform',
                         onStart: () => { el.style.transition = 'none'; }, onComplete: () => { el.style.transition = ''; },
                         scrollTrigger: { trigger: el, start: 'top 92%', toggleActions: 'play none none none' } });

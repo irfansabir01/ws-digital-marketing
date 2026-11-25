@@ -120,7 +120,7 @@ $paras = static function (array $list): string {
     }, $list));
 };
 $tocItems = [];
-$usePanel = ($sy['toc'] ?? '') === 'panel';      // floating "Sections" button + split-view list instead of the inline list
+$usePanel = ($sy['toc'] ?? 'panel') !== 'inline';      // floating "Sections" button + split-view list (default for every Sydney page)
 if ($usePanel && !empty($sy['intro_title'])) {
     $tocItems[] = ['sy-intro', $sy['intro_title']];
 }

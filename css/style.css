@@ -1866,3 +1866,17 @@
         .sy-ctaline { margin-top: 22px !important; margin-bottom: 0 !important; }
         .sy-ctaline .btn-primary { display: inline-block; }
         .cta-box .sy-cta-copy .sy-ctaline a.btn-primary { color: #fff; }
+
+        /* ===== READABILITY: accessible magenta text on light backgrounds (>=4.5:1) ===== */
+        :root { --magenta-text: #C0005C; }
+        .eyebrow { color: var(--magenta-text); }
+        .seo-chart-head .eyebrow, .author-copy .eyebrow { color: var(--cyan-neon); }
+        .sy-intro .agency-text a, .sy-split-text a, .sy-narrow a, .sy-callout a:not(.btn-secondary):not(.btn-primary), .sy-card a, .sy-tile a, .sy-checklist a, .hfaq-answer a, .hfaq-intro p a,
+        .sy-chapter-body a, .sy-timeline a, .sy-parent-link .sy-areas-line a, .sy-linkline a { color: var(--magenta-text); }
+        .sy-intro .agency-text a.btn-primary, .sy-split-text a.btn-primary, .sy-narrow a.btn-primary, .sy-callout a.btn-primary, .sy-card a.btn-primary, .sy-chapter-body a.btn-primary, .sy-timeline a.btn-primary, .sy-checklist a.btn-primary, .sy-tile a.btn-primary { color: #fff; font-weight: 700; }
+        .sy-intro .agency-text a.btn-secondary, .sy-split-text a.btn-secondary, .sy-narrow a.btn-secondary, .sy-callout a.btn-secondary, .sy-chapter-body a.btn-secondary { color: var(--navy); font-weight: 700; }
+        .sy-link-card .sy-link-eyebrow { color: var(--magenta-text); font-size: 0.78rem; }
+        .sy-link-card em { color: var(--magenta-text); }
+        .sy-home-panel h3.sy-home-sub { color: var(--magenta-text); font-size: 0.85rem; }
+        .sy-home-arrow { color: var(--magenta-text); opacity: 0.85; }
+        .btn-primary { text-shadow: 0 1px 2px rgba(11, 15, 37, 0.45); }

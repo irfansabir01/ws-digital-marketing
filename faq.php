@@ -1,7 +1,8 @@
 <?php
 require_once __DIR__ . '/includes/cta-form-handler.php';
-$page_title = 'Digital Marketing FAQs';
-$page_description = 'Find answers about W&S Digital Marketing services, pricing, contracts, reporting and getting started. Understand what to expect before making an enquiry.';
+$page_title = 'Digital Marketing FAQs | Pricing & Contract Help';
+$page_description = 'Got questions about our pricing, contracts, reporting or process? Get clear, honest answers here, then book a free chat with our team.';
+$page_no_suffix = true; // the title already carries the brand/keyword, so no auto suffix
 
 // FAQPage schema built from the visible accordion below, so the two always match.
 require_once __DIR__ . '/includes/seo.php';

@@ -130,6 +130,14 @@ $page_og_image = $study['image_path'] ?? '';
 // echoing the markup itself.
 $page_description = ($study['meta_description'] ?? '') !== '' ? $study['meta_description'] : trim(strip_tags($study['summary']));
 
+// Click-through-optimised title + description for the known case studies
+// (includes/case-study-meta.php); the brand is already in the title.
+require_once __DIR__ . '/includes/case-study-meta.php';
+if (($csMeta = case_study_meta_override((string) $slug)) !== null) {
+    [$page_title, $page_description] = $csMeta;
+    $page_no_suffix = true;
+}
+
 // A small "More Case Studies" strip below the content -- next 3 entries in
 // display order after the current one (wrapping around), excluding itself.
 // Falls back to an empty strip (the rest of the page still renders) rather

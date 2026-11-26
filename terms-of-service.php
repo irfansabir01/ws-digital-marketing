@@ -1,6 +1,7 @@
 <?php
-$page_title = 'Terms of Service';
-$page_description = 'Read the terms for using the W&S Digital Marketing website and services, including project agreements, payments, intellectual property and termination.';
+$page_title = 'Terms of Service | W&S Digital Marketing Australia';
+$page_description = 'Read the terms for using W&S Digital Marketing services, including project agreements, payments, ownership and cancellation terms.';
+$page_no_suffix = true; // the title already carries the brand/keyword, so no auto suffix
 include 'header.php';
 ?>
 

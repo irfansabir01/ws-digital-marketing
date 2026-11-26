@@ -8,8 +8,9 @@ $valid_plans = ['Starter', 'Growth', 'Scale'];
 $selected_plan = $_POST['plan'] ?? $_GET['plan'] ?? '';
 $selected_plan = in_array($selected_plan, $valid_plans, true) ? $selected_plan : '';
 
-$page_title = 'Digital Marketing Pricing & Plans';
-$page_description = 'Compare Starter, Growth and Scale marketing plans, explore inclusions and request a tailored quote. Advertising spend is separate from management fees.';
+$page_title = 'Digital Marketing Pricing | Clear Plans & Quotes';
+$page_description = 'Compare clear Starter, Growth and Scale marketing plans. See exactly what\'s included and get a tailored quote. No hidden surprises, ever.';
+$page_no_suffix = true; // the title already carries the brand/keyword, so no auto suffix
 include 'header.php';
 ?>
 

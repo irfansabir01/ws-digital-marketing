@@ -14,7 +14,7 @@ return [
     'short' => 'SEO',
     'primary_keyword' => 'seo western sydney',
     'secondary_keywords' => ['seo agency western sydney', 'seo services western sydney', 'seo company western sydney', 'digital marketing western sydney', 'digital marketing agency western sydney', 'marketing agency western sydney', 'local seo western sydney', 'seo expert western sydney'],
-    'meta_title' => 'SEO Western Sydney | W&S Digital Marketing',
+    'meta_title' => 'SEO Western Sydney | Reach Customers in the West',
     'meta_description' => 'SEO across Western Sydney for trades, clinics, shops and B2B firms. A regional strategy with clearer local pages.',
     'og_description' => 'SEO across Western Sydney for trades, clinics, shops and B2B firms. Build a regional search strategy with clearer local pages and enquiries.',
     'h1_main' => 'SEO Services in',

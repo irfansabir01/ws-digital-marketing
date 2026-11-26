@@ -11,7 +11,7 @@ return [
     'short' => 'Graphic Design',
     'primary_keyword' => 'graphic designer sydney',
     'secondary_keywords' => ['logo design sydney', 'graphic design sydney', 'branding agency sydney', 'logo designer sydney', 'graphic design agency sydney', 'brand identity design sydney', 'flyer design sydney', 'business card design sydney'],
-    'meta_title' => 'Graphic Designer Sydney | Brand Design | W&S',
+    'meta_title' => 'Graphic Designer Sydney | Logo & Branding | W&S',
     'meta_description' => 'Logos, campaign graphics and print design for Sydney businesses. Build a consistent brand with W&S Digital Marketing.',
     'og_description' => 'Build a consistent, recognisable brand in Sydney. W&S Digital Marketing creates logos, campaign graphics and print assets for real business use.',
     'h1_main' => 'Graphic Designer Sydney',

@@ -1,7 +1,8 @@
 <?php
 require_once __DIR__ . '/includes/cta-form-handler.php';
-$page_title = 'Digital Marketing for Builders';
-$page_description = 'Showcase your building and construction expertise with project portfolios, clear websites and targeted marketing. Help relevant clients enquire.';
+$page_title = 'Builder Marketing Sydney | More Quote Requests';
+$page_description = 'Show off your projects and get more quote requests. Local SEO, portfolio websites and ads for builders and trades. Get a free review.';
+$page_no_suffix = true; // the title already carries the brand/keyword, so no auto suffix
 include 'header.php';
 ?>
 

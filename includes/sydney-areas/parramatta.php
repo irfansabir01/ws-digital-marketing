@@ -14,7 +14,7 @@ return [
     'short' => 'SEO',
     'primary_keyword' => 'seo parramatta',
     'secondary_keywords' => ['seo agency parramatta', 'seo services parramatta', 'seo company parramatta', 'digital marketing parramatta', 'digital marketing agency parramatta', 'marketing agency parramatta', 'local seo parramatta', 'seo expert parramatta'],
-    'meta_title' => 'SEO Parramatta | W&S Digital Marketing',
+    'meta_title' => 'SEO Parramatta | Local SEO That Brings Enquiries',
     'meta_description' => 'Parramatta SEO for clinics, services and professional firms: better pages, technical fixes and honest reporting.',
     'og_description' => 'Parramatta SEO for clinics, local services and professional firms. Reach customers with better pages, technical fixes and honest reporting.',
     'h1_main' => 'SEO Services in',

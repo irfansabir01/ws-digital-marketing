@@ -1,7 +1,8 @@
 <?php
 require_once __DIR__ . '/includes/cta-form-handler.php';
-$page_title = 'NDIS Provider Digital Marketing';
-$page_description = 'Help participants, supporters and referrers understand your NDIS services with clear websites, local search and content. Make service enquiries easier.';
+$page_title = 'NDIS Provider Marketing | Reach More Participants';
+$page_description = 'Help participants and families find your NDIS service with local SEO and a clear, compliant website. Request a free marketing review.';
+$page_no_suffix = true; // the title already carries the brand/keyword, so no auto suffix
 include 'header.php';
 ?>
 

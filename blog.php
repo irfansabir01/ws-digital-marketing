@@ -1,9 +1,9 @@
 <?php
 require_once __DIR__ . '/includes/cta-form-handler.php';
 require_once __DIR__ . '/includes/blog-seo.php';
-$page_title = 'Digital Marketing Blog: SEO, Google Ads & Website Tips';
+$page_title = 'Digital Marketing Blog | SEO & Google Ads Tips';
 $page_no_suffix = true;
-$page_description = 'Practical SEO, Google Ads, local search and ecommerce guides for Australian businesses, written by the W&S Digital Marketing team. Read our latest articles.';
+$page_description = 'Practical SEO, Google Ads and local search guides for Australian business owners. Read simple tips you can use today to get more leads.';
 
 require_once __DIR__ . '/config.php';
 try {

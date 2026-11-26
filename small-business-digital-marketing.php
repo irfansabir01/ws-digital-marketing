@@ -1,7 +1,8 @@
 <?php
 require_once __DIR__ . '/includes/cta-form-handler.php';
-$page_title = 'Small Business Digital Marketing';
-$page_description = 'Explore websites, local search and focused advertising for Australian small businesses. Get clear marketing priorities shaped around your goals and budget.';
+$page_title = 'Small Business Digital Marketing | Get Customers';
+$page_description = 'Get more customers on a small budget. Websites, local SEO and focused ads for Australian small businesses. Get your free marketing plan.';
+$page_no_suffix = true; // the title already carries the brand/keyword, so no auto suffix
 include 'header.php';
 ?>
 

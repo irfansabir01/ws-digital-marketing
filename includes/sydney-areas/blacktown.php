@@ -14,7 +14,7 @@ return [
     'short' => 'SEO',
     'primary_keyword' => 'seo blacktown',
     'secondary_keywords' => ['seo agency blacktown', 'seo services blacktown', 'seo company blacktown', 'digital marketing blacktown', 'digital marketing agency blacktown', 'marketing agency blacktown', 'local seo blacktown', 'seo expert blacktown'],
-    'meta_title' => 'SEO Blacktown | Reach Local Customers | W&S',
+    'meta_title' => 'SEO Blacktown | Local SEO Services That Get Leads',
     'meta_description' => 'Improve how Blacktown customers find you: local pages, technical fixes and measurable SEO from W&S Digital Marketing.',
     'og_description' => 'Improve how Blacktown customers discover your services with relevant local pages, technical fixes and measurable SEO work from W&S Digital Marketing.',
     'h1_main' => 'SEO Services in',

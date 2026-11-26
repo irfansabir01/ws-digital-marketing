@@ -1,8 +1,9 @@
 <?php
 require_once __DIR__ . '/includes/cta-form-handler.php';
 require_once __DIR__ . '/includes/seo.php';
-$page_title = 'Content Writing Services Australia';
-$page_description = 'Website copy, blog articles and email content written around your audience, brand voice and relevant searches. Request a free content review today.';
+$page_title = 'Content Writing Services Australia | SEO Copy';
+$page_description = 'Get website copy, blogs and emails that rank and convert, written for your audience and brand voice. Request a free content review.';
+$page_no_suffix = true; // the title already carries the brand/keyword, so no auto suffix
 $page_og_image = '/images/photos/content-writing.webp';
 
 // FAQ copy lives here once and feeds both the visible accordion below and

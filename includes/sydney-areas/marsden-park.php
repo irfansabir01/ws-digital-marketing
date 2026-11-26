@@ -14,7 +14,7 @@ return [
     'short' => 'SEO',
     'primary_keyword' => 'seo marsden park',
     'secondary_keywords' => ['seo agency marsden park', 'seo services marsden park', 'seo company marsden park', 'digital marketing marsden park', 'digital marketing agency marsden park', 'marketing agency marsden park', 'local seo marsden park', 'seo expert marsden park'],
-    'meta_title' => 'SEO Marsden Park | Local SEO Services | W&S',
+    'meta_title' => 'SEO Marsden Park | Local SEO to Get More Customers',
     'meta_description' => 'Get found by Marsden Park customers. Practical local SEO, Google Maps improvements and clear reporting from W&S.',
     'og_description' => 'Get found by more local customers in Marsden Park. Explore practical SEO, Google Maps improvements and clear reporting with W&S Digital Marketing.',
     'h1_main' => 'SEO Services in',

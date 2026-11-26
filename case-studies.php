@@ -9,8 +9,9 @@ try {
     $caseStudies = [];
 }
 
-$page_title = 'Website & Marketing Case Studies';
-$page_description = 'Explore W&S Digital Marketing projects across Shopify stores, business websites and SEO. See the clients, project goals and work delivered by our team.';
+$page_title = 'Case Studies | Real Website & SEO Results | W&S';
+$page_description = 'See real websites, Shopify stores and SEO projects we\'ve delivered for Australian businesses. Browse the results, then start yours today.';
+$page_no_suffix = true; // the title already carries the brand/keyword, so no auto suffix
 include 'header.php';
 ?>
 

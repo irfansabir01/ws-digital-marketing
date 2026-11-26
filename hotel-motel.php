@@ -1,7 +1,8 @@
 <?php
 require_once __DIR__ . '/includes/cta-form-handler.php';
-$page_title = 'Hotel & Motel Digital Marketing';
-$page_description = 'Showcase your hotel or motel with clear room information, search visibility and targeted campaigns. Help guests explore your property and book direct.';
+$page_title = 'Hotel & Motel Marketing | Get More Direct Bookings';
+$page_description = 'Boost direct bookings and cut commission fees with SEO, Google Ads and a booking-ready website. Get a free hotel marketing review.';
+$page_no_suffix = true; // the title already carries the brand/keyword, so no auto suffix
 include 'header.php';
 ?>
 

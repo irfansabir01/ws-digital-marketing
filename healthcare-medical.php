@@ -1,7 +1,8 @@
 <?php
 require_once __DIR__ . '/includes/cta-form-handler.php';
-$page_title = 'Healthcare Digital Marketing';
-$page_description = 'Help people find your clinic or medical practice with local search, clear service information and useful websites. Support straightforward enquiries.';
+$page_title = 'Healthcare Marketing Sydney | Get More Patients';
+$page_description = 'Help patients find your clinic or medical practice with local SEO and a clear, trusted website. Get your free healthcare marketing review.';
+$page_no_suffix = true; // the title already carries the brand/keyword, so no auto suffix
 include 'header.php';
 ?>
 

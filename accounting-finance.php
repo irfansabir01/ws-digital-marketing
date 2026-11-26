@@ -1,7 +1,8 @@
 <?php
 require_once __DIR__ . '/includes/cta-form-handler.php';
-$page_title = 'Marketing for Accountants & Finance';
-$page_description = 'Help clients find your accounting, bookkeeping or financial advice firm with local search, clear website content and straightforward enquiry options.';
+$page_title = 'Accountant Marketing Sydney | More Client Leads';
+$page_description = 'Win more clients for your accounting or finance firm with local SEO and a website that converts. Get a free marketing review today.';
+$page_no_suffix = true; // the title already carries the brand/keyword, so no auto suffix
 include 'header.php';
 ?>
 

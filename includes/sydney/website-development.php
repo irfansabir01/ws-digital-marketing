@@ -11,7 +11,7 @@ return [
     'short' => 'Web Design',
     'primary_keyword' => 'web design sydney',
     'secondary_keywords' => ['website design sydney', 'web designer sydney', 'web developer sydney', 'web development sydney', 'website development sydney', 'affordable web design sydney', 'small business website design sydney', 'wordpress web design sydney'],
-    'meta_title' => 'Web Design Sydney | Business Websites | W&S',
+    'meta_title' => 'Web Design Sydney | Business Websites That Convert',
     'meta_description' => 'Mobile-friendly Sydney websites built to turn visitors into enquiries. Plan your site with W&S Digital Marketing.',
     'og_description' => 'Build a clear, mobile-friendly website for your Sydney business. W&S Digital Marketing creates practical pages that help visitors enquire.',
     'h1_main' => 'Web Design Sydney',

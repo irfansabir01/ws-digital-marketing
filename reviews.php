@@ -9,8 +9,9 @@ try {
     $reviews = [];
 }
 
-$page_title = 'Client Reviews & Testimonials';
-$page_description = 'Read client reviews of W&S Digital Marketing covering websites, SEO, ecommerce and advertising. Explore feedback on our work, communication and support.';
+$page_title = 'Client Reviews & Testimonials | W&S Marketing';
+$page_description = 'Read what real clients say about our websites, SEO and ads. See honest feedback on results and support, then start your own project today.';
+$page_no_suffix = true; // the title already carries the brand/keyword, so no auto suffix
 include 'header.php';
 ?>
 

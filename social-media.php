@@ -1,8 +1,9 @@
 <?php
 require_once __DIR__ . '/includes/cta-form-handler.php';
 require_once __DIR__ . '/includes/sydney-pages.php';
-$page_title = 'Social Media Management Australia';
-$page_description = 'Keep your social channels active with content planning, regular posting and community engagement. Explore social media management for your business.';
+$page_title = 'Social Media Management Australia | Grow Followers';
+$page_description = 'Grow an engaged audience with content planning, posting and community care for your brand. Get a free social media strategy review.';
+$page_no_suffix = true; // the title already carries the brand/keyword, so no auto suffix
 include 'header.php';
 ?>
 

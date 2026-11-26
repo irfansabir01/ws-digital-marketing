@@ -24,8 +24,9 @@ $webdevCaseStudies = service_page_case_studies('website-development', $webdevPro
 // Clicks") are combined into one box instead of shown per-business.
 $webdevStats = combine_stats(collect_case_study_stats($webdevCaseStudies));
 
-$page_title = 'Website Design & Development';
-$page_description = 'Create a mobile-friendly business website with clear service information, easy navigation and enquiry options. Talk to W&S about your website project.';
+$page_title = 'Website Design & Development Sydney | Free Quote';
+$page_description = 'Get a fast, mobile-friendly website built to turn visitors into enquiries. See our work and get a free website quote from W&S today.';
+$page_no_suffix = true; // the title already carries the brand/keyword, so no auto suffix
 include 'header.php';
 ?>
 

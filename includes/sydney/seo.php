@@ -11,7 +11,7 @@ return [
     'short' => 'SEO',
     'primary_keyword' => 'seo sydney',
     'secondary_keywords' => ['seo agency sydney', 'seo services sydney', 'seo company sydney', 'seo consultant sydney', 'local seo sydney', 'seo specialist sydney', 'seo expert sydney', 'affordable seo sydney'],
-    'meta_title' => 'SEO Sydney | Local Search Services | W&S',
+    'meta_title' => 'SEO Sydney | Local SEO That Brings Leads | W&S',
     'meta_description' => 'Get found in Sydney searches. W&S Digital Marketing builds local SEO plans around calls, quotes and sales.',
     'og_description' => 'Get found for relevant Sydney searches. W&S Digital Marketing plans technical SEO, local visibility and service content around real enquiries.',
     'h1_main' => 'SEO Sydney',

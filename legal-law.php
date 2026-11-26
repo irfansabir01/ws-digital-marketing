@@ -1,7 +1,8 @@
 <?php
 require_once __DIR__ . '/includes/cta-form-handler.php';
-$page_title = 'Law Firm Digital Marketing';
-$page_description = 'Help prospective clients find your law firm with local search, clear practice area content and professional websites. Support relevant legal enquiries.';
+$page_title = 'Law Firm Marketing Sydney | Attract Better Clients';
+$page_description = 'Win more of the right clients with local SEO, clear practice pages and a professional website for your firm. Free marketing review.';
+$page_no_suffix = true; // the title already carries the brand/keyword, so no auto suffix
 include 'header.php';
 ?>
 

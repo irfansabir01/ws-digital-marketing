@@ -1,7 +1,8 @@
 <?php
 require_once __DIR__ . '/includes/cta-form-handler.php';
-$page_title = 'Dental Digital Marketing';
-$page_description = 'Help patients find your dental practice with local search, clear service content and useful websites. Make appointment enquiries more straightforward.';
+$page_title = 'Dental Marketing Sydney | Get More New Patients';
+$page_description = 'Fill your appointment book with local patients. Dental SEO, Google Ads and websites that get bookings. Get a free practice review.';
+$page_no_suffix = true; // the title already carries the brand/keyword, so no auto suffix
 include 'header.php';
 ?>
 

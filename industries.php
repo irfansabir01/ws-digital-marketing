@@ -1,8 +1,9 @@
 <?php
 require_once __DIR__ . '/includes/cta-form-handler.php';
 require_once __DIR__ . '/includes/seo.php';
-$page_title = 'Digital Marketing by Industry';
-$page_description = 'Digital marketing for trades, healthcare, dental, legal, real estate, NDIS, ecommerce and more. Find website, SEO and advertising support for your sector.';
+$page_title = 'Industry Digital Marketing | Trades to Retail';
+$page_description = 'Marketing built for your industry: trades, health, legal, real estate, NDIS, ecommerce and more. Find your fit and get a free growth plan.';
+$page_no_suffix = true; // the title already carries the brand/keyword, so no auto suffix
 
 // FAQ copy feeds both the visible accordion and the FAQPage schema.
 $industryFaqs = [

@@ -11,7 +11,7 @@ return [
     'short' => 'Ecommerce',
     'primary_keyword' => 'ecommerce web design sydney',
     'secondary_keywords' => ['shopify developer sydney', 'shopify agency sydney', 'ecommerce website development sydney', 'shopify website design sydney', 'shopify experts sydney', 'online store design sydney', 'woocommerce developer sydney', 'shopify store setup sydney'],
-    'meta_title' => 'Ecommerce Web Design Sydney | W&S',
+    'meta_title' => 'Ecommerce Web Design Sydney | Shopify & Woo | W&S',
     'meta_description' => 'Plan a Shopify or WooCommerce store customers trust. W&S Digital Marketing designs Sydney ecommerce sites.',
     'og_description' => 'Plan a Shopify or WooCommerce store that customers can use with confidence. W&S Digital Marketing supports Sydney ecommerce design and development.',
     'h1_main' => 'Ecommerce Web Design Sydney',

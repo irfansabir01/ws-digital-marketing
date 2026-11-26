@@ -1,7 +1,8 @@
 <?php
 require_once __DIR__ . '/includes/cta-form-handler.php';
-$page_title = 'Real Estate Digital Marketing';
-$page_description = "Build your agency's local presence with search, agent branding and property campaigns. Support listing enquiries, inspection requests and appraisals.";
+$page_title = 'Real Estate Marketing Sydney | Win More Listings';
+$page_description = 'Win more listings and buyer enquiries with local SEO, agent branding and property campaigns. Get a free real estate marketing review.';
+$page_no_suffix = true; // the title already carries the brand/keyword, so no auto suffix
 include 'header.php';
 ?>
 

@@ -1,8 +1,9 @@
 <?php
 require_once __DIR__ . '/includes/cta-form-handler.php';
 require_once __DIR__ . '/includes/sydney-pages.php';
-$page_title = 'Graphic Design Services Australia';
-$page_description = 'Build a consistent brand with logo design, advertising creative, social graphics and print materials. Discuss your graphic design needs with W&S.';
+$page_title = 'Graphic Design Services Australia | Logos & Brand';
+$page_description = 'Stand out with logos, branding, social graphics and print design made for your business. See our work and get a free design quote.';
+$page_no_suffix = true; // the title already carries the brand/keyword, so no auto suffix
 include 'header.php';
 ?>
 

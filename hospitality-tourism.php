@@ -1,7 +1,8 @@
 <?php
 require_once __DIR__ . '/includes/cta-form-handler.php';
-$page_title = 'Hospitality & Tourism Marketing';
-$page_description = 'Help diners and visitors discover your restaurant, café, venue or tour business with search, websites and campaigns that support enquiries and bookings.';
+$page_title = 'Hospitality Marketing Sydney | More Bookings Now';
+$page_description = 'Get more diners, guests and tour bookings with local SEO, Google Ads and websites that sell. Request your free hospitality review.';
+$page_no_suffix = true; // the title already carries the brand/keyword, so no auto suffix
 include 'header.php';
 ?>
 

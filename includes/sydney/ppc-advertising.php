@@ -11,7 +11,7 @@ return [
     'short' => 'Google Ads',
     'primary_keyword' => 'google ads agency sydney',
     'secondary_keywords' => ['google ads sydney', 'ppc agency sydney', 'google ads management sydney', 'google ads specialist sydney', 'google ads consultant sydney', 'ppc management sydney', 'adwords agency sydney', 'sem agency sydney'],
-    'meta_title' => 'Google Ads Agency Sydney | PPC | W&S',
+    'meta_title' => 'Google Ads Agency Sydney | Get More Leads | W&S',
     'meta_description' => 'Reach Sydney customers with focused Google Ads. W&S reviews targeting, landing pages and lead tracking.',
     'og_description' => 'Reach relevant Sydney customers with focused Google Ads campaigns. W&S Digital Marketing reviews targeting, landing pages and lead tracking.',
     'h1_main' => 'Google Ads Agency Sydney',

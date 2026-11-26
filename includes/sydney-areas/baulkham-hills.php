@@ -14,7 +14,7 @@ return [
     'short' => 'SEO',
     'primary_keyword' => 'seo baulkham hills',
     'secondary_keywords' => ['seo agency baulkham hills', 'seo services baulkham hills', 'seo company baulkham hills', 'digital marketing baulkham hills', 'digital marketing agency baulkham hills', 'marketing agency baulkham hills', 'local seo baulkham hills', 'seo expert baulkham hills'],
-    'meta_title' => 'SEO Baulkham Hills | W&S Digital Marketing',
+    'meta_title' => 'SEO Baulkham Hills | Get Found by Local Customers',
     'meta_description' => 'Local SEO for Baulkham Hills trades, clinics and shops. Clearer service pages and relevant calls with W&S.',
     'og_description' => 'Local SEO for Baulkham Hills trades, clinics and shops. Build clearer service pages and attract relevant calls with W&S Digital Marketing.',
     'h1_main' => 'SEO Services in',

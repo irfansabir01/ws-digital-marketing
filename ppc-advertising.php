@@ -1,8 +1,9 @@
 <?php
 require_once __DIR__ . '/includes/cta-form-handler.php';
 require_once __DIR__ . '/includes/sydney-pages.php';
-$page_title = 'PPC & Google Ads Agency Australia';
-$page_description = 'Grow leads with expert PPC advertising across Google Ads, Facebook & Instagram. Smart targeting, conversion tracking and clear reports. Get a free ads audit.';
+$page_title = 'Google Ads Agency Australia | PPC That Gets Leads';
+$page_description = 'Get more calls and leads from Google Ads, Facebook and Instagram. Smart targeting, tracked results. Claim your free ads audit today.';
+$page_no_suffix = true; // the title already carries the brand/keyword, so no auto suffix
 include 'header.php';
 ?>
 

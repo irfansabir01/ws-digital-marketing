@@ -1,7 +1,8 @@
 <?php
 require_once __DIR__ . '/includes/cta-form-handler.php';
-$page_title = 'Digital Marketing for Trades';
-$page_description = 'Help customers find your trade business with local search, clear service pages and targeted advertising. Support calls, quote requests and repair enquiries.';
+$page_title = 'Trades Marketing Sydney | More Calls & Quotes';
+$page_description = 'Get more calls and quote requests for your plumbing, electrical or trade business with local SEO and ads. Get your free marketing review.';
+$page_no_suffix = true; // the title already carries the brand/keyword, so no auto suffix
 include 'header.php';
 ?>
 

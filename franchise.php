@@ -1,7 +1,8 @@
 <?php
 require_once __DIR__ . '/includes/cta-form-handler.php';
-$page_title = 'Franchise Digital Marketing';
-$page_description = 'Support your franchise locations with local search, location pages and coordinated advertising. Keep your brand consistent across the network.';
+$page_title = 'Franchise Marketing Australia | Local Lead Growth';
+$page_description = 'Drive enquiries to every franchise location with local SEO, location pages and coordinated ads. Get your free franchise growth plan today.';
+$page_no_suffix = true; // the title already carries the brand/keyword, so no auto suffix
 include 'header.php';
 ?>
 

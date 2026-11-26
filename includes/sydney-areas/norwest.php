@@ -14,7 +14,7 @@ return [
     'short' => 'SEO',
     'primary_keyword' => 'seo norwest',
     'secondary_keywords' => ['seo agency norwest', 'seo services norwest', 'seo company norwest', 'digital marketing norwest', 'digital marketing agency norwest', 'marketing agency norwest', 'local seo norwest', 'seo expert norwest'],
-    'meta_title' => 'SEO Norwest | W&S Digital Marketing',
+    'meta_title' => 'SEO Norwest | Local SEO for Business Parks | W&S',
     'meta_description' => 'SEO for Norwest businesses: clearer capability pages, qualified enquiries and plain-English reporting from W&S.',
     'og_description' => 'SEO services for Norwest businesses. Improve relevant search visibility, qualified enquiries and reporting with W&S Digital Marketing.',
     'h1_main' => 'SEO Services in',

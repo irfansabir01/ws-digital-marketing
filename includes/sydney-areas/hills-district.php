@@ -14,7 +14,7 @@ return [
     'short' => 'SEO',
     'primary_keyword' => 'seo hills district',
     'secondary_keywords' => ['seo agency hills district', 'seo services hills district', 'seo company hills district', 'digital marketing hills district', 'digital marketing agency hills district', 'marketing agency hills district', 'local seo hills district', 'seo expert hills district'],
-    'meta_title' => 'SEO Hills District | W&S Digital Marketing',
+    'meta_title' => 'SEO Hills District | Local Search for Enquiries',
     'meta_description' => 'SEO for Hills District trades, clinics, retailers and B2B teams across Castle Hill, Norwest and Rouse Hill.',
     'og_description' => 'SEO for Hills District trades, clinics, retailers and B2B teams. Plan local search across Castle Hill, Norwest, Rouse Hill and beyond.',
     'h1_main' => 'SEO Services in',

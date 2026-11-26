@@ -1,7 +1,8 @@
 <?php
 require_once __DIR__ . '/includes/cta-form-handler.php';
-$page_title = 'Ecommerce Marketing Services';
-$page_description = 'Connect SEO, paid advertising, email campaigns and store improvements around your products and customers. Explore digital marketing for online retailers.';
+$page_title = 'Ecommerce Marketing Australia | Grow Online Sales';
+$page_description = 'Turn browsers into buyers with SEO, Google Shopping, email and store improvements for online retailers. Get your free store review today.';
+$page_no_suffix = true; // the title already carries the brand/keyword, so no auto suffix
 include 'header.php';
 ?>
 

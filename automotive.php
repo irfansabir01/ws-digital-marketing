@@ -1,7 +1,8 @@
 <?php
 require_once __DIR__ . '/includes/cta-form-handler.php';
-$page_title = 'Automotive Digital Marketing';
-$page_description = 'Explore local SEO, websites and advertising for automotive businesses. Help customers find your services and make booking or sales enquiries.';
+$page_title = 'Automotive Marketing Sydney | Get More Bookings';
+$page_description = 'Fill your workshop or yard with local customers. SEO, Google Ads and websites built for automotive businesses. Get your free quote today.';
+$page_no_suffix = true; // the title already carries the brand/keyword, so no auto suffix
 include 'header.php';
 ?>
 

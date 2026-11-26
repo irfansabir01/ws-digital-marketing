@@ -1,6 +1,7 @@
 <?php
-$page_title = 'Privacy Policy';
-$page_description = 'Read how W&S Digital Marketing collects, uses and protects personal information, including enquiry details, cookies, third-party services and your rights.';
+$page_title = 'Privacy Policy | W&S Digital Marketing Australia';
+$page_description = 'Read how W&S Digital Marketing collects, uses and protects your personal information, cookies and enquiry details. Know your rights.';
+$page_no_suffix = true; // the title already carries the brand/keyword, so no auto suffix
 include 'header.php';
 ?>
 

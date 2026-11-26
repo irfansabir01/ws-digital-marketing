@@ -36,8 +36,9 @@ $seoCaseStudies = service_page_case_studies('seo', $seoProjectSlugs);
 // Clicks") are combined into one box instead of shown per-business.
 $seoStats = combine_stats(collect_case_study_stats($seoCaseStudies));
 
-$page_title = 'SEO Services Australia';
-$page_description = 'Help customers find your business with technical SEO, local search optimisation and useful content. Request a free review of your search visibility.';
+$page_title = 'SEO Services Australia | Get Found & Win Leads';
+$page_description = 'Rank higher where your customers search. Technical SEO, local SEO and content that brings real enquiries. Get your free SEO review today.';
+$page_no_suffix = true; // the title already carries the brand/keyword, so no auto suffix
 include 'header.php';
 ?>
 

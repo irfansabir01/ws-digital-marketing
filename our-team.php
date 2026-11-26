@@ -1,7 +1,8 @@
 <?php
 require_once __DIR__ . '/includes/cta-form-handler.php';
-$page_title = 'Meet Our Digital Marketing Team';
-$page_description = "Meet the people behind W&S Digital Marketing. Explore our team's roles across strategy, SEO, advertising, website development, content and design.";
+$page_title = 'Meet the W&S Digital Marketing Team in Sydney';
+$page_description = 'Meet the SEO, ads, web design and content specialists behind your results at W&S Digital Marketing. Get to know us, then say hello today.';
+$page_no_suffix = true; // the title already carries the brand/keyword, so no auto suffix
 
 require_once __DIR__ . '/config.php';
 try {

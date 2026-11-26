@@ -11,7 +11,7 @@ return [
     'short' => 'Social Media',
     'primary_keyword' => 'social media marketing agency sydney',
     'secondary_keywords' => ['social media marketing sydney', 'social media agency sydney', 'social media management sydney', 'social media manager sydney', 'facebook ads agency sydney', 'social media content creation sydney', 'instagram marketing agency sydney', 'tiktok marketing agency sydney'],
-    'meta_title' => 'Social Media Marketing Sydney | W&S',
+    'meta_title' => 'Social Media Marketing Sydney | Posts & Ads | W&S',
     'meta_description' => 'Social content with a clear goal for Sydney businesses: posts, creative and paid campaigns from W&S Digital Marketing.',
     'og_description' => 'Make social content work harder for your Sydney business. W&S Digital Marketing plans useful posts, creative and paid campaigns with clear goals.',
     'h1_main' => 'Social Media Marketing Agency Sydney',

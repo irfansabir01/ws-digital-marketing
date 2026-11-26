@@ -66,8 +66,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $selected_plan = $_POST['plan'] ?? $_GET['plan'] ?? '';
 $selected_plan = in_array($selected_plan, $valid_plans, true) ? $selected_plan : '';
 
-$page_title = 'Contact Us';
-$page_description = 'Contact W&S Digital Marketing to discuss your website, SEO or advertising needs. Request a free growth plan shaped around your business and goals.';
+$page_title = 'Contact W&S Digital Marketing | Free Growth Plan';
+$page_description = 'Talk to a Sydney marketing expert about SEO, Google Ads or your website. Share your goals and get a free growth plan, no obligation.';
+$page_no_suffix = true; // the title already carries the brand/keyword, so no auto suffix
 include 'header.php';
 ?>
 

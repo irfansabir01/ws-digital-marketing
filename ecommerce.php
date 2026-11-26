@@ -25,8 +25,9 @@ $ecommerceCaseStudies = service_page_case_studies('ecommerce', $ecommerceProject
 // Clicks") are combined into one box instead of shown per-business.
 $ecommerceStats = combine_stats(collect_case_study_stats($ecommerceCaseStudies));
 
-$page_title = 'Shopify & WooCommerce Development';
-$page_description = 'Build or improve your Shopify or WooCommerce store with clear product pages, organised collections and straightforward checkout. Discuss your project.';
+$page_title = 'Shopify & WooCommerce Development | Sell Online';
+$page_description = 'Launch a fast Shopify or WooCommerce store built to convert, with clear product pages and easy checkout. Get your free project quote today.';
+$page_no_suffix = true; // the title already carries the brand/keyword, so no auto suffix
 include 'header.php';
 ?>
 

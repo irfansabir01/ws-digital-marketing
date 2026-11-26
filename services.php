@@ -2,8 +2,9 @@
 require_once __DIR__ . '/includes/cta-form-handler.php';
 require_once __DIR__ . '/includes/sydney-pages.php';
 require_once __DIR__ . '/includes/seo.php';
-$page_title = 'Digital Marketing Services Australia';
-$page_description = 'Explore SEO, Google Ads, social media, websites, ecommerce, graphic design and content writing for Australian businesses. Request a free growth plan.';
+$page_title = 'Digital Marketing Services Australia | Free Plan';
+$page_description = 'SEO, Google Ads, social media, websites and design to grow your business. See every service and request your free growth plan today.';
+$page_no_suffix = true; // the title already carries the brand/keyword, so no auto suffix
 
 // [anchor id, icon, title, image, image alt, description, link]
 $services = [

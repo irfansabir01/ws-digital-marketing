@@ -14,7 +14,7 @@ return [
     'short' => 'SEO',
     'primary_keyword' => 'seo rouse hill',
     'secondary_keywords' => ['seo agency rouse hill', 'seo services rouse hill', 'seo company rouse hill', 'digital marketing rouse hill', 'digital marketing agency rouse hill', 'marketing agency rouse hill', 'local seo rouse hill', 'seo expert rouse hill'],
-    'meta_title' => 'SEO Rouse Hill | Local Search Help | W&S',
+    'meta_title' => 'SEO Rouse Hill | Local SEO That Brings Customers',
     'meta_description' => 'Get relevant Rouse Hill enquiries with clearer service pages, local SEO and practical reporting from W&S.',
     'og_description' => 'Get relevant Rouse Hill enquiries with clearer service pages, local SEO improvements and practical reporting from W&S Digital Marketing.',
     'h1_main' => 'SEO Services in',

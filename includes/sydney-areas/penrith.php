@@ -14,7 +14,7 @@ return [
     'short' => 'SEO',
     'primary_keyword' => 'seo penrith',
     'secondary_keywords' => ['seo agency penrith', 'seo services penrith', 'seo company penrith', 'digital marketing penrith', 'digital marketing agency penrith', 'marketing agency penrith', 'local seo penrith', 'seo expert penrith'],
-    'meta_title' => 'SEO Penrith | Local SEO Agency | W&S',
+    'meta_title' => 'SEO Penrith | Local SEO Agency | More Enquiries',
     'meta_description' => 'Reach more relevant Penrith enquiries with helpful content, better local discovery and clear SEO priorities from W&S.',
     'og_description' => 'Reach more relevant Penrith enquiries through helpful service content, better local discovery and clear SEO priorities from W&S Digital Marketing.',
     'h1_main' => 'SEO Services in',

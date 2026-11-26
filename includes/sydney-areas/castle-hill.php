@@ -14,7 +14,7 @@ return [
     'short' => 'SEO',
     'primary_keyword' => 'seo castle hill',
     'secondary_keywords' => ['seo agency castle hill', 'seo services castle hill', 'seo company castle hill', 'digital marketing castle hill', 'digital marketing agency castle hill', 'marketing agency castle hill', 'local seo castle hill', 'seo expert castle hill'],
-    'meta_title' => 'SEO Castle Hill | Local SEO Services | W&S',
+    'meta_title' => 'SEO Castle Hill | Local SEO Agency | More Calls',
     'meta_description' => 'Help Castle Hill customers choose you with clearer service pages, local SEO and transparent reporting from W&S.',
     'og_description' => 'Help Castle Hill customers choose your business with clearer service pages, practical local SEO and transparent reporting from W&S Digital Marketing.',
     'h1_main' => 'SEO Services in',

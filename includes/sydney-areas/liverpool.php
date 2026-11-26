@@ -14,7 +14,7 @@ return [
     'short' => 'SEO',
     'primary_keyword' => 'seo liverpool',
     'secondary_keywords' => ['seo agency liverpool', 'seo services liverpool', 'seo company liverpool', 'digital marketing liverpool', 'digital marketing agency liverpool', 'marketing agency liverpool', 'local seo liverpool', 'seo expert liverpool'],
-    'meta_title' => 'SEO Liverpool | Local SEO Services | W&S',
+    'meta_title' => 'SEO Liverpool | Local SEO to Get More Customers',
     'meta_description' => 'Reach more relevant Liverpool customers with local SEO and service pages built for enquiries. Talk to W&S.',
     'og_description' => 'Reach more relevant Liverpool customers with local SEO, technical improvements and service pages built for enquiries. Talk to W&S Digital Marketing.',
     'h1_main' => 'SEO Services in',

@@ -14,7 +14,7 @@ return [
     'short' => 'SEO',
     'primary_keyword' => 'seo bankstown',
     'secondary_keywords' => ['seo agency bankstown', 'seo services bankstown', 'seo company bankstown', 'digital marketing bankstown', 'digital marketing agency bankstown', 'marketing agency bankstown', 'local seo bankstown', 'seo expert bankstown'],
-    'meta_title' => 'SEO Bankstown | Local SEO Agency | W&S',
+    'meta_title' => 'SEO Bankstown | Local SEO That Brings Enquiries',
     'meta_description' => 'Make your Bankstown business easier to find and contact with local SEO and helpful service content from W&S.',
     'og_description' => 'Make your Bankstown business easier to find and contact with local SEO, helpful service content and website improvements. Talk to W&S.',
     'h1_main' => 'SEO Services in',

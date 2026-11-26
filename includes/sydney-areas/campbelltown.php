@@ -14,7 +14,7 @@ return [
     'short' => 'SEO',
     'primary_keyword' => 'seo campbelltown',
     'secondary_keywords' => ['seo agency campbelltown', 'seo services campbelltown', 'seo company campbelltown', 'digital marketing campbelltown', 'digital marketing agency campbelltown', 'marketing agency campbelltown', 'local seo campbelltown', 'seo expert campbelltown'],
-    'meta_title' => 'SEO Campbelltown | Local SEO Agency | W&S',
+    'meta_title' => 'SEO Campbelltown | Get Found by Local Customers',
     'meta_description' => 'Grow relevant enquiries across Campbelltown and Macarthur with practical local SEO and clear reporting from W&S.',
     'og_description' => 'Grow relevant enquiries across Campbelltown and Macarthur with practical local SEO, website improvements and clear reporting. Speak with W&S.',
     'h1_main' => 'SEO Services in',

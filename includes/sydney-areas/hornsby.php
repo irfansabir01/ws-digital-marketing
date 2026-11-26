@@ -14,7 +14,7 @@ return [
     'short' => 'SEO',
     'primary_keyword' => 'seo hornsby',
     'secondary_keywords' => ['seo agency hornsby', 'seo services hornsby', 'seo company hornsby', 'digital marketing hornsby', 'digital marketing agency hornsby', 'marketing agency hornsby', 'local seo hornsby', 'seo expert hornsby'],
-    'meta_title' => 'SEO Hornsby | Local SEO Services | W&S',
+    'meta_title' => 'SEO Hornsby | Local SEO Agency | Get More Calls',
     'meta_description' => 'Help Hornsby customers find and book your business. Local search and website SEO from W&S Digital Marketing.',
     'og_description' => 'Help Hornsby customers discover your business and book with confidence. Explore local search and website SEO services from W&S Digital Marketing.',
     'h1_main' => 'SEO Services in',

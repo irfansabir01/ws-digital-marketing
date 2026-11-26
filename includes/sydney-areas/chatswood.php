@@ -14,7 +14,7 @@ return [
     'short' => 'SEO',
     'primary_keyword' => 'seo chatswood',
     'secondary_keywords' => ['seo agency chatswood', 'seo services chatswood', 'seo company chatswood', 'digital marketing chatswood', 'digital marketing agency chatswood', 'marketing agency chatswood', 'local seo chatswood', 'seo expert chatswood'],
-    'meta_title' => 'SEO Chatswood | Local Search Agency | W&S',
+    'meta_title' => 'SEO Chatswood | Local Search That Gets Enquiries',
     'meta_description' => 'Stand out in Chatswood with SEO that helps customers compare, find and choose your services. Talk to W&S.',
     'og_description' => 'Stand out in Chatswood with SEO that helps customers compare, find and choose your services. Discuss a focused search plan with W&S.',
     'h1_main' => 'SEO Services in',

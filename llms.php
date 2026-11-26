@@ -98,6 +98,11 @@ $updated = date('Y-m-d');
 - [SEO Parramatta](<?php echo $base; ?>/seo/sydney/parramatta): SEO for Parramatta clinics, hospitality, services and professional firms, including multi-location accuracy and city-centre competition.
 - [SEO Hills District](<?php echo $base; ?>/seo/sydney/hills-district): Regional SEO planning across Castle Hill, Norwest, Baulkham Hills and Rouse Hill for mixed local and B2B businesses.
 - [SEO Western Sydney](<?php echo $base; ?>/seo/sydney/western-sydney): Regional SEO for Western Sydney businesses serving several suburbs, with a location matrix that avoids duplicate pages.
+- [SEO Liverpool](<?php echo $base; ?>/seo/sydney/liverpool): SEO for Liverpool health, logistics, industrial and commercial supplier businesses, covering Casula, Moorebank and Prestons without duplicate pages.
+- [SEO Chatswood](<?php echo $base; ?>/seo/sydney/chatswood): SEO for Chatswood professional services, retailers, restaurants and multilingual customers in the North Shore commercial centre.
+- [SEO Hornsby](<?php echo $base; ?>/seo/sydney/hornsby): Local SEO for Hornsby allied health, dental, trades and tutoring businesses serving the Upper North Shore.
+- [SEO Campbelltown](<?php echo $base; ?>/seo/sydney/campbelltown): SEO for Campbelltown and Macarthur trades, healthcare, warehousing and business supply companies.
+- [SEO Bankstown](<?php echo $base; ?>/seo/sydney/bankstown): Local SEO for Bankstown retailers, mobile trades and commercial suppliers serving a multilingual customer base.
 - [Web Design Sydney](<?php echo $base; ?>/website-development/sydney): Mobile-friendly business websites for Sydney companies, from discovery and sitemap to testing, launch and handover.
 - [Google Ads Agency Sydney](<?php echo $base; ?>/ppc-advertising/sydney): Google Ads management for Sydney businesses: campaign planning, ad copy, landing page review, conversion tracking and monthly reporting.
 - [Social Media Marketing Sydney](<?php echo $base; ?>/social-media/sydney): Content planning, creation, publishing and paid social for Sydney businesses, with reporting that explains what changed.

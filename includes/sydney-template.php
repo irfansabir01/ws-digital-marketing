@@ -82,6 +82,8 @@ $nodes = [
     [
         '@type' => 'WebPage', '@id' => $url . '#webpage', 'url' => $url, 'name' => $sy['meta_title'], 'description' => $sy['og_description'],
         'inLanguage' => 'en-AU', 'isPartOf' => ['@id' => $base . '/#website'], 'primaryImageOfPage' => ['@id' => $url . '#primaryimage'],
+        // Publication date (set per page in its content file) helps search engines see how current the page is.
+        ] + (!empty($sy['published']) ? ['datePublished' => $sy['published'], 'dateModified' => $sy['published']] : []) + [
         'breadcrumb' => ['@id' => $url . '#breadcrumb'], 'about' => ['@id' => $url . '#service'], 'mainEntity' => ['@id' => $url . '#service'],
     ],
     [
@@ -101,11 +103,27 @@ include __DIR__ . '/../header.php';
 // ------------------------------------------------------------------ small helpers
 $paras = static function (array $list): string {
     // A paragraph marked '§LINK§' is a one-line pointer to another page: shown as a highlighted link bar.
-    return implode('', array_map(static fn($p) => strpos($p, '§LINK§') === 0
-        ? '<p class="sy-linkline"><i class="fa-solid fa-arrow-right-long" aria-hidden="true"></i><span>' . substr($p, strlen('§LINK§')) . '</span></p>'
-        : '<p>' . $p . '</p>', $list));
+    return implode('', array_map(static function ($p) {
+        if (strpos($p, '§CTA§') === 0) {
+            // '§CTA§' marks a button label from the copy: an existing link keeps its address, otherwise it goes to the form.
+            $label = substr($p, strlen('§CTA§'));
+            $href = '#contact';
+            if (preg_match('/<a [^>]*href="([^"]*)"[^>]*>(.*?)<\/a>/s', $label, $m)) {
+                $href = $m[1];
+                $label = $m[2];
+            }
+            return '<p class="sy-ctaline"><a class="btn-primary" href="' . htmlspecialchars($href, ENT_QUOTES, 'UTF-8') . '">' . strtoupper(strip_tags($label)) . ' <i class="fa-solid fa-arrow-right" style="margin-left: 5px;" aria-hidden="true"></i></a></p>';
+        }
+        return strpos($p, '§LINK§') === 0
+            ? '<p class="sy-linkline"><i class="fa-solid fa-arrow-right-long" aria-hidden="true"></i><span>' . substr($p, strlen('§LINK§')) . '</span></p>'
+            : '<p>' . $p . '</p>';
+    }, $list));
 };
 $tocItems = [];
+$usePanel = ($sy['toc'] ?? 'panel') !== 'inline';      // floating "Sections" button + split-view list (default for every Sydney page)
+if ($usePanel && !empty($sy['intro_title'])) {
+    $tocItems[] = ['sy-intro', $sy['intro_title']];
+}
 foreach ($sy['sections'] as $sec) {
     $tocItems[] = [$sec['id'], $sec['title']];
 }
@@ -161,7 +179,7 @@ $registry = sydney_registry();
 ?>
 
     <!-- HERO -->
-    <section class="hero sy-hero" style="padding-bottom: clamp(40px, 7vw, 70px);">
+    <section class="hero sy-hero"<?php echo !empty($sy['fx']) ? ' data-sy-fx' : ''; ?> style="padding-bottom: clamp(40px, 7vw, 70px);">
         <div class="container hero-content">
             <nav class="sy-crumbs" aria-label="Breadcrumb">
                 <ol>
@@ -188,11 +206,12 @@ $registry = sydney_registry();
     </section>
 
     <!-- INTRO -->
-    <section class="agency-section sy-intro fade-up">
+    <section class="agency-section sy-intro fade-up" id="sy-intro">
         <div class="container">
             <div class="agency-grid">
                 <div class="agency-text">
                     <span class="eyebrow">AT A GLANCE</span>
+                    <?php if (!empty($sy['intro_title'])): ?><h2 class="sy-h2"><?php echo $e($sy['intro_title']); ?></h2><?php endif; ?>
                     <?php echo $paras($sy['intro']); ?>
                     <ul class="sy-facts">
                         <li><i class="fa-solid fa-bullseye"></i><span><strong>Service</strong> <?php echo $e(html_entity_decode($sy['service'], ENT_QUOTES, 'UTF-8')); ?> for <?php echo $isArea ? $e($sy['suburb']) : 'Sydney'; ?> businesses</span></li>
@@ -203,6 +222,7 @@ $registry = sydney_registry();
                 </div>
                 <div class="agency-image-wrapper agency-image-natural"><?php echo $syImg('a', '(max-width: 900px) 92vw, 560px'); ?></div>
             </div>
+            <?php if (!$usePanel): ?>
             <details class="sy-toc">
                 <summary>On this page <span><?php echo count($tocItems); ?> sections</span></summary>
                 <ol>
@@ -211,6 +231,7 @@ $registry = sydney_registry();
                     <?php endforeach; ?>
                 </ol>
             </details>
+            <?php endif; ?>
         </div>
     </section>
 
@@ -341,7 +362,7 @@ foreach ($sy['sections'] as $i => $sec):
                 <div class="sy-callout-body">
                     <h2 class="sy-h2"><?php echo $e($sec['title']); ?></h2>
                     <?php echo $paras($sec['paras']); ?>
-                    <?php if (preg_match('/cost|spend|price|budget/i', $sec['title'])): ?>
+                    <?php if (preg_match('/cost|spend|price|budget|invest|how much/i', $sec['title'])): ?>
                     <a href="/pricing" class="btn-secondary sy-callout-btn">SEE PRICING PLANS <i class="fa-solid fa-arrow-right" style="margin-left: 6px;"></i></a>
                     <?php endif; ?>
                 </div>
@@ -628,4 +649,20 @@ foreach ($sy['sections'] as $i => $sec):
         </div>
     </section>
 
+<?php if ($usePanel): ?>
+    <!-- SECTION LIST: floating button above the WhatsApp button opens a split-view list that stays open while scrolling -->
+    <button type="button" class="sy-toc-fab" aria-expanded="false" aria-controls="syTocPanel"><i class="fa-solid fa-list-ul" aria-hidden="true"></i><span class="sy-toc-fab-label">Sections</span></button>
+    <nav class="sy-toc-panel" id="syTocPanel" aria-label="On this page" aria-hidden="true">
+        <div class="sy-toc-head">
+            <div><strong>On this page</strong><span><?php echo count($tocItems); ?> sections</span></div>
+            <button type="button" class="sy-toc-close" aria-label="Close the section list"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+        </div>
+        <div class="sy-toc-bar" aria-hidden="true"><span></span></div>
+        <ol class="sy-toc-list">
+            <?php foreach ($tocItems as $tn => [$tid, $ttitle]): ?>
+            <li><a href="#<?php echo $e($tid); ?>" tabindex="-1"><span class="sy-toc-n"><?php echo sprintf('%02d', $tn + 1); ?></span><span class="sy-toc-t"><?php echo $e($ttitle); ?></span></a></li>
+            <?php endforeach; ?>
+        </ol>
+    </nav>
+<?php endif; ?>
 <?php include __DIR__ . '/../footer.php'; ?>

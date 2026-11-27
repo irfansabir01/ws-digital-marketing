@@ -103,6 +103,11 @@ $updated = date('Y-m-d');
 - [SEO Hornsby](<?php echo $base; ?>/seo/sydney/hornsby): Local SEO for Hornsby allied health, dental, trades and tutoring businesses serving the Upper North Shore.
 - [SEO Campbelltown](<?php echo $base; ?>/seo/sydney/campbelltown): SEO for Campbelltown and Macarthur trades, healthcare, warehousing and business supply companies.
 - [SEO Bankstown](<?php echo $base; ?>/seo/sydney/bankstown): Local SEO for Bankstown retailers, mobile trades and commercial suppliers serving a multilingual customer base.
+- [SEO Mount Druitt](<?php echo $base; ?>/seo/sydney/mount-druitt): Local SEO for Mount Druitt trades, workshops, shops and clinics reaching customers across Rooty Hill, Doonside and Minchinbury.
+- [SEO North Sydney](<?php echo $base; ?>/seo/sydney/north-sydney): Local SEO for North Sydney office-precinct firms — advisory, legal, technology and health practices — focused on credible commercial enquiries, not broad traffic.
+- [SEO Northern Beaches](<?php echo $base; ?>/seo/sydney/northern-beaches): Regional SEO for Northern Beaches trades, hospitality and retail businesses reaching customers across Brookvale, Dee Why, Manly and Mona Vale.
+- [SEO Ryde](<?php echo $base; ?>/seo/sydney/ryde): SEO for Ryde and Macquarie Park technology firms, professional services and local businesses reaching the right customers.
+- [SEO Wetherill Park](<?php echo $base; ?>/seo/sydney/wetherill-park): SEO for Wetherill Park manufacturers, wholesalers and industrial suppliers, built around product discovery, specifications and quotation enquiries.
 - [Web Design Sydney](<?php echo $base; ?>/website-development/sydney): Mobile-friendly business websites for Sydney companies, from discovery and sitemap to testing, launch and handover.
 - [Google Ads Agency Sydney](<?php echo $base; ?>/ppc-advertising/sydney): Google Ads management for Sydney businesses: campaign planning, ad copy, landing page review, conversion tracking and monthly reporting.
 - [Social Media Marketing Sydney](<?php echo $base; ?>/social-media/sydney): Content planning, creation, publishing and paid social for Sydney businesses, with reporting that explains what changed.

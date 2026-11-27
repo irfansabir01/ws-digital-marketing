@@ -133,6 +133,19 @@ ErrorDocument 404 /not-found.php
     RewriteRule ^(seo|website-development|ppc-advertising|social-media|graphic-design|ecommerce)/sydney/$ /$1/sydney [R=301,L]
     RewriteRule ^(seo|website-development|ppc-advertising|social-media|graphic-design|ecommerce)/sydney$ sydney-service.php?s=$1 [L,QSA]
 
+    # 0.9) Trailing slash: every URL is canonical without a trailing slash.
+    #      /faq/ -> /faq, /about/ -> /about, /blog/<slug>/
+    #      -> /blog/<slug>, and so on, in one 301 hop, so a trailing slash
+    #      never 404s. The homepage "/" is untouched (the pattern needs a
+    #      character before the slash), real directories are untouched
+    #      (css/, js/, images/, admin/, etc. need their slash), the admin
+    #      panel is excluded like in rules 1 and 2, and the query string
+    #      is preserved. Placed before rule 1 so it runs before the
+    #      .php-stripping and internal clean-URL rewrites below.
+    RewriteCond %{REQUEST_URI} !^/admin/
+    RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} !-d
+    RewriteRule ^(.+)/$ /$1 [R=301,L]
+
     # 1) A browser that actually requests a URL ending in .php gets sent to
     #    the same URL minus .php, permanently (301) so bookmarks and search
     #    engines update. THE_REQUEST is the raw request line as the browser

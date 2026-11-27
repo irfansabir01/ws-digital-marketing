@@ -218,6 +218,11 @@ $seo_og_type = !empty($page_og_type) ? $page_og_type : 'website';
                                             <li><a href="/seo/sydney/hornsby">SEO Hornsby</a></li>
                                             <li><a href="/seo/sydney/campbelltown">SEO Campbelltown</a></li>
                                             <li><a href="/seo/sydney/bankstown">SEO Bankstown</a></li>
+                                            <li><a href="/seo/sydney/mount-druitt">SEO Mount Druitt</a></li>
+                                            <li><a href="/seo/sydney/north-sydney">SEO North Sydney</a></li>
+                                            <li><a href="/seo/sydney/northern-beaches">SEO Northern Beaches</a></li>
+                                            <li><a href="/seo/sydney/ryde">SEO Ryde</a></li>
+                                            <li><a href="/seo/sydney/wetherill-park">SEO Wetherill Park</a></li>
                                         </ul>
                                     </li>
                                 </ul>

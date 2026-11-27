@@ -177,6 +177,16 @@ function sydney_area_registry(): array
             'teaser' => 'SEO for Campbelltown and Macarthur trades, healthcare and business suppliers planning their next stage of growth.'],
         'bankstown' => ['path' => '/seo/sydney/bankstown', 'label' => 'SEO Bankstown', 'suburb' => 'Bankstown',
             'teaser' => 'Local SEO for Bankstown shops, mobile trades and commercial suppliers serving a multilingual customer base.'],
+        'mount-druitt' => ['path' => '/seo/sydney/mount-druitt', 'label' => 'SEO Mount Druitt', 'suburb' => 'Mount Druitt',
+            'teaser' => 'Local SEO for Mount Druitt trades, workshops, shops and clinics reaching customers across Rooty Hill, Doonside and Minchinbury.'],
+        'north-sydney' => ['path' => '/seo/sydney/north-sydney', 'label' => 'SEO North Sydney', 'suburb' => 'North Sydney',
+            'teaser' => 'Local SEO for North Sydney office-precinct firms — advisory, legal, technology and health practices — focused on credible commercial enquiries, not broad traffic.'],
+        'northern-beaches' => ['path' => '/seo/sydney/northern-beaches', 'label' => 'SEO Northern Beaches', 'suburb' => 'Northern Beaches',
+            'teaser' => 'Regional SEO for Northern Beaches trades, hospitality and retail businesses reaching customers across Brookvale, Dee Why, Manly and Mona Vale.'],
+        'ryde' => ['path' => '/seo/sydney/ryde', 'label' => 'SEO Ryde', 'suburb' => 'Ryde',
+            'teaser' => 'SEO for Ryde and Macquarie Park technology firms, professional services and local businesses reaching the right customers.'],
+        'wetherill-park' => ['path' => '/seo/sydney/wetherill-park', 'label' => 'SEO Wetherill Park', 'suburb' => 'Wetherill Park',
+            'teaser' => 'SEO for Wetherill Park manufacturers, wholesalers and industrial suppliers, built around product discovery, specifications and quotation enquiries.'],
     ];
 }
 

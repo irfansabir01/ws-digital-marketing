@@ -82,10 +82,19 @@ function csrf_check(): void
 // null if no file was uploaded / upload was invalid.
 function handle_image_upload(string $fieldName, string $destDir, string $slugHint): ?string
 {
-    if (empty($_FILES[$fieldName]) || $_FILES[$fieldName]['error'] === UPLOAD_ERR_NO_FILE) {
+    if (empty($_FILES[$fieldName])) {
         return null;
     }
-    $file = $_FILES[$fieldName];
+    return store_uploaded_image($_FILES[$fieldName], $destDir, $slugHint);
+}
+
+// Same as handle_image_upload() for one already-extracted $_FILES entry
+// (name/tmp_name/error/size), e.g. one row of a multi-file form.
+function store_uploaded_image(array $file, string $destDir, string $slugHint): ?string
+{
+    if (!isset($file['error']) || $file['error'] === UPLOAD_ERR_NO_FILE) {
+        return null;
+    }
     if ($file['error'] !== UPLOAD_ERR_OK) {
         throw new RuntimeException('Upload failed (error code ' . $file['error'] . ').');
     }

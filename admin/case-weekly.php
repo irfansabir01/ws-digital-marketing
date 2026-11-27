@@ -75,18 +75,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (!$isBaseline && !preg_match('/^\d{4}-\d{2}-\d{2}$/', $end)) {
                 $end = date('Y-m-d', strtotime($start . ' +6 days'));
             }
-            if ($isBaseline) {
-                $sql = 'UPDATE case_study_weekly_stats SET label = ?, ' . implode(' = ?, ', $metricCols) . ' = ? WHERE id = ?';
-                $pdo->prepare($sql)->execute([mb_substr($label ?: 'Before weekly tracking', 0, 100), ...$values, $rowId]);
-            } elseif ($rowId) {
-                $sql = 'UPDATE case_study_weekly_stats SET week_start = ?, week_end = ?, ' . implode(' = ?, ', $metricCols) . ' = ? WHERE id = ?';
-                $pdo->prepare($sql)->execute([$start, $end, ...$values, $rowId]);
-            } else {
-                $sql = 'INSERT INTO case_study_weekly_stats (case_study_id, is_baseline, label, week_start, week_end, ' . implode(', ', $metricCols) . ') VALUES (?, 0, \'\', ?, ?, ' . implode(', ', array_fill(0, count($metricCols), '?')) . ')';
-                $pdo->prepare($sql)->execute([$id, $start, $end, ...$values]);
+            // Optional screenshots: proof for this week's Search Console / Business
+            // Profile numbers (see weekly_sync_case_sections()).
+            $gscUp = $gbpUp = null;
+            if (!$isBaseline) {
+                try {
+                    $gscUp = handle_image_upload('gsc_image_file', 'images/case-studies', $study['name'] . '-gsc-' . $start);
+                    $gbpUp = handle_image_upload('gbp_image_file', 'images/case-studies', $study['name'] . '-gbp-' . $start);
+                } catch (RuntimeException $e) {
+                    $error = $e->getMessage();
+                }
             }
-            header('Location: ' . $self . '&saved=1');
-            exit;
+            if ($error === '') {
+                if ($isBaseline) {
+                    $sql = 'UPDATE case_study_weekly_stats SET label = ?, ' . implode(' = ?, ', $metricCols) . ' = ? WHERE id = ?';
+                    $pdo->prepare($sql)->execute([mb_substr($label ?: 'Before weekly tracking', 0, 100), ...$values, $rowId]);
+                } elseif ($rowId) {
+                    $sql = 'UPDATE case_study_weekly_stats SET week_start = ?, week_end = ?, ' . implode(' = ?, ', $metricCols) . ' = ? WHERE id = ?';
+                    $pdo->prepare($sql)->execute([$start, $end, ...$values, $rowId]);
+                } else {
+                    $sql = 'INSERT INTO case_study_weekly_stats (case_study_id, is_baseline, label, week_start, week_end, ' . implode(', ', $metricCols) . ') VALUES (?, 0, \'\', ?, ?, ' . implode(', ', array_fill(0, count($metricCols), '?')) . ')';
+                    $pdo->prepare($sql)->execute([$id, $start, $end, ...$values]);
+                }
+                $synced = false;
+                if (!$isBaseline && ($gscUp !== null || $gbpUp !== null) && weekly_is_latest_week($pdo, $id, $start)) {
+                    weekly_sync_case_sections($pdo, $id, array_combine($metricCols, $values), $_POST, $gscUp, $gbpUp);
+                    $synced = true;
+                }
+                header('Location: ' . $self . '&saved=1' . ($synced ? '&synced=1' : ''));
+                exit;
+            }
         }
     }
 }
@@ -138,7 +156,7 @@ include __DIR__ . '/includes/layout-header.php';
 </div>
 
 <?php if (isset($_GET['setup'])): ?><div class="alert alert-success">Weekly stats are set up. Starting entries added from current stats: <?php echo (int) $_GET['setup']; ?>.</div><?php endif; ?>
-<?php if (!empty($_GET['saved'])): ?><div class="alert alert-success">Week saved. The website is already showing the new numbers.</div><?php endif; ?>
+<?php if (!empty($_GET['saved'])): ?><div class="alert alert-success">Week saved. The website is already showing the new numbers.<?php echo !empty($_GET['synced']) ? ' The screenshot and numbers were also put in the case study\'s Search Console / Business Profile section.' : ''; ?></div><?php endif; ?>
 <?php if (!empty($_GET['deleted'])): ?><div class="alert alert-success">Week deleted.</div><?php endif; ?>
 <?php if ($error): ?><div class="alert alert-error"><?php echo htmlspecialchars($error, ENT_QUOTES, 'UTF-8'); ?></div><?php endif; ?>
 
@@ -175,7 +193,7 @@ include __DIR__ . '/includes/layout-header.php';
         }
     ?></h2>
     <?php if ($editing): ?><div class="hint" style="margin:-6px 0 14px;">Change the numbers below and click "Save Changes". The website updates straight away.</div><?php endif; ?>
-    <form method="post" class="admin-form">
+    <form method="post" class="admin-form" enctype="multipart/form-data">
         <?php echo csrf_field(); ?>
         <input type="hidden" name="id" value="<?php echo (int) $id; ?>">
         <input type="hidden" name="action" value="save">
@@ -192,15 +210,48 @@ include __DIR__ . '/includes/layout-header.php';
             <div class="hint">Leave "Week end" blank to use 7 days from the start.</div>
         <?php endif; ?>
 
-        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:10px; margin-top:12px;">
-            <?php foreach (WEEKLY_METRICS as $metric => $label): ?>
+        <?php
+        $isBase = (int) ($form['is_baseline'] ?? 0) === 1;
+        $metricField = function (string $metric) use ($form, $error): void {
+            $label = WEEKLY_METRICS[$metric];
+            ?>
             <div>
                 <label for="<?php echo $metric; ?>"><?php echo htmlspecialchars($label, ENT_QUOTES, 'UTF-8'); ?><?php echo $metric === 'shop_sales' ? ' (A$)' : ''; ?></label>
                 <input type="text" inputmode="decimal" id="<?php echo $metric; ?>" name="<?php echo $metric; ?>" value="<?php echo htmlspecialchars($error ? (string) ($form[$metric] ?? '') : weekly_input_value($form[$metric] ?? null), ENT_QUOTES, 'UTF-8'); ?>">
             </div>
-            <?php endforeach; ?>
+            <?php
+        };
+        $groupStyle = 'display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:10px; margin-top:8px;';
+        ?>
+        <h3 style="font-size:0.95rem; margin:18px 0 0;">Search Console</h3>
+        <div style="<?php echo $groupStyle; ?>">
+            <?php $metricField('organic_clicks'); $metricField('search_impressions'); ?>
+            <?php if (!$isBase): ?>
+            <div><label for="gsc_ctr">Average CTR % (optional)</label><input type="text" inputmode="decimal" id="gsc_ctr" name="gsc_ctr" value="<?php echo htmlspecialchars((string) ($_POST['gsc_ctr'] ?? ''), ENT_QUOTES, 'UTF-8'); ?>" placeholder="worked out from clicks / impressions"></div>
+            <div><label for="gsc_position">Average position (optional)</label><input type="text" inputmode="decimal" id="gsc_position" name="gsc_position" value="<?php echo htmlspecialchars((string) ($_POST['gsc_position'] ?? ''), ENT_QUOTES, 'UTF-8'); ?>" placeholder="e.g. 10.4"></div>
+            <?php endif; ?>
         </div>
-        <div class="hint">Leave a box blank if it isn't tracked for this client. "1,998", "7.2K" and "A$1,250" all work. Average CTR is worked out automatically from clicks and impressions.</div>
+        <?php if (!$isBase): ?>
+        <label for="gsc_image_file" style="margin-top:10px;">Search Console screenshot (optional)</label>
+        <input type="file" id="gsc_image_file" name="gsc_image_file" accept="image/png,image/jpeg,image/webp">
+        <div class="hint">Upload a cropped Performance screenshot (filter bar, the boxes and the chart). If this is the latest week, it also replaces the numbers and screenshot in the case study's "Google Search Console Performance" section.</div>
+        <?php endif; ?>
+
+        <h3 style="font-size:0.95rem; margin:22px 0 0;">Google Business Profile</h3>
+        <div style="<?php echo $groupStyle; ?>">
+            <?php foreach (['gbp_interactions', 'gbp_calls', 'gbp_directions', 'gbp_website_clicks', 'gbp_chat_clicks'] as $m) { $metricField($m); } ?>
+        </div>
+        <?php if (!$isBase): ?>
+        <label for="gbp_image_file" style="margin-top:10px;">Business Profile screenshot (optional)</label>
+        <input type="file" id="gbp_image_file" name="gbp_image_file" accept="image/png,image/jpeg,image/webp">
+        <div class="hint">If this is the latest week, it also replaces the interactions, calls, directions and website clicks (the ones you filled in) and the screenshot in the "Google Business Profile Performance" section.</div>
+        <?php endif; ?>
+
+        <h3 style="font-size:0.95rem; margin:22px 0 0;">Online store (Shopify / WooCommerce)</h3>
+        <div style="<?php echo $groupStyle; ?>">
+            <?php foreach (['shop_sales', 'shop_orders', 'shop_sessions'] as $m) { $metricField($m); } ?>
+        </div>
+        <div class="hint">Leave a box blank if it isn't tracked for this client. "1,998", "7.2K" and "A$1,250" all work. Average CTR is worked out automatically from clicks and impressions. Every number you enter is added to the case study's total, which also feeds the homepage and service pages.</div>
 
         <button type="submit" class="btn btn-primary" style="margin-top:16px;"><?php echo $editing ? 'Save Changes' : 'Add Week'; ?></button>
         <?php if ($editing): ?><a href="<?php echo htmlspecialchars($self, ENT_QUOTES, 'UTF-8'); ?>" class="btn btn-secondary" style="margin-top:16px;">Cancel</a><?php endif; ?>

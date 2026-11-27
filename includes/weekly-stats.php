@@ -313,3 +313,97 @@ function weekly_stats_setup(PDO $pdo): int
     }
     return $added;
 }
+
+// "6.66K" style text for the case study page's own stat fields (below 1,000
+// as a plain number, then K / M with up to 2 decimals).
+function weekly_short_number(float $v): string
+{
+    $abs = abs($v);
+    if ($abs < 1000) {
+        return rtrim(rtrim(number_format($v, 1, '.', ''), '0'), '.');
+    }
+    if ($abs < 1000000) {
+        return rtrim(rtrim(number_format($v / 1000, 2, '.', ''), '0'), '.') . 'K';
+    }
+    return rtrim(rtrim(number_format($v / 1000000, 2, '.', ''), '0'), '.') . 'M';
+}
+
+// True when $weekStart is the latest week entered for this case study, so
+// editing an old week never overwrites the current Search Console / Business
+// Profile sections.
+function weekly_is_latest_week(PDO $pdo, int $studyId, string $weekStart): bool
+{
+    $stmt = $pdo->prepare('SELECT MAX(week_start) FROM case_study_weekly_stats WHERE case_study_id = ? AND is_baseline = 0');
+    $stmt->execute([$studyId]);
+    $latest = $stmt->fetchColumn();
+    return !$latest || $weekStart >= $latest;
+}
+
+// A screenshot uploaded with a week is proof for that week's numbers, so it
+// also refreshes the case study page's "Google Search Console Performance" /
+// "Google Business Profile Performance" sections to the same figures.
+// $gsc / $gbp are the uploaded image paths (null = no screenshot, leave that
+// section alone). $v holds the week's metric values, $extra the CTR and
+// position typed next to them. Only fields that have a value are changed.
+function weekly_sync_case_sections(PDO $pdo, int $studyId, array $v, array $extra, ?string $gsc, ?string $gbp): void
+{
+    $set = [];
+    $args = [];
+    $put = function (string $column, ?string $text) use (&$set, &$args): void {
+        if ($text !== null && $text !== '') {
+            $set[] = "$column = ?";
+            $args[] = $text;
+        }
+    };
+    $num = fn(string $k): ?string => ($v[$k] ?? null) === null ? null : weekly_short_number((float) $v[$k]);
+
+    if ($gsc !== null) {
+        $clicks = $v['organic_clicks'] ?? null;
+        $impr = $v['search_impressions'] ?? null;
+        $ctr = parse_weekly_number($extra['gsc_ctr'] ?? '');
+        if ($ctr === null) {
+            $ctr = weekly_rate($clicks, $impr);
+        }
+        $put('gsc_clicks', $num('organic_clicks'));
+        $put('gsc_impressions', $num('search_impressions'));
+        $put('gsc_ctr', $ctr === null ? null : rtrim(rtrim(number_format($ctr, 2, '.', ''), '0'), '.'));
+        $pos = parse_weekly_number($extra['gsc_position'] ?? '');
+        $put('gsc_position', $pos === null ? null : rtrim(rtrim(number_format($pos, 1, '.', ''), '0'), '.'));
+        $put('gsc_image', $gsc);
+    }
+    if ($gbp !== null) {
+        $put('gbp_interactions', $num('gbp_interactions'));
+        $put('gbp_calls', $num('gbp_calls'));
+        $put('gbp_directions', $num('gbp_directions'));
+        $put('gbp_website_clicks', $num('gbp_website_clicks'));
+        $put('gbp_image', $gbp);
+    }
+    if ($set) {
+        $args[] = $studyId;
+        $pdo->prepare('UPDATE case_studies SET ' . implode(', ', $set) . ' WHERE id = ?')->execute($args);
+    }
+}
+
+// Saves one week for a case study from the "all case studies" page. If the
+// week (same start date) already exists, only the numbers typed this time are
+// changed and the rest are kept, so Search Console can be entered first and
+// Business Profile added later without wiping anything. Returns 'inserted'
+// or 'updated'. $values is metric => float|null.
+function weekly_save_week_merge(PDO $pdo, int $studyId, string $start, string $end, array $values): string
+{
+    $given = array_filter($values, fn($v) => $v !== null);
+    $stmt = $pdo->prepare('SELECT id FROM case_study_weekly_stats WHERE case_study_id = ? AND is_baseline = 0 AND week_start = ? LIMIT 1');
+    $stmt->execute([$studyId, $start]);
+    $existing = $stmt->fetchColumn();
+    if ($existing) {
+        if ($given) {
+            $sets = implode(', ', array_map(fn($m) => "$m = ?", array_keys($given)));
+            $pdo->prepare("UPDATE case_study_weekly_stats SET week_end = ?, $sets WHERE id = ?")->execute([$end, ...array_values($given), (int) $existing]);
+        }
+        return 'updated';
+    }
+    $cols = array_keys(WEEKLY_METRICS);
+    $pdo->prepare('INSERT INTO case_study_weekly_stats (case_study_id, is_baseline, label, week_start, week_end, ' . implode(', ', $cols) . ') VALUES (?, 0, \'\', ?, ?, ' . implode(', ', array_fill(0, count($cols), '?')) . ')')
+        ->execute([$studyId, $start, $end, ...array_map(fn($m) => $values[$m] ?? null, $cols)]);
+    return 'inserted';
+}

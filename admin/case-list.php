@@ -23,7 +23,7 @@ include __DIR__ . '/includes/layout-header.php';
 <?php endif; ?>
 
 <div class="page-actions">
-    <span></span>
+    <a href="case-weekly-all.php" class="btn btn-secondary">Weekly Update (all case studies)</a>
     <a href="case-form.php" class="btn btn-primary">+ Add Case Study</a>
 </div>
 

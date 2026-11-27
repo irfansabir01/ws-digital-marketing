@@ -91,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $messages[] = [false, $study['name'] . ': ' . $e->getMessage() . ' Nothing was saved for this one.'];
                 continue;
             }
-            $result = weekly_save_week_merge($pdo, $sid, $start, $end, $values);
+            $result = weekly_save_week_merge($pdo, $sid, $start, $end, $values, parse_weekly_number($in['gsc_ctr'] ?? ''), parse_weekly_number($in['gsc_position'] ?? ''));
             $result === 'inserted' ? $saved++ : $updated++;
             if (($gscUp !== null || $gbpUp !== null) && weekly_is_latest_week($pdo, $sid, $start)) {
                 weekly_sync_case_sections($pdo, $sid, $values, $in, $gscUp, $gbpUp);

@@ -96,6 +96,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 } else {
                     $sql = 'INSERT INTO case_study_weekly_stats (case_study_id, is_baseline, label, week_start, week_end, ' . implode(', ', $metricCols) . ') VALUES (?, 0, \'\', ?, ?, ' . implode(', ', array_fill(0, count($metricCols), '?')) . ')';
                     $pdo->prepare($sql)->execute([$id, $start, $end, ...$values]);
+                    $rowId = (int) $pdo->lastInsertId();
+                }
+                if (!$isBaseline) {
+                    // Optional CTR / position typed for the week: used as typed,
+                    // blank = worked out from clicks and impressions.
+                    weekly_store_ctr_position($pdo, $rowId, parse_weekly_number($_POST['gsc_ctr'] ?? ''), parse_weekly_number($_POST['gsc_position'] ?? ''), true);
                 }
                 $synced = false;
                 if (!$isBaseline && ($gscUp !== null || $gbpUp !== null) && weekly_is_latest_week($pdo, $id, $start)) {
@@ -227,8 +233,8 @@ include __DIR__ . '/includes/layout-header.php';
         <div style="<?php echo $groupStyle; ?>">
             <?php $metricField('organic_clicks'); $metricField('search_impressions'); ?>
             <?php if (!$isBase): ?>
-            <div><label for="gsc_ctr">Average CTR % (optional)</label><input type="text" inputmode="decimal" id="gsc_ctr" name="gsc_ctr" value="<?php echo htmlspecialchars((string) ($_POST['gsc_ctr'] ?? ''), ENT_QUOTES, 'UTF-8'); ?>" placeholder="worked out from clicks / impressions"></div>
-            <div><label for="gsc_position">Average position (optional)</label><input type="text" inputmode="decimal" id="gsc_position" name="gsc_position" value="<?php echo htmlspecialchars((string) ($_POST['gsc_position'] ?? ''), ENT_QUOTES, 'UTF-8'); ?>" placeholder="e.g. 10.4"></div>
+            <div><label for="gsc_ctr">Average CTR % (optional)</label><input type="text" inputmode="decimal" id="gsc_ctr" name="gsc_ctr" value="<?php echo htmlspecialchars($error ? (string) ($form['gsc_ctr'] ?? '') : weekly_input_value($form['gsc_ctr'] ?? null), ENT_QUOTES, 'UTF-8'); ?>" placeholder="blank = worked out from clicks / impressions"></div>
+            <div><label for="gsc_position">Average position (optional)</label><input type="text" inputmode="decimal" id="gsc_position" name="gsc_position" value="<?php echo htmlspecialchars($error ? (string) ($form['gsc_position'] ?? '') : weekly_input_value($form['gsc_position'] ?? null), ENT_QUOTES, 'UTF-8'); ?>" placeholder="e.g. 10.4"></div>
             <?php endif; ?>
         </div>
         <?php if (!$isBase): ?>
@@ -264,12 +270,14 @@ include __DIR__ . '/includes/layout-header.php';
         <tr>
             <th>Period</th>
             <?php foreach (WEEKLY_METRICS as $label): ?><th><?php echo htmlspecialchars($label, ENT_QUOTES, 'UTF-8'); ?></th><?php endforeach; ?>
+            <th>CTR</th>
+            <th>Position</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
         <?php if (!$rows): ?>
-            <tr><td colspan="<?php echo count(WEEKLY_METRICS) + 2; ?>">No weekly stats yet. Add the first week above.</td></tr>
+            <tr><td colspan="<?php echo count(WEEKLY_METRICS) + 4; ?>">No weekly stats yet. Add the first week above.</td></tr>
         <?php endif; ?>
         <?php foreach ($rows as $row): ?>
         <tr<?php echo $summary && $summary['latest'] && (int) $summary['latest']['id'] === (int) $row['id'] ? ' style="background:#F0FDFF;"' : ''; ?>>
@@ -277,6 +285,8 @@ include __DIR__ . '/includes/layout-header.php';
             <?php foreach ($metricCols as $metric): ?>
             <td><?php echo ($row[$metric] ?? null) === null || $row[$metric] === '' ? '&ndash;' : htmlspecialchars(format_weekly_value($metric, (float) $row[$metric]), ENT_QUOTES, 'UTF-8'); ?></td>
             <?php endforeach; ?>
+            <td><?php $rowCtr = weekly_row_ctr($row); echo $rowCtr === null ? '&ndash;' : htmlspecialchars(weekly_percent($rowCtr), ENT_QUOTES, 'UTF-8'); ?></td>
+            <td><?php echo ($row['gsc_position'] ?? null) === null || $row['gsc_position'] === '' ? '&ndash;' : htmlspecialchars(weekly_input_value($row['gsc_position']), ENT_QUOTES, 'UTF-8'); ?></td>
             <td style="white-space:nowrap;">
                 <a href="<?php echo htmlspecialchars($self . '&edit=' . (int) $row['id'] . '#weekly-form', ENT_QUOTES, 'UTF-8'); ?>" class="btn btn-secondary btn-sm">Edit</a>
                 <form method="post" style="display:inline;" onsubmit="return confirm('Delete this entry? The totals on the website will go down by these numbers.');">
@@ -295,6 +305,8 @@ include __DIR__ . '/includes/layout-header.php';
             <?php foreach ($metricCols as $metric): ?>
             <td><?php echo $summary['totals'][$metric] === null ? '&ndash;' : htmlspecialchars(format_weekly_value($metric, $summary['totals'][$metric]), ENT_QUOTES, 'UTF-8'); ?></td>
             <?php endforeach; ?>
+            <td><?php echo $summary['totals']['_ctr'] === null ? '&ndash;' : htmlspecialchars(weekly_percent($summary['totals']['_ctr']), ENT_QUOTES, 'UTF-8'); ?></td>
+            <td></td>
             <td></td>
         </tr>
         <?php endif; ?>

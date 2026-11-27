@@ -39,6 +39,8 @@ function weekly_stats_create_table_sql(): string
     week_start DATE NULL,
     week_end DATE NULL,
     $metricCols,
+    gsc_ctr DECIMAL(6,2) NULL,
+    gsc_position DECIMAL(6,2) NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     INDEX idx_case_study (case_study_id)
 )";
@@ -105,18 +107,21 @@ function summarise_weekly_stats(array $rows): ?array
         return null;
     }
     $totals = array_fill_keys(array_keys(WEEKLY_METRICS), null);
-    // CTR over the total period only uses entries that have both numbers:
-    // an entry with clicks but no impressions (common for the starting
-    // entry) would otherwise inflate it.
-    $rateSums = ['clicks' => 0.0, 'impressions' => 0.0];
+    // CTR over the total period: a week's own typed CTR is used when it has
+    // one, otherwise clicks / impressions; weeks are weighted by their
+    // impressions. Entries without impressions (common for the starting entry)
+    // are left out rather than inflating the figure.
+    $rateSums = ['ctr_x_impressions' => 0.0, 'impressions' => 0.0];
     $baseline = null;
     $weeks = [];
     foreach ($rows as $row) {
-        $clicks = $row['organic_clicks'] ?? null;
         $impressions = $row['search_impressions'] ?? null;
-        if ($clicks !== null && $clicks !== '' && $impressions !== null && $impressions !== '' && (float) $impressions > 0) {
-            $rateSums['clicks'] += (float) $clicks;
-            $rateSums['impressions'] += (float) $impressions;
+        if ($impressions !== null && $impressions !== '' && (float) $impressions > 0) {
+            $rowCtr = weekly_row_ctr($row);
+            if ($rowCtr !== null) {
+                $rateSums['ctr_x_impressions'] += $rowCtr * (float) $impressions;
+                $rateSums['impressions'] += (float) $impressions;
+            }
         }
         foreach (WEEKLY_METRICS as $metric => $label) {
             $value = $row[$metric] ?? null;
@@ -139,7 +144,7 @@ function summarise_weekly_stats(array $rows): ?array
     $start = $baseline ? ($baseline['label'] !== '' ? $baseline['label'] : 'Before weekly tracking') : format_week_date($weeks[0]['week_start'] ?? null);
     $end = $latest ? format_week_date($latest['week_end'] ?: $latest['week_start']) : '';
 
-    $totals['_ctr'] = $rateSums['impressions'] > 0 ? $rateSums['clicks'] / $rateSums['impressions'] * 100 : null;
+    $totals['_ctr'] = $rateSums['impressions'] > 0 ? $rateSums['ctr_x_impressions'] / $rateSums['impressions'] : null;
 
     return [
         'totals' => $totals,
@@ -192,11 +197,26 @@ function weekly_stat_boxes(array $values, ?array $previous = null): array
     // rate is deliberately not worked out here: Shopify calculates it its own
     // way (converted sessions, not orders / sessions), so ours would not
     // match the figure clients see in Shopify.
-    $ctr = array_key_exists('_ctr', $values) ? $values['_ctr'] : weekly_rate($values['organic_clicks'] ?? null, $values['search_impressions'] ?? null);
+    $ctr = array_key_exists('_ctr', $values) ? $values['_ctr'] : weekly_row_ctr($values);
     if ($ctr !== null) {
         $boxes[] = [weekly_percent($ctr), 'Average CTR', null];
     }
+    $position = $values['gsc_position'] ?? null;
+    if ($position !== null && $position !== '') {
+        $boxes[] = [rtrim(rtrim(number_format((float) $position, 1, '.', ''), '0'), '.'), 'Average Position', null];
+    }
     return $boxes;
+}
+
+// A week's click-through rate: the CTR typed for that week when there is one,
+// otherwise worked out from its clicks and impressions.
+function weekly_row_ctr(array $row): ?float
+{
+    $typed = $row['gsc_ctr'] ?? null;
+    if ($typed !== null && $typed !== '') {
+        return (float) $typed;
+    }
+    return weekly_rate($row['organic_clicks'] ?? null, $row['search_impressions'] ?? null);
 }
 
 function weekly_rate($part, $whole): ?float
@@ -258,6 +278,13 @@ function weekly_stats_latest_end(): ?string
 // after the table was first set up). Run from the admin's Weekly Stats page.
 function weekly_stats_ensure_columns(PDO $pdo): void
 {
+    foreach (['gsc_ctr', 'gsc_position'] as $extra) {
+        try {
+            $pdo->query("SELECT $extra FROM case_study_weekly_stats LIMIT 1");
+        } catch (PDOException $e) {
+            $pdo->exec("ALTER TABLE case_study_weekly_stats ADD COLUMN $extra DECIMAL(6,2) NULL");
+        }
+    }
     foreach (array_keys(WEEKLY_METRICS) as $metric) {
         try {
             $pdo->query("SELECT $metric FROM case_study_weekly_stats LIMIT 1");
@@ -389,7 +416,7 @@ function weekly_sync_case_sections(PDO $pdo, int $studyId, array $v, array $extr
 // changed and the rest are kept, so Search Console can be entered first and
 // Business Profile added later without wiping anything. Returns 'inserted'
 // or 'updated'. $values is metric => float|null.
-function weekly_save_week_merge(PDO $pdo, int $studyId, string $start, string $end, array $values): string
+function weekly_save_week_merge(PDO $pdo, int $studyId, string $start, string $end, array $values, ?float $ctr = null, ?float $position = null): string
 {
     $given = array_filter($values, fn($v) => $v !== null);
     $stmt = $pdo->prepare('SELECT id FROM case_study_weekly_stats WHERE case_study_id = ? AND is_baseline = 0 AND week_start = ? LIMIT 1');
@@ -400,10 +427,38 @@ function weekly_save_week_merge(PDO $pdo, int $studyId, string $start, string $e
             $sets = implode(', ', array_map(fn($m) => "$m = ?", array_keys($given)));
             $pdo->prepare("UPDATE case_study_weekly_stats SET week_end = ?, $sets WHERE id = ?")->execute([$end, ...array_values($given), (int) $existing]);
         }
+        weekly_store_ctr_position($pdo, (int) $existing, $ctr, $position, false);
         return 'updated';
     }
     $cols = array_keys(WEEKLY_METRICS);
     $pdo->prepare('INSERT INTO case_study_weekly_stats (case_study_id, is_baseline, label, week_start, week_end, ' . implode(', ', $cols) . ') VALUES (?, 0, \'\', ?, ?, ' . implode(', ', array_fill(0, count($cols), '?')) . ')')
         ->execute([$studyId, $start, $end, ...array_map(fn($m) => $values[$m] ?? null, $cols)]);
+    weekly_store_ctr_position($pdo, (int) $pdo->lastInsertId(), $ctr, $position, false);
     return 'inserted';
+}
+
+// Saves the optional CTR / average position typed with a week. $replace true
+// (single-week form) overwrites both, blank meaning "work CTR out from the
+// numbers"; false (bulk page) only changes the ones that were typed.
+function weekly_store_ctr_position(PDO $pdo, int $rowId, ?float $ctr, ?float $position, bool $replace = true): void
+{
+    if ($rowId <= 0) {
+        return;
+    }
+    $sets = [];
+    $args = [];
+    foreach (['gsc_ctr' => $ctr, 'gsc_position' => $position] as $col => $val) {
+        if ($replace || $val !== null) {
+            $sets[] = "$col = ?";
+            $args[] = $val;
+        }
+    }
+    if ($sets) {
+        $args[] = $rowId;
+        try {
+            $pdo->prepare('UPDATE case_study_weekly_stats SET ' . implode(', ', $sets) . ' WHERE id = ?')->execute($args);
+        } catch (PDOException $e) {
+            // columns not added yet: the number still counts, CTR is just computed
+        }
+    }
 }

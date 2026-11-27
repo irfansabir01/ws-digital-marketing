@@ -41,6 +41,11 @@ function site_static_pages(): array
         ['/seo/sydney/hornsby', 'SEO Hornsby', 'Services', '0.7', 'monthly'],
         ['/seo/sydney/campbelltown', 'SEO Campbelltown', 'Services', '0.7', 'monthly'],
         ['/seo/sydney/bankstown', 'SEO Bankstown', 'Services', '0.7', 'monthly'],
+        ['/seo/sydney/mount-druitt', 'SEO Mount Druitt', 'Services', '0.7', 'monthly'],
+        ['/seo/sydney/north-sydney', 'SEO North Sydney', 'Services', '0.7', 'monthly'],
+        ['/seo/sydney/northern-beaches', 'SEO Northern Beaches', 'Services', '0.7', 'monthly'],
+        ['/seo/sydney/ryde', 'SEO Ryde', 'Services', '0.7', 'monthly'],
+        ['/seo/sydney/wetherill-park', 'SEO Wetherill Park', 'Services', '0.7', 'monthly'],
 
         ['/industries', 'All Industries', 'Industries', '0.8', 'monthly'],
         ['/accounting-finance', 'Accounting & Finance', 'Industries', '0.7', 'monthly'],

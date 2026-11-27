@@ -32,7 +32,7 @@ if (admin_has_role('admin')) {
         <a href="blog-list.php" class="<?php echo in_array($current, ['blog-list.php', 'blog-form.php'], true) ? 'active' : ''; ?>">Blog Posts</a>
         <a href="team-list.php" class="<?php echo in_array($current, ['team-list.php', 'team-form.php'], true) ? 'active' : ''; ?>">Team Members</a>
         <a href="case-list.php" class="<?php echo in_array($current, ['case-list.php', 'case-form.php', 'case-weekly.php'], true) ? 'active' : ''; ?>">Case Studies</a>
-        <a href="case-weekly-all.php" class="<?php echo $current === 'case-weekly-all.php' ? 'active' : ''; ?>">&nbsp;&nbsp;&#8627; Weekly Update (all)</a>
+        <a href="case-weekly-all.php" class="<?php echo $current === 'case-weekly-all.php' ? 'active' : ''; ?>" style="padding-left:38px; font-size:0.9em;">&rsaquo; Weekly Update (all)</a>
         <a href="review-list.php" class="<?php echo in_array($current, ['review-list.php', 'review-form.php'], true) ? 'active' : ''; ?>">Reviews</a>
 <?php endif; ?>
         <div class="admin-nav-section">SEO</div>
